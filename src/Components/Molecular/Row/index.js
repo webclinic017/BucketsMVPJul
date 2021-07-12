@@ -3,29 +3,27 @@
 //map was making it read whole file every time new row component - more efficient to put map in parent and pass prop
 //async- syncronous multiple processing at the same time
 
-import React from 'react';
-import Select from "react-dropdown-select";
+import React, {useState} from 'react';
 import MicrosoftLogo from "../../../Assets/microsoftlogo.png";
 import PlusIcon from "../../../Assets/plus.png";
 import MinusIcon from "../../../Assets/minus.png";
-import Input from "../../Atomic/Input"
+import DropdownInput from "../DropdownInput";
 
 
-const Row = ({className, stockName, onChangeStockName, onStockPercentIncrement, onStockPercentDecrement, stockPercent, stockOptions})=>{
-
-  // Dummy array of test values.
-  const options = Array.from(new Array(10000), (_, index) => ({
-    label: `Item ${index}`,
-    value: index
-  }));
+const Row = ({className, stockName, onChangeStockName, onStockPercentIncrement, onStockPercentDecrement, stockPercent, onStockSelect, suggestions})=>{
+  const [shouldSuggest, setShouldSuggest] = useState(false);
 
   return (
     <div className="flex items-center justify-between mt-4">
       <div className="flex items-center">
         <img src={MicrosoftLogo} className="ml-4"/>
-        <Select
-          options={options}
-          className="ml-4 w-3/5"
+        <DropdownInput
+          value={stockName}
+          shouldSuggest={shouldSuggest && stockName.length>3}
+          setShouldSuggest={setShouldSuggest}
+          suggestions={suggestions}
+          onChange={onChangeStockName}
+          onStockSelect={onStockSelect}
         />
       </div>
       <div className="flex items-center justify-between">

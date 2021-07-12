@@ -22,7 +22,11 @@
 //usesTAte(initialize number with not string, component level variable, no use of variable outside function - state comes in
 
 
-import React, {Component, useState, useEffect} from 'react';
+import React, {
+  useState,
+  useEffect
+} from 'react';
+import axios from "axios";
 import Chart from "../../Components/Atomic/LineChart";
 import Input from "../../Components/Atomic/Input";
 import Button from "../../Components/Atomic/Button";
@@ -31,13 +35,13 @@ import ShareIcon from "../../Assets/entypo_share.png";
 import AddButton from "../../Components/Atomic/AddButton";
 import {isNaN, objectsEqual} from "../../Utils";
 import stocksData from "../../Data/assets.json";
-import axios from "axios";
 
 const Portfolio = (props)=> {
   const[bucketname, setbucetName] = useState("");
+  const [totalPercent, setTotalPercent] = useState(0);
   const [stocks,setStocks]=useState({0: {name: "", percent: 0}});
   const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, value: stock}));
-  const [totalPercent, setTotalPercent] = useState(0);
+  
   // useEffect(()=>{
   //   if(Object.keys(stocks).length>1) {
   //     var sumofValues = Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.value)), 0);
@@ -55,6 +59,7 @@ const Portfolio = (props)=> {
   //     }
   //   }
   // }, [stocks]);
+
   useEffect(()=>{
     setTotalPercent(Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.percent)), 0))
   }, [stocks])
@@ -65,6 +70,12 @@ const Portfolio = (props)=> {
 
   const onChangeStockName = (e, key) => {
     setStocks({...stocks, [key]: {name: e.target.value, percent: stocks[key].percent}});
+  }
+
+  const onStockSelect = (stock, key) => {
+    console.log({stock})
+    console.log({key})
+    setStocks({...stocks, [key]: {name: stock, percent: stocks[key].percent}});
   }
 
   const onStockPercentIncrement = (key) => {
@@ -82,7 +93,7 @@ const Portfolio = (props)=> {
   return(
     <div className="p-11">
       <div className="flex justify-between">
-        <h3 className="text-sm font-bold text-gray-400 text-4xl">Buckets</h3>
+        <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
         <div className="flex items-center justify-between">
           <Button title="Buy"/>
           <span>
@@ -106,10 +117,12 @@ const Portfolio = (props)=> {
                 onChangeStockName={(e)=>onChangeStockName(e, key)}
                 onStockPercentIncrement={()=>onStockPercentIncrement(key)}
                 onStockPercentDecrement={()=>onStockPercentDecrement(key)}
-                stockName={stocks[key].name} stockValue={stocks[key].value} stockPercent={stocks[key].percent}
+                suggestions={stockOptions.filter(item => item.label.toLowerCase().includes(stocks[key].name.toLowerCase()))}
+                onStockSelect={(stock)=>onStockSelect(stock, key)}
+                stockName={stocks[key].name}
+                stockValue={stocks[key].value}
                 stockPercent={stocks[key].percent}
                 stockOptions={stockOptions}
-                className="w-full"
               />
             ))
           }
