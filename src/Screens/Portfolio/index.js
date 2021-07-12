@@ -21,13 +21,14 @@ import Row from "../../Components/Molecular/Row";
 import ShareIcon from "../../Assets/entypo_share.png";
 import AddButton from "../../Components/Atomic/AddButton";
 import {isNaN, objectsEqual} from "../../Utils";
-import stocksData from "../../Data/assets.json"
-
+import stocksData from "../../Data/assets.json";
+import axios from "axios";
 
 const Portfolio = (props)=> {
   const[bucketname, setbucetName] = useState("");
   const [stocks,setStocks]=useState({0: {name:"",value:"0", percent:""}});
-  const stockOptions = stocksData.map((stock)=>({label: stock.name, value: stock}))
+  const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, value: stock}))
+  console.log(stocksData.length)
 
   useEffect(()=>{
     if(Object.keys(stocks).length>1) {
@@ -40,6 +41,9 @@ const Portfolio = (props)=> {
       if(!objectsEqual(stocks,updatedStocks)) {
         setStocks(updatedStocks);
         const arrayOfStocks = Object.values(updatedStocks).map((stock)=>({name: stock.name, percent: stock.name}));
+        // axios.post("http://localhost:3001/get-analytics", {stocks: arrayOfStocks}).then((response) => {
+        //   console.log(response.data)
+        // }).catch((err) => {console.log(err)})
       }
     }
   }, [stocks])
