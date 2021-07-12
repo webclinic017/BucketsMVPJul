@@ -26,90 +26,88 @@ import axios from "axios";
 
 const Portfolio = (props)=> {
   const[bucketname, setbucetName] = useState("");
-  const [stocks,setStocks]=useState({0: {name:"",value:"0", percent:""}});
-  const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, value: stock}))
-  console.log(stocksData.length)
+  const [stocks,setStocks]=useState({0: {name: "", percent: 0}});
+  const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, value: stock}));
 
-  useEffect(()=>{
-    if(Object.keys(stocks).length>1) {
-      var sumofValues = Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.value)), 0);
-      let updatedStocks = {};
-      for (var i = 0; i < Object.keys(stocks).length; i++) {
-        const percent = (Object.values(stocks)[i].value/sumofValues)*100
-        updatedStocks[Object.keys(updatedStocks).length] = {...stocks[i], percent: isNaN(percent)?0:percent};
-      }
-      if(!objectsEqual(stocks,updatedStocks)) {
-        setStocks(updatedStocks);
-        const arrayOfStocks = Object.values(updatedStocks).map((stock)=>({name: stock.name, percent: stock.name}));
-        // axios.post("http://localhost:3001/get-analytics", {stocks: arrayOfStocks}).then((response) => {
-        //   console.log(response.data)
-        // }).catch((err) => {console.log(err)})
-      }
-    }
-  }, [stocks])
+  // useEffect(()=>{
+  //   if(Object.keys(stocks).length>1) {
+  //     var sumofValues = Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.value)), 0);
+  //     let updatedStocks = {};
+  //     for (var i = 0; i < Object.keys(stocks).length; i++) {
+  //       const percent = (Object.values(stocks)[i].value/sumofValues)*100
+  //       updatedStocks[Object.keys(updatedStocks).length] = {...stocks[i], percent: isNaN(percent)?0:percent};
+  //     }
+  //     if(!objectsEqual(stocks,updatedStocks)) {
+  //       setStocks(updatedStocks);
+  //       const arrayOfStocks = Object.values(updatedStocks).map((stock)=>({name: stock.name, percent: stock.name}));
+  //       // axios.post("http://localhost:3001/get-analytics", {stocks: arrayOfStocks}).then((response) => {
+  //       //   console.log(response.data)
+  //       // }).catch((err) => {console.log(err)})
+  //     }
+  //   }
+  // }, [stocks]);
 
-  //const [stocks, setStocks] = useState({0:{stockName:"", value:"0"}});
   const addRow = () => {
-    setStocks({...stocks, [Object.keys(stocks).length]: { name: "", value: "0", percent:""}});
+    setStocks({...stocks, [Object.keys(stocks).length]: { name: "", percent:0}});
   }
 
   const onChangeStockName = (e, key) => {
-    setStocks({...stocks, [key]: {value: stocks[key].value, name: e.target.value, percent: stocks[key].percent}});
+    setStocks({...stocks, [key]: {name: e.target.value, percent: stocks[key].percent}});
   }
 
-  const onChangeStockValue = (e, key) => {
-    setStocks({...stocks, [key]: {name: stocks[key].name, value: e.target.value, percent: stocks[key].percent}});
+  const onStockPercentIncrement = (key) => {
+    if(stocks[key].percent < 100) {
+      setStocks({...stocks, [key]: {name: stocks[key].name, percent: stocks[key].percent+1}});
+    }
   }
 
+  const onStockPercentDecrement = (key) => {
+    if(stocks[key].percent > 0) {
+      setStocks({...stocks, [key]: {name: stocks[key].name, percent: stocks[key].percent-1}});
+    }
+  }
 
-
-    return(
+  return(
     <div className="p-11">
       <div className="flex justify-between">
         <h3 className="text-sm font-bold text-gray-400 text-4xl">Buckets</h3>
         <div className="flex items-center justify-between">
-        <Button title="Buy"/>
-        <span>
-        <img src={ShareIcon} className="ml-4"/>
-        </span>
-
-
+          <Button title="Buy"/>
+          <span>
+            <img src={ShareIcon} className="ml-4"/>
+          </span>
         </div>
-
       </div>
       <div className="block sm:block md:flex justify-between mt-6">
         <div className="w-full sm:w-full md:w-full lg:w-2/5 ">
-        <Input className="w-2/4"
-                value={bucketname}
-                onChange={(e)=>setbucetName(e.target.vallue)}
-                placeholder="Bucket Name"
-
-        />
+          <Input className="w-2/4"
+            value={bucketname}
+            onChange={(e)=>setbucetName(e.target.vallue)}
+            placeholder="Bucket Name"
+          />
           {
             Object.keys(stocks).map((key)=>(
               <Row
                 onChangeStockName={(e)=>onChangeStockName(e, key)}
-                onChangeStockValue={(e)=>onChangeStockValue(e, key)}
+                onStockPercentIncrement={()=>onStockPercentIncrement(key)}
+                onStockPercentDecrement={()=>onStockPercentDecrement(key)}
                 stockName={stocks[key].name} stockValue={stocks[key].value} stockPercent={stocks[key].percent}
-                className="w-full"
+                stockPercent={stocks[key].percent}
                 stockOptions={stockOptions}
+                className="w-full"
               />
-
-
             ))
           }
-          <div>  <AddButton title="+" className="mt-4" onClick={addRow}/></div>
-
+          <div>
+            <AddButton title="+" className="mt-4" onClick={addRow}/>
+          </div>
         </div>
-        <div className="w-full sm:w-full md:w-full lg:w-2/5"><Chart/></div>
+        <div className="w-full sm:w-full md:w-full lg:w-2/5">
+          <Chart/>
+        </div>
       </div>
-
-
     </div>
-
-
   );
-
 }
 
 export default Portfolio;
