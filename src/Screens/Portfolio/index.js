@@ -12,6 +12,15 @@
 //if, for, else, const = , console.lo, useeffect - when an event happens - cant pass parameter,
 //useEffect - stocks - value or anything update
 
+//total percent  - guiding user to make sure weights add to 100 - only when weight adds up to exactly 100, then only we post to get-analytics
+//dropdown - select - we have to make much quicker - our own implementation
+//delete row functionality - for 2nd row onwards
+//ticker + name - render from select
+//yahoo finance prices and graph
+//logo- clearbit logo
+
+//usesTAte(initialize number with not string, component level variable, no use of variable outside function - state comes in
+
 
 import React, {Component, useState, useEffect} from 'react';
 import Chart from "../../Components/Atomic/LineChart";
@@ -28,7 +37,7 @@ const Portfolio = (props)=> {
   const[bucketname, setbucetName] = useState("");
   const [stocks,setStocks]=useState({0: {name: "", percent: 0}});
   const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, value: stock}));
-
+  const [totalPercent, setTotalPercent] = useState(0);
   // useEffect(()=>{
   //   if(Object.keys(stocks).length>1) {
   //     var sumofValues = Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.value)), 0);
@@ -46,6 +55,9 @@ const Portfolio = (props)=> {
   //     }
   //   }
   // }, [stocks]);
+  useEffect(()=>{
+    setTotalPercent(Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.percent)), 0))
+  }, [stocks])
 
   const addRow = () => {
     setStocks({...stocks, [Object.keys(stocks).length]: { name: "", percent:0}});
@@ -80,11 +92,14 @@ const Portfolio = (props)=> {
       </div>
       <div className="block sm:block md:flex justify-between mt-6">
         <div className="w-full sm:w-full md:w-full lg:w-2/5 ">
-          <Input className="w-2/4"
-            value={bucketname}
-            onChange={(e)=>setbucetName(e.target.vallue)}
-            placeholder="Bucket Name"
-          />
+          <div className="flex justify-between items-center">
+            <Input className="w-2/4"
+              value={bucketname}
+              onChange={(e)=>setbucetName(e.target.vallue)}
+              placeholder="Bucket Name"
+            />
+            <div className={`mr-6 ${totalPercent < 100 ? 'text-gray-600' : totalPercent > 100 ? 'text-red-600' : 'text-green-600'}`}>Total: {totalPercent} %</div>
+          </div>
           {
             Object.keys(stocks).map((key)=>(
               <Row
