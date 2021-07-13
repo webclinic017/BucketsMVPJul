@@ -20,7 +20,8 @@
 //logo- clearbit logo
 
 //usesTAte(initialize number with not string, component level variable, no use of variable outside function - state comes in
-
+//gordon to add in assets table - whether stock is fractionable or not - minimum investment amount
+//since stocks is a state- you have setState to update
 
 import React, {
   useState,
@@ -41,7 +42,7 @@ const Portfolio = (props)=> {
   const [totalPercent, setTotalPercent] = useState(0);
   const [stocks,setStocks]=useState({0: {name: "", percent: 0}});
   const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, value: stock}));
-  
+
   // useEffect(()=>{
   //   if(Object.keys(stocks).length>1) {
   //     var sumofValues = Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.value)), 0);
@@ -66,6 +67,7 @@ const Portfolio = (props)=> {
 
   const addRow = () => {
     setStocks({...stocks, [Object.keys(stocks).length]: { name: "", percent:0}});
+
   }
 
   const onChangeStockName = (e, key) => {
@@ -88,6 +90,16 @@ const Portfolio = (props)=> {
     if(stocks[key].percent > 0) {
       setStocks({...stocks, [key]: {name: stocks[key].name, percent: stocks[key].percent-1}});
     }
+  }
+
+  const deleteRow = (key) => {
+    let tempStocks = {};
+    Object.keys(stocks).forEach((rowNumber)=>{
+      if(rowNumber!==key) {
+        tempStocks[Object.keys(tempStocks).length] = stocks[rowNumber];
+      }
+    });
+    setStocks(tempStocks);
   }
 
   return(
@@ -114,6 +126,7 @@ const Portfolio = (props)=> {
           {
             Object.keys(stocks).map((key)=>(
               <Row
+                rowIndex={key}
                 onChangeStockName={(e)=>onChangeStockName(e, key)}
                 onStockPercentIncrement={()=>onStockPercentIncrement(key)}
                 onStockPercentDecrement={()=>onStockPercentDecrement(key)}
@@ -123,6 +136,8 @@ const Portfolio = (props)=> {
                 stockValue={stocks[key].value}
                 stockPercent={stocks[key].percent}
                 stockOptions={stockOptions}
+                deleteable={Object.keys(stocks).length>1 && key!==0}
+                deleteRow={deleteRow}
               />
             ))
           }

@@ -1,3 +1,4 @@
+//suggestions is an array of objects
 import React from 'react';
 
 const DropdownInput = ({value, onChange, onStockSelect, shouldSuggest, setShouldSuggest, suggestions, ...props}) => {
