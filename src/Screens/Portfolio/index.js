@@ -40,55 +40,49 @@ import stocksData from "../../Data/assets.json";
 const Portfolio = (props)=> {
   const[bucketname, setbucetName] = useState("");
   const [totalPercent, setTotalPercent] = useState(0);
-  const [stocks,setStocks]=useState({0: {name: "", percent: 0}});
-  const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, value: stock}));
+  const [showChart, setShowChart] = useState(false);
+  const [stocks,setStocks]=useState({0: {name: "", logoUrl: "", percent: 0}});
+  const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, logoUrl: stock.logo_url, value: stock}));
 
-  // useEffect(()=>{
-  //   if(Object.keys(stocks).length>1) {
-  //     var sumofValues = Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.value)), 0);
-  //     let updatedStocks = {};
-  //     for (var i = 0; i < Object.keys(stocks).length; i++) {
-  //       const percent = (Object.values(stocks)[i].value/sumofValues)*100
-  //       updatedStocks[Object.keys(updatedStocks).length] = {...stocks[i], percent: isNaN(percent)?0:percent};
-  //     }
-  //     if(!objectsEqual(stocks,updatedStocks)) {
-  //       setStocks(updatedStocks);
-  //       const arrayOfStocks = Object.values(updatedStocks).map((stock)=>({name: stock.name, percent: stock.name}));
-  //       // axios.post("http://localhost:3001/get-analytics", {stocks: arrayOfStocks}).then((response) => {
-  //       //   console.log(response.data)
-  //       // }).catch((err) => {console.log(err)})
-  //     }
-  //   }
-  // }, [stocks]);
+  useEffect(()=>{
+    const sumOfPercents = Object.values(stocks).reduce((total, current)=>(total+current.percent), 0);
+    if(sumOfPercents===100) {
+      setShowChart(true);
+      // const arrayOfStocks = Object.values(updatedStocks).map((stock)=>({name: stock.name, percent: stock.name}));
+      // axios.post("http://localhost:3001/get-analytics", {stocks: arrayOfStocks}).then((response) => {
+      //   console.log(response.data)
+      // }).catch((err) => {console.log(err)})
+    } else if(showChart) {
+      setShowChart(false);
+    }
+  }, [stocks]);
 
   useEffect(()=>{
     setTotalPercent(Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.percent)), 0))
   }, [stocks])
 
   const addRow = () => {
-    setStocks({...stocks, [Object.keys(stocks).length]: { name: "", percent:0}});
+    setStocks({...stocks, [Object.keys(stocks).length]: { name: "", logoUrl: "", percent: 0}});
 
   }
 
   const onChangeStockName = (e, key) => {
-    setStocks({...stocks, [key]: {name: e.target.value, percent: stocks[key].percent}});
+    setStocks({...stocks, [key]: {...stocks[key], name: e.target.value}});
   }
 
   const onStockSelect = (stock, key) => {
-    console.log({stock})
-    console.log({key})
-    setStocks({...stocks, [key]: {name: stock, percent: stocks[key].percent}});
+    setStocks({...stocks, [key]: {...stocks[key], logoUrl: stock.logoUrl, name: stock.label}});
   }
 
   const onStockPercentIncrement = (key) => {
     if(stocks[key].percent < 100) {
-      setStocks({...stocks, [key]: {name: stocks[key].name, percent: stocks[key].percent+1}});
+      setStocks({...stocks, [key]: {...stocks[key], percent: stocks[key].percent+1}});
     }
   }
 
   const onStockPercentDecrement = (key) => {
     if(stocks[key].percent > 0) {
-      setStocks({...stocks, [key]: {name: stocks[key].name, percent: stocks[key].percent-1}});
+      setStocks({...stocks, [key]: {...stocks[key], percent: stocks[key].percent-1}});
     }
   }
 
@@ -115,13 +109,15 @@ const Portfolio = (props)=> {
       </div>
       <div className="block sm:block md:flex justify-between mt-6">
         <div className="w-full sm:w-full md:w-full lg:w-2/5 ">
-          <div className="flex justify-between items-center">
-            <Input className="w-2/4"
+          <div className="flex items-center w-full">
+            <Input className="w-3/5"
               value={bucketname}
               onChange={(e)=>setbucetName(e.target.vallue)}
               placeholder="Bucket Name"
             />
-            <div className={`mr-6 ${totalPercent < 100 ? 'text-gray-600' : totalPercent > 100 ? 'text-red-600' : 'text-green-600'}`}>Total: {totalPercent} %</div>
+            <div className="flex w-2/5 justify-center">
+              <div className={`${totalPercent < 100 ? 'text-gray-500' : totalPercent > 100 ? 'text-red-600' : 'text-green-600'}`}>Total: {totalPercent} %</div>
+            </div>
           </div>
           {
             Object.keys(stocks).map((key)=>(
@@ -133,6 +129,7 @@ const Portfolio = (props)=> {
                 suggestions={stockOptions.filter(item => item.label.toLowerCase().includes(stocks[key].name.toLowerCase()))}
                 onStockSelect={(stock)=>onStockSelect(stock, key)}
                 stockName={stocks[key].name}
+                logoUrl={stocks[key].logoUrl}
                 stockValue={stocks[key].value}
                 stockPercent={stocks[key].percent}
                 stockOptions={stockOptions}
@@ -146,7 +143,11 @@ const Portfolio = (props)=> {
           </div>
         </div>
         <div className="w-full sm:w-full md:w-full lg:w-2/5">
-          <Chart/>
+          {
+            showChart
+              &&
+                <Chart/>
+          }
         </div>
       </div>
     </div>

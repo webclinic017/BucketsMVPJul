@@ -29,7 +29,7 @@ const DropdownInput = ({value, onChange, onStockSelect, shouldSuggest, setShould
                     suggestions.map((item, index)=>(
                       <div
                         key={index}
-                        onClick={()=>onStockSelect(item.label)}
+                        onClick={()=>onStockSelect(item)}
                         className="w-full py-2 px-4 relative cursor-pointer border-b-2 border-gray-300"
                       >
                         {item.label}

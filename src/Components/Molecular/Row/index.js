@@ -12,20 +12,18 @@ import DropdownInput from "../DropdownInput";
 import trash_grey from "../../../Assets/Icons/trash_grey.png";
 import trash_red from "../../../Assets/Icons/trash_red.png";
 
-const Row = ({className, stockName, onChangeStockName, onStockPercentIncrement, onStockPercentDecrement, stockPercent, onStockSelect, suggestions, deleteable, deleteRow, rowIndex})=>{
+const Row = ({stockName, onChangeStockName, onStockPercentIncrement, onStockPercentDecrement, logoUrl, stockPercent, onStockSelect, suggestions, deleteable, deleteRow, rowIndex})=>{
   const [shouldSuggest, setShouldSuggest] = useState(false);
   const [hover, setHover] = useState(false);
 
   const handleOnMouseOver = () => {
     if(deleteable) {
-        setHover(true);
+      setHover(true);
     }
   }
 
   const handleOnMouseOut = () => {
-    if(deleteable) {
-        setHover(false);
-    }
+    setHover(false);
   }
 
   const handleOnClickDelete = () => {
@@ -37,10 +35,10 @@ const Row = ({className, stockName, onChangeStockName, onStockPercentIncrement, 
   return (
     <div key={rowIndex} className="flex items-center justify-between mt-4">
       <div className="flex items-center">
-        <img src={MicrosoftLogo} className="ml-4"/>
+        <img src={!logoUrl.length ? MicrosoftLogo : logoUrl} className="mr-2 h-14 w-14 object-contain ml-2"/>
         <DropdownInput
           value={stockName}
-          shouldSuggest={shouldSuggest && stockName.length>3}
+          shouldSuggest={shouldSuggest && stockName.length>1}
           setShouldSuggest={setShouldSuggest}
           suggestions={suggestions}
           onChange={onChangeStockName}
@@ -53,9 +51,7 @@ const Row = ({className, stockName, onChangeStockName, onStockPercentIncrement, 
           {`${Math.round(stockPercent)}%`}
         </span>
         <img onClick={(onStockPercentIncrement)} className="w-5 h-5 object-contain cursor-pointer" src={PlusIcon} />
-      </div>
-      <div>
-        <img onClick={handleOnClickDelete} src={hover ? trash_red : trash_grey} onMouseOver={handleOnMouseOver} onMouseOut={handleOnMouseOut} className="w-4 h-4 object-contain cursor-pointer -mt-1"/>
+        <img className="w-4 h-4 object-contain ml-6 cursor-pointer -mt-1" onClick={handleOnClickDelete} src={hover ? trash_red : trash_grey} onMouseOver={handleOnMouseOver} onMouseOut={handleOnMouseOut}/>
       </div>
     </div>
   );
