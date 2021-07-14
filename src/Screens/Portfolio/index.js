@@ -35,9 +35,8 @@ import Button from "../../Components/Atomic/Button";
 import Row from "../../Components/Molecular/Row";
 import ShareIcon from "../../Assets/entypo_share.png";
 import AddButton from "../../Components/Atomic/AddButton";
-import {isNaN, objectsEqual} from "../../Utils";
 import stocksData from "../../Data/assets.json";
-//import ShareBucketPopup from "../../components/Molecular/Popups/ShareBucket";
+import GoogleLoginPopup from "../../Components/Molecular/Popups/GoogleLogin";
 import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
 
 const Portfolio = (props)=> {
@@ -45,6 +44,8 @@ const Portfolio = (props)=> {
   const [totalPercent, setTotalPercent] = useState(0);
   const [showChart, setShowChart] = useState(false);
   const [stocks,setStocks]=useState({0: {name: "", logoUrl: "", percent: 0}});
+  const [isShareModalVisible, setShareModalVisibility] = useState(false);
+  const [isGoogleLoginModalVisible, setGooglLoginModalVisibility] = useState(false);
   const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, logoUrl: stock.logo_url, value: stock}));
 
   useEffect(()=>{
@@ -99,22 +100,16 @@ const Portfolio = (props)=> {
     setStocks(tempStocks);
   }
 
-  const ShareBtn = () => {
-    return (
-      <span>
-        <img src={ShareIcon} className="ml-4"/>
-      </span>
-    )
-  }
-
   return(
     <>
       <div className="p-11">
         <div className="flex justify-between">
           <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
           <div className="flex items-center justify-between">
-            <Button title="Save"/>
-            <ShareBucketPopup trigger={ShareBtn} />
+            <Button onClick={()=>setGooglLoginModalVisibility(true)} title="Save"/>
+            <span onClick={()=>setShareModalVisibility(true)} className="cursor-pointer">
+              <img src={ShareIcon} className="ml-4"/>
+            </span>
           </div>
         </div>
         <div className="block sm:block md:flex justify-between mt-6">
@@ -161,6 +156,16 @@ const Portfolio = (props)=> {
           </div>
         </div>
       </div>
+      <GoogleLoginPopup
+        open={isGoogleLoginModalVisible}
+        closeOnDocumentClick
+        onClose={()=>setGooglLoginModalVisibility(false)}
+      />
+      <ShareBucketPopup
+        open={isShareModalVisible}
+        closeOnDocumentClick
+        onClose={()=>setShareModalVisibility(false)}
+      />
     </>
   );
 }

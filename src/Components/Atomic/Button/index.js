@@ -10,23 +10,18 @@ const Button = ({onClick, title, className, ...props})=>{
     width: "8rem"
   };
 
-
   return (
-  <div
-    style={style}
-    className={`text-center px-8 py-2 rounded-full border-2 cursor-pointer ${className}`}
-  >
-
-
-
-    <span
-      style={{color:theme.colors.white}}
-      className={`text-sm font-bold`}>
-      {title}
-    </span>
-
-  </div>
-
+    <div
+      style={style}
+      onClick={onClick}
+      className={`text-center px-8 py-2 rounded-full border-2 cursor-pointer ${className}`}
+    >
+      <span
+        style={{color:theme.colors.white}}
+        className={`text-sm font-bold`}>
+        {title}
+      </span>
+    </div>
   );
 }
 
