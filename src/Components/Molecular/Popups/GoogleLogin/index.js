@@ -5,14 +5,14 @@ import GoogleLogin from 'react-google-login';
 import HearEyesEmoji from "../../../../Assets/emoji_heart_eyes.png"
 import theme from '../../../../Theme';
 
-const GoogleLoginPopup = (props) => {
+const GoogleLoginPopup = ({open, onClose, onGoogleLogin, ...props}) => {
   const responseGoogle = (response) => {
-    console.log(response);
-    props.onClose();
+    onClose();
+    onGoogleLogin(response.profileObj);
   }
 
   return (
-    <Popup {...props} position="center" modal>
+    <Popup open={open} onClose={onClose} closeOnDocumentClick position="center" modal>
       <div className="flex flex-col items-center w-full h-full my-12 px-7 rounded-md">
         <img className="object-contain h-6 w-6 mx-3" src={HearEyesEmoji} />
         <h2
@@ -27,6 +27,7 @@ const GoogleLoginPopup = (props) => {
             buttonText="Sign in with Google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
+            responseType=""
             cookiePolicy={'single_host_origin'}
           />
         </div>

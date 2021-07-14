@@ -28,6 +28,7 @@ import React, {
   useState,
   useEffect
 } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from "axios";
 import Chart from "../../Components/Atomic/LineChart";
 import Input from "../../Components/Atomic/Input";
@@ -36,10 +37,14 @@ import Row from "../../Components/Molecular/Row";
 import ShareIcon from "../../Assets/entypo_share.png";
 import AddButton from "../../Components/Atomic/AddButton";
 import stocksData from "../../Data/assets.json";
+import { googleLogin } from "../../Redux/Actions/auth";
+import { insertTokenInHeaders } from "../../Services";
 import GoogleLoginPopup from "../../Components/Molecular/Popups/GoogleLogin";
 import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
+import { encryptDataString } from '../../Utils';
 
 const Portfolio = (props)=> {
+  const dispatch = useDispatch();
   const[bucketname, setbucetName] = useState("");
   const [totalPercent, setTotalPercent] = useState(0);
   const [showChart, setShowChart] = useState(false);
@@ -67,7 +72,6 @@ const Portfolio = (props)=> {
 
   const addRow = () => {
     setStocks({...stocks, [Object.keys(stocks).length]: { name: "", logoUrl: "", percent: 0}});
-
   }
 
   const onChangeStockName = (e, key) => {
@@ -98,6 +102,23 @@ const Portfolio = (props)=> {
       }
     });
     setStocks(tempStocks);
+  }
+
+  const onGoogleLogin = (userInfo) => {
+    const data = {
+      email: userInfo.email,
+      firstName: userInfo.givenName,
+      lastName: userInfo.familyName,
+      profilePicture: userInfo.imageUrl
+    };
+    dispatch(googleLogin(data, (authToken)=>{
+      insertTokenInHeaders(authToken);
+      const encryptedToken = encryptDataString(authToken);
+      localStorage.setItem(
+        "bucket_session",
+        JSON.stringify(encryptedToken)
+      );
+    }));
   }
 
   return(
@@ -158,12 +179,11 @@ const Portfolio = (props)=> {
       </div>
       <GoogleLoginPopup
         open={isGoogleLoginModalVisible}
-        closeOnDocumentClick
         onClose={()=>setGooglLoginModalVisibility(false)}
+        onGoogleLogin={onGoogleLogin}
       />
       <ShareBucketPopup
         open={isShareModalVisible}
-        closeOnDocumentClick
         onClose={()=>setShareModalVisibility(false)}
       />
     </>

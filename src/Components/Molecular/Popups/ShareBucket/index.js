@@ -6,11 +6,11 @@ import RightArrow from "../../../../Assets/Icons/right_arrow.png";
 import Copy from "../../../../Assets/Icons/copy.png";
 import theme from '../../../../Theme';
 
-const ShareBucketPopup = (props) => {
-  const [isCopied, setCopied] = useClipboard("http://buckets-investing.com/bucket/56js9j3559rs95i404");
+const ShareBucketPopup = ({open, onClose, ...props}) => {
+  const [isCopied, setCopied] = useClipboard("http://buckets-investing.com/bucket/56js9j3559rs95i404", {successDuration: 1000});
 
   return (
-    <Popup {...props} position="center" modal>
+    <Popup open={open} onClose={onClose} closeOnDocumentClick position="center" modal>
       <div className="w-full h-full my-12 px-7 rounded-md">
         <h2
           style={{color: theme.colors.lightPurple}}
