@@ -3,7 +3,7 @@ import React from 'react';
 
 const DropdownInput = ({value, onChange, onStockSelect, shouldSuggest, setShouldSuggest, suggestions, ...props}) => {
   const width = document.getElementById("dropdownInputContainer")?.clientWidth;
-  
+
   const handleOnBlur = () => {
     setTimeout(() => {
       setShouldSuggest(false);
@@ -11,7 +11,7 @@ const DropdownInput = ({value, onChange, onStockSelect, shouldSuggest, setShould
   }
 
   return (
-    <div id="dropdownInputContainer" className="w-full">
+    <div id="dropdownInputContainer" className="w-full mr-4">
       <input
         onFocus={()=>setShouldSuggest(true)}
         onBlur={handleOnBlur}

@@ -3,9 +3,10 @@
 //map was making it read whole file every time new row component - more efficient to put map in parent and pass prop
 //async- syncronous multiple processing at the same time
 // ()=>alert() vs. simply alert()
+//make ui -
 
 import React, {useState} from 'react';
-import MicrosoftLogo from "../../../Assets/microsoftlogo.png";
+import bucketslogo from "../../../Assets/bucketslogo.png";
 import PlusIcon from "../../../Assets/plus.png";
 import MinusIcon from "../../../Assets/minus.png";
 import DropdownInput from "../DropdownInput";
@@ -35,7 +36,7 @@ const Row = ({stockName, onChangeStockName, onStockPercentIncrement, onStockPerc
   return (
     <div key={rowIndex} className="flex items-center justify-between mt-4">
       <div className="flex items-center">
-        <img src={!logoUrl.length ? MicrosoftLogo : logoUrl} className="mr-2 h-14 w-14 object-contain ml-2"/>
+        <img src={!logoUrl.length ? bucketslogo : logoUrl} className="mr-4 h-14 w-14 object-contain ml-2"/>
         <DropdownInput
           value={stockName}
           shouldSuggest={shouldSuggest && stockName.length>1}

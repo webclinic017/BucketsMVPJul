@@ -22,6 +22,7 @@
 //usesTAte(initialize number with not string, component level variable, no use of variable outside function - state comes in
 //gordon to add in assets table - whether stock is fractionable or not - minimum investment amount
 //since stocks is a state- you have setState to update
+//http://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/pedata.html
 
 import React, {
   useState,
@@ -36,6 +37,8 @@ import ShareIcon from "../../Assets/entypo_share.png";
 import AddButton from "../../Components/Atomic/AddButton";
 import {isNaN, objectsEqual} from "../../Utils";
 import stocksData from "../../Data/assets.json";
+//import ShareBucketPopup from "../../components/Molecular/Popups/ShareBucket";
+import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
 
 const Portfolio = (props)=> {
   const[bucketname, setbucetName] = useState("");
@@ -96,61 +99,69 @@ const Portfolio = (props)=> {
     setStocks(tempStocks);
   }
 
+  const ShareBtn = () => {
+    return (
+      <span>
+        <img src={ShareIcon} className="ml-4"/>
+      </span>
+    )
+  }
+
   return(
-    <div className="p-11">
-      <div className="flex justify-between">
-        <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
-        <div className="flex items-center justify-between">
-          <Button title="Buy"/>
-          <span>
-            <img src={ShareIcon} className="ml-4"/>
-          </span>
+    <>
+      <div className="p-11">
+        <div className="flex justify-between">
+          <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
+          <div className="flex items-center justify-between">
+            <Button title="Save"/>
+            <ShareBucketPopup trigger={ShareBtn} />
+          </div>
         </div>
-      </div>
-      <div className="block sm:block md:flex justify-between mt-6">
-        <div className="w-full sm:w-full md:w-full lg:w-2/5 ">
-          <div className="flex items-center w-full">
-            <Input className="w-3/5"
-              value={bucketname}
-              onChange={(e)=>setbucetName(e.target.vallue)}
-              placeholder="Bucket Name"
-            />
-            <div className="flex w-2/5 justify-center">
-              <div className={`${totalPercent < 100 ? 'text-gray-500' : totalPercent > 100 ? 'text-red-600' : 'text-green-600'}`}>Total: {totalPercent} %</div>
+        <div className="block sm:block md:flex justify-between mt-6">
+          <div className="w-full sm:w-full md:w-full lg:w-2/5 ">
+            <div className="flex items-center w-full">
+              <Input className="w-3/5"
+                value={bucketname}
+                onChange={(e)=>setbucetName(e.target.vallue)}
+                placeholder="Bucket Name"
+              />
+              <div className="flex w-2/5 justify-center">
+                <div className={`${totalPercent < 100 ? 'text-gray-500' : totalPercent > 100 ? 'text-red-600' : 'text-green-600'}`}>Total: {totalPercent} %</div>
+              </div>
+            </div>
+            {
+              Object.keys(stocks).map((key)=>(
+                <Row
+                  rowIndex={key}
+                  onChangeStockName={(e)=>onChangeStockName(e, key)}
+                  onStockPercentIncrement={()=>onStockPercentIncrement(key)}
+                  onStockPercentDecrement={()=>onStockPercentDecrement(key)}
+                  suggestions={stockOptions.filter(item => item.label.toLowerCase().includes(stocks[key].name.toLowerCase()))}
+                  onStockSelect={(stock)=>onStockSelect(stock, key)}
+                  stockName={stocks[key].name}
+                  logoUrl={stocks[key].logoUrl}
+                  stockValue={stocks[key].value}
+                  stockPercent={stocks[key].percent}
+                  stockOptions={stockOptions}
+                  deleteable={Object.keys(stocks).length>1 && key!==0}
+                  deleteRow={deleteRow}
+                />
+              ))
+            }
+            <div>
+              <AddButton title="+" className="mt-4" onClick={addRow}/>
             </div>
           </div>
-          {
-            Object.keys(stocks).map((key)=>(
-              <Row
-                rowIndex={key}
-                onChangeStockName={(e)=>onChangeStockName(e, key)}
-                onStockPercentIncrement={()=>onStockPercentIncrement(key)}
-                onStockPercentDecrement={()=>onStockPercentDecrement(key)}
-                suggestions={stockOptions.filter(item => item.label.toLowerCase().includes(stocks[key].name.toLowerCase()))}
-                onStockSelect={(stock)=>onStockSelect(stock, key)}
-                stockName={stocks[key].name}
-                logoUrl={stocks[key].logoUrl}
-                stockValue={stocks[key].value}
-                stockPercent={stocks[key].percent}
-                stockOptions={stockOptions}
-                deleteable={Object.keys(stocks).length>1 && key!==0}
-                deleteRow={deleteRow}
-              />
-            ))
-          }
-          <div>
-            <AddButton title="+" className="mt-4" onClick={addRow}/>
+          <div className="w-full sm:w-full md:w-full lg:w-2/5">
+            {
+              showChart
+                &&
+                  <Chart/>
+            }
           </div>
         </div>
-        <div className="w-full sm:w-full md:w-full lg:w-2/5">
-          {
-            showChart
-              &&
-                <Chart/>
-          }
-        </div>
       </div>
-    </div>
+    </>
   );
 }
 
