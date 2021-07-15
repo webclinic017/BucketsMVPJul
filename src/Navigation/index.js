@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Portfolio from "../Screens/Portfolio";
 import Loading from "../Screens/Loading";
+import Buckets from "../Screens/Buckets";
 import {
   fetchUser,
   setIsFetching
@@ -31,6 +32,7 @@ const Navigation = () => {
     <Router>
       <Switch>
         <Route path='/' exact component={Portfolio} />
+        <Route path='/my-buckets' exact component={Buckets} />
       </Switch>
     </Router>
   );

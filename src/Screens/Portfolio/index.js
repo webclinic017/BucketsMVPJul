@@ -28,7 +28,7 @@ import React, {
   useState,
   useEffect
 } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios";
 import Chart from "../../Components/Atomic/LineChart";
 import Input from "../../Components/Atomic/Input";
@@ -38,40 +38,42 @@ import ShareIcon from "../../Assets/entypo_share.png";
 import AddButton from "../../Components/Atomic/AddButton";
 import stocksData from "../../Data/assets.json";
 import { googleLogin } from "../../Redux/Actions/auth";
+import { createBucket } from "../../Redux/Actions/bucket";
 import { insertTokenInHeaders } from "../../Services";
 import GoogleLoginPopup from "../../Components/Molecular/Popups/GoogleLogin";
 import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
-import { encryptDataString } from '../../Utils';
+import { encryptDataString, showToast } from '../../Utils';
 
 const Portfolio = (props)=> {
   const dispatch = useDispatch();
-  const[bucketname, setbucetName] = useState("");
-  const [totalPercent, setTotalPercent] = useState(0);
+  const [bucketName, setBucketName] = useState("");
+  const [totalPercentage, setTotalPercentage] = useState(0);
   const [showChart, setShowChart] = useState(false);
-  const [stocks,setStocks]=useState({0: {name: "", logoUrl: "", percent: 0}});
+  const [stocks,setStocks] = useState({0: {name: "", logoUrl: "", percentage: 0}});
   const [isShareModalVisible, setShareModalVisibility] = useState(false);
   const [isGoogleLoginModalVisible, setGooglLoginModalVisibility] = useState(false);
   const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, logoUrl: stock.logo_url, value: stock}));
+  const user = useSelector(state => state.auth.user);
+  const isSavingBucket = useSelector(state => state.bucket.isPosting);
 
   useEffect(()=>{
-    const sumOfPercents = Object.values(stocks).reduce((total, current)=>(total+current.percent), 0);
-    if(sumOfPercents===100) {
+    if(totalPercentage===100) {
       setShowChart(true);
-      // const arrayOfStocks = Object.values(updatedStocks).map((stock)=>({name: stock.name, percent: stock.name}));
+      // const arrayOfStocks = Object.values(updatedStocks).map((stock)=>({name: stock.name, percentage: stock.percentage}));
       // axios.post("http://localhost:3001/get-analytics", {stocks: arrayOfStocks}).then((response) => {
       //   console.log(response.data)
       // }).catch((err) => {console.log(err)})
     } else if(showChart) {
       setShowChart(false);
     }
-  }, [stocks]);
+  }, [totalPercentage]);
 
   useEffect(()=>{
-    setTotalPercent(Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.percent)), 0))
-  }, [stocks])
+    setTotalPercentage(Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.percentage)), 0))
+  }, [stocks]);
 
   const addRow = () => {
-    setStocks({...stocks, [Object.keys(stocks).length]: { name: "", logoUrl: "", percent: 0}});
+    setStocks({...stocks, [Object.keys(stocks).length]: { name: "", logoUrl: "", percentage: 0}});
   }
 
   const onChangeStockName = (e, key) => {
@@ -83,14 +85,14 @@ const Portfolio = (props)=> {
   }
 
   const onStockPercentIncrement = (key) => {
-    if(stocks[key].percent < 100) {
-      setStocks({...stocks, [key]: {...stocks[key], percent: stocks[key].percent+1}});
+    if(stocks[key].percentage < 100) {
+      setStocks({...stocks, [key]: {...stocks[key], percentage: stocks[key].percentage+1}});
     }
   }
 
   const onStockPercentDecrement = (key) => {
-    if(stocks[key].percent > 0) {
-      setStocks({...stocks, [key]: {...stocks[key], percent: stocks[key].percent-1}});
+    if(stocks[key].percentage > 0) {
+      setStocks({...stocks, [key]: {...stocks[key], percentage: stocks[key].percentage-1}});
     }
   }
 
@@ -102,6 +104,22 @@ const Portfolio = (props)=> {
       }
     });
     setStocks(tempStocks);
+  }
+
+  const saveBucket = () => {
+    if(!bucketName.length) {
+      showToast("Please enter bucket name!", "warning");
+    } else if(Object.values(stocks).filter((stock)=>(!stock.name.length || stock.percentage === 0)).length) {
+      showToast(`Please fill out all stock rows properly!`, "warning");
+    } else if(totalPercentage!==100) {
+      showToast(`Total percentage should add up to 100 not ${totalPercentage}!`, "warning");
+    } else {
+      const data = {
+        bucketName,
+        stocks: Object.values(stocks)
+      };
+      dispatch(createBucket(data));
+    }
   }
 
   const onGoogleLogin = (userInfo) => {
@@ -118,6 +136,7 @@ const Portfolio = (props)=> {
         "bucket_session",
         encryptedToken
       );
+      saveBucket();
     }));
   }
 
@@ -127,7 +146,11 @@ const Portfolio = (props)=> {
         <div className="flex justify-between">
           <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
           <div className="flex items-center justify-between">
-            <Button onClick={()=>setGooglLoginModalVisibility(true)} title="Save"/>
+            <Button
+              title="Save"
+              isProcessing={isSavingBucket}
+              onClick={user ? saveBucket : ()=>setGooglLoginModalVisibility(true)}
+            />
             <span onClick={()=>setShareModalVisibility(true)} className="cursor-pointer">
               <img src={ShareIcon} className="ml-4"/>
             </span>
@@ -136,13 +159,13 @@ const Portfolio = (props)=> {
         <div className="block sm:block md:flex justify-between mt-6">
           <div className="w-full sm:w-full md:w-full lg:w-2/5 ">
             <div className="flex items-center w-full">
-              <Input className="w-3/5"
-                value={bucketname}
-                onChange={(e)=>setbucetName(e.target.vallue)}
+              <Input className="w-3/5 text-gray-600"
+                value={bucketName}
+                onChange={(e)=>setBucketName(e.target.value)}
                 placeholder="Bucket Name"
               />
               <div className="flex w-2/5 justify-center">
-                <div className={`${totalPercent < 100 ? 'text-gray-500' : totalPercent > 100 ? 'text-red-600' : 'text-green-600'}`}>Total: {totalPercent} %</div>
+                <div className={`${totalPercentage < 100 ? 'text-gray-500' : totalPercentage > 100 ? 'text-red-600' : 'text-green-600'}`}>Total: {totalPercentage} %</div>
               </div>
             </div>
             {
@@ -157,7 +180,7 @@ const Portfolio = (props)=> {
                   stockName={stocks[key].name}
                   logoUrl={stocks[key].logoUrl}
                   stockValue={stocks[key].value}
-                  stockPercent={stocks[key].percent}
+                  stockPercent={stocks[key].percentage}
                   stockOptions={stockOptions}
                   deleteable={Object.keys(stocks).length>1 && key!==0}
                   deleteRow={deleteRow}

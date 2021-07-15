@@ -11,7 +11,7 @@ const initState = {
   isPosting: false,
   isFetching: true,
   isAuthenticated: false,
-}
+};
 
 export default (state=initState, action) => {
   const {type, payload} = action;

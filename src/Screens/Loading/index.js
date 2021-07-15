@@ -1,13 +1,11 @@
 import React from 'react';
 import theme from '../../Theme';
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Loading = () => {
   return (
     <div className="flex h-screen w-screen justify-center items-center">
-      <p
-        style={{color: theme.colors.green}}
-        className="text-center font-bold text-lg"
-      >loading...</p>
+      <MoonLoader size={40} color={theme.colors.green} loading={true} />
     </div>
   )
 }
