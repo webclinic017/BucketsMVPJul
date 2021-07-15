@@ -116,7 +116,7 @@ const Portfolio = (props)=> {
       const encryptedToken = encryptDataString(authToken);
       localStorage.setItem(
         "bucket_session",
-        JSON.stringify(encryptedToken)
+        encryptedToken
       );
     }));
   }

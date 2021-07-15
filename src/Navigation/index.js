@@ -18,7 +18,7 @@ const Navigation = () => {
     const encryptedBucketAuth = localStorage.getItem("bucket_session");
     if(encryptedBucketAuth !== undefined && encryptedBucketAuth !== null) {
       const bucketAuth = decryptDataString(encryptedBucketAuth);
-      insertTokenInHeaders(JSON.parse(bucketAuth));
+      insertTokenInHeaders(bucketAuth);
       dispatch(fetchUser());
     } else {
       dispatch(setIsFetching(false));
