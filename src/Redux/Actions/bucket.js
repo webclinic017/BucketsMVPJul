@@ -58,12 +58,12 @@ const getBucketData = (data, onSuccess=()=>{}, onError=()=>{}) => (
           type: GET_BUCKET_DATA,
           payload: {}
         });
-        showToast(response.data.message);
+        showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
       dispatch(setIsFetchingBucketData(false));
-      showToast(error.message);
+      showToast(error.message, "error");
       onError();
     });
   }
@@ -78,16 +78,16 @@ const followBucket = (data, onSuccess=()=>{}, onError=()=>{}) => (
           type: FOLLOW_BUCKET,
           payload: response.data.bucket
         });
-        showToast(response.data.message);
+        showToast(response.data.message, "success");
         onSuccess(response.data.bucket);
       } else {
         dispatch(setIsFollowing(false));
-        showToast(response.data.message);
+        showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
       dispatch(setIsFollowing(false));
-      showToast(error.message);
+      showToast(error.message, "error");
       onError();
     });
   }
@@ -102,16 +102,16 @@ const unFollowBucket = (data, onSuccess=()=>{}, onError=()=>{}) => (
           type: UN_FOLLOW_BUCKET,
           payload: data
         });
-        showToast(response.data.message);
+        showToast(response.data.message, "success");
         onSuccess();
       } else {
         dispatch(setIsFollowing(false));
-        showToast(response.data.message);
+        showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
       dispatch(setIsFollowing(false));
-      showToast(error.message);
+      showToast(error.message, "error");
       onError();
     });
   }
@@ -129,16 +129,16 @@ const createBucket = (data, onSuccess=()=>{}, onError=()=>{}) => (
             name: data.bucketName
           }
         });
-        showToast(response.data.message);
+        showToast(response.data.message, "success");
         onSuccess(response.data.bucketId);
       } else {
         dispatch(setIsPosting(false));
-        showToast(response.data.message);
+        showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
       dispatch(setIsPosting(false));
-      showToast(error.message);
+      showToast(error.message, "error");
       onError();
     });
   }
@@ -154,16 +154,16 @@ const updateBucket = (data, onSuccess=()=>{}, onError=()=>{}) => (
         //   payload: response.data.buckets
         // });
         dispatch(setIsPosting(false));
-        showToast(response.data.message);
+        showToast(response.data.message, "success");
         onSuccess();
       } else {
         dispatch(setIsPosting(false));
-        showToast(response.data.message);
+        showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
       dispatch(setIsPosting(false));
-      showToast(error.message);
+      showToast(error.message, "error");
       onError();
     });
   }
@@ -181,12 +181,12 @@ const getUserBuckets = (onSuccess=()=>{}, onError=()=>{}) => (
         onSuccess();
       } else {
         dispatch(setIsFetching(false));
-        showToast(response.data.message);
+        showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
       dispatch(setIsFetching(false));
-      showToast(error.message);
+      showToast(error.message, "error");
       onError();
     });
   }
@@ -198,11 +198,11 @@ const recordNoOfTimesBucketShared = (data, onSuccess=()=>{}, onError=()=>{}) => 
       if(response.data.success === true) {
         onSuccess();
       } else {
-        showToast(response.data.message);
+        showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
-      showToast(error.message);
+      showToast(error.message, "error");
       onError();
     });
   }
@@ -216,12 +216,12 @@ const shortenUrl = (data, onSuccess=()=>{}, onError=()=>{}) => (
       if(response.data.success === true) {
         onSuccess(response.data.shortenedUrl);
       } else {
-        showToast(response.data.message);
+        showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
       dispatch(setIsPosting(false));
-      showToast(error.message);
+      showToast(error.message, "error");
       onError();
     });
   }

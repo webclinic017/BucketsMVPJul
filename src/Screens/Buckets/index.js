@@ -25,11 +25,27 @@ const Portfolio = (props)=> {
     dispatch(getUserBuckets());
   }, []);
 
+  const handleOnClickBucket = (bucket) => {
+    props.history.push(`/bucket/${bucket._id}`);
+  }
+
   return(
     <>
       <div className="p-11 flex flex-col min-h-screen">
         <div className="flex justify-between">
-          <h3 className="font-bold text-gray-400 text-4xl">{user.firstName}'s Buckets</h3>
+          <div className="flex items-center">
+            <img className="w-16 h-16 object-contain rounded-full mr-3" src={user?.profilePicture} />
+            <div>
+              <h3 className="font-bold text-gray-400 text-4xl">{user?.firstName} {user?.lastName}</h3>
+              <div>
+                <span className="font-bold" style={{color: theme.colors.lightPurple}}>$7.1M </span>
+                Follower Assets  |
+                <span className="font-bold"> 11 </span> 
+                Following |
+                <span className="font-bold"> 164</span> Followers
+              </div>
+            </div>
+          </div>
           {
             !isFetchingBuckets
               &&
@@ -57,8 +73,8 @@ const Portfolio = (props)=> {
               <div className="block sm:block md:flex justify-between mt-6">
                 <div className="w-full sm:w-full md:w-full lg:w-2/5">
                   {
-                    buckets.map((bucket)=>(
-                      <div className="flex mt-4 min-w-full items-center justify-between">
+                    buckets.map((bucket, index)=>(
+                      <div key={index} onClick={()=>handleOnClickBucket(bucket)} className="flex mt-4 min-w-full items-center cursor-pointer justify-between">
                         <div className="flex items-center">
                           <img className="mx-2 w-16 h-16 object-contain" src={BucketsLogo} />
                           <div>

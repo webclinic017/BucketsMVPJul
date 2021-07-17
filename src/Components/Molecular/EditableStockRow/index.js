@@ -6,14 +6,14 @@
 //make ui -
 
 import React, {useState} from 'react';
-import bucketslogo from "../../../Assets/bucketslogo.png";
+import BucketsLogo from "../../../Assets/buckets_logo.png";
 import PlusIcon from "../../../Assets/plus.png";
 import MinusIcon from "../../../Assets/minus.png";
 import DropdownInput from "../DropdownInput";
 import trash_grey from "../../../Assets/Icons/trash_grey.png";
 import trash_red from "../../../Assets/Icons/trash_red.png";
 
-const Row = ({stockName, onChangeStockName, onStockPercentIncrement, onStockPercentDecrement, logoUrl, stockPercent, onStockSelect, suggestions, deleteable, deleteRow, rowIndex})=>{
+const EditableStockRow = ({stockName, onChangeStockName, onStockPercentIncrement, onStockPercentDecrement, logoUrl, stockPercent, onStockSelect, suggestions, deleteable, deleteRow, rowIndex})=>{
   const [shouldSuggest, setShouldSuggest] = useState(false);
   const [hover, setHover] = useState(false);
 
@@ -36,7 +36,7 @@ const Row = ({stockName, onChangeStockName, onStockPercentIncrement, onStockPerc
   return (
     <div key={rowIndex} className="flex items-center justify-between mt-4">
       <div className="flex items-center">
-        <img src={!logoUrl.length ? bucketslogo : logoUrl} className="mr-4 h-14 w-14 object-contain ml-2"/>
+        <img src={!logoUrl.length ? BucketsLogo : logoUrl} className="mr-4 h-14 w-14 object-contain ml-2"/>
         <DropdownInput
           value={stockName}
           shouldSuggest={shouldSuggest && stockName.length>1}
@@ -58,4 +58,4 @@ const Row = ({stockName, onChangeStockName, onStockPercentIncrement, onStockPerc
   );
 }
 
-export default Row;
+export default EditableStockRow;

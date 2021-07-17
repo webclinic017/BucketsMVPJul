@@ -42,7 +42,7 @@ const fetchUser = (onSuccess=()=>{}, onError=()=>{}) => (
       }
     }).catch((error)=>{
       dispatch(setIsFetching(false));
-      showToast(error.message);
+      showToast(error.message, "error");
       onError();
     });
   }
@@ -62,12 +62,12 @@ const googleLogin = (data, onSuccess=()=>{}, onError=()=>{}) => (
         onSuccess(response.data.accessToken);
       } else {
         dispatch(setIsPosting(false));
-        showToast(response.data.message);
+        showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
       dispatch(setIsPosting(false));
-      showToast(error.message);
+      showToast(error.message, "error");
       onError();
     });
   }
