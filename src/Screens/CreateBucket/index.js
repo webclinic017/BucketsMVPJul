@@ -46,7 +46,7 @@ const CreateBucket = (props)=> {
   const dispatch = useDispatch();
   const [bucketName, setBucketName] = useState("");
   const [totalPercentage, setTotalPercentage] = useState(0);
-  const [stocks,setStocks] = useState({0: {name: "", logoUrl: "", percentage: 0}});
+  const [stocks, setStocks] = useState({0: {name: "", logoUrl: "", percentage: 0}});
   const [isGoogleLoginModalVisible, setGooglLoginModalVisibility] = useState(false);
   const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, logoUrl: stock.logo_url, value: stock}));
   const user = useSelector(state => state.auth.user);
@@ -65,7 +65,7 @@ const CreateBucket = (props)=> {
   }
 
   const onStockSelect = (stock, key) => {
-    setStocks({...stocks, [key]: {...stocks[key], logoUrl: stock.logoUrl, name: stock.label}});
+    setStocks({...stocks, [key]: {...stocks[key], logoUrl: stock.logoUrl, name: stock.value.name, ticker: stock.value.symbol}});
   }
 
   const onStockPercentIncrement = (key) => {
@@ -102,7 +102,7 @@ const CreateBucket = (props)=> {
         bucketName,
         stocks: Object.values(stocks)
       };
-      dispatch(createBucket(data));
+      dispatch(createBucket(data, (bucketId)=>{props.history.push(`bucket/${bucketId}`)}));
     }
   }
 

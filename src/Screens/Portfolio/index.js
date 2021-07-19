@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import MoonLoader from 'react-spinners/MoonLoader';
 import Chart from "../../Components/Atomic/LineChart";
 import Input from "../../Components/Atomic/Input";
+import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
 import Confetti from "../../Components/Atomic/Confetti";
 import Button from "../../Components/Atomic/Button";
 import StaticStockRow from "../../Components/Molecular/StaticStockRow";
@@ -14,6 +15,7 @@ import ShareIcon from "../../Assets/entypo_share.png";
 import stocksData from "../../Data/assets.json";
 import { getBucketData } from "../../Redux/Actions/bucket";
 import MenuIcon from "../../Assets/Icons/menu.png";
+import OptionsIcon from "../../Assets/Icons/options.png";
 import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
 import config from "../../Config";
@@ -42,9 +44,10 @@ const Portfolio = (props)=> {
     if(Object.keys(bucketData) && !isFetchingBucket) {
       setBucketName(bucketData.name);
       let newStocks = {};
+      let ticker, name = "";
       bucketData?.stocks?.forEach((stock)=>{
-        const ticker = stock.description.slice(0, stock.description.indexOf(":"));
-        const name = stock.description.slice(stock.description.indexOf(":")+1, stock.description.length);
+        ticker = stock.description.slice(0, stock.description.indexOf(":"));
+        name = stock.description.slice(stock.description.indexOf(":")+1, stock.description.length);
         newStocks[Object.keys(newStocks).length] = {id: stock.id, logoUrl: stock.logoUrl, name, ticker, initialWeight: stock.initialWeight, percentWeight: stock.percentWeight};
       });
       setStocks(newStocks);
@@ -57,26 +60,6 @@ const Portfolio = (props)=> {
     setTimeout(() => {
       setShowConfetti(false);
     }, 3000);
-  }
-
-  const onChangeStockName = (e, key) => {
-    setStocks({...stocks, [key]: {...stocks[key], name: e.target.value}});
-  }
-
-  const onStockSelect = (stock, key) => {
-    setStocks({...stocks, [key]: {...stocks[key], logoUrl: stock.logoUrl, name: stock.label}});
-  }
-
-  const onStockPercentIncrement = (key) => {
-    if(stocks[key].initialWeight < 100) {
-      setStocks({...stocks, [key]: {...stocks[key], initialWeight: stocks[key].initialWeight+1}});
-    }
-  }
-
-  const onStockPercentDecrement = (key) => {
-    if(stocks[key].initialWeight > 0) {
-      setStocks({...stocks, [key]: {...stocks[key], initialWeight: stocks[key].initialWeight-1}});
-    }
   }
 
   const handleOnClickBuy = () => {
@@ -111,8 +94,17 @@ const Portfolio = (props)=> {
                       onClick={handleOnClickBuy}
                     />
                     <span onClick={handleOnClickBucketShare} className="cursor-pointer">
-                      <img src={ShareIcon} className="ml-4"/>
+                      <img src={ShareIcon} className="mx-4"/>
                     </span>
+                    <DropdownMenu
+                      trigger={<img src={OptionsIcon} className="mx-1 mt-1 object-contain cursor-pointer w-5 h-5"/> }
+                      onOpenChange={(e)=>{console.log({e})}}
+                    >
+                      <DropdownItemGroup>
+                        <DropdownItem onClick={()=>alert("Hello")}>Edit</DropdownItem>
+                        <DropdownItem>Rebalance</DropdownItem>
+                      </DropdownItemGroup>
+                    </DropdownMenu>
                     <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
                   </div>
                 </div>
@@ -129,6 +121,7 @@ const Portfolio = (props)=> {
                         <StaticStockRow
                           rowIndex={key}
                           stockName={stocks[key].name}
+                          ticker={stocks[key].ticker}
                           logoUrl={stocks[key].logoUrl}
                           percentWeight={stocks[key].percentWeight}
                           initialWeight={stocks[key].initialWeight}
