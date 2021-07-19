@@ -3,16 +3,18 @@ import React, {
   useEffect
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import MoonLoader from "react-spinners/MoonLoader";
 import Chart from "../../Components/Atomic/LineChart";
 import ProgressBar from "../../Components/Atomic/ProgressBar";
 import theme from "../../Theme";
 import ShareIcon from "../../Assets/entypo_share.png";
 import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
 import { getUserBuckets } from "../../Redux/Actions/bucket";
-import MoonLoader from "react-spinners/MoonLoader";
+import { setNavMenuVisibility } from "../../Redux/Actions/app";
+import MenuIcon from "../../Assets/Icons/menu.png";
 import BucketsLogo from "../../Assets/buckets_logo.png";
 import ForwardArrow from "../../Assets/Icons/forward.png";
-import { showToast } from '../../Utils';
+import { showToast } from "../../Utils";
 
 const Portfolio = (props)=> {
   const dispatch = useDispatch();
@@ -27,6 +29,10 @@ const Portfolio = (props)=> {
 
   const handleOnClickBucket = (bucket) => {
     props.history.push(`/bucket/${bucket._id}`);
+  }
+
+  const handleOnNavMenuClick = () => {
+    dispatch(setNavMenuVisibility(true));
   }
 
   return(
@@ -46,22 +52,25 @@ const Portfolio = (props)=> {
               </div>
             </div>
           </div>
-          {
-            !isFetchingBuckets
-              &&
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="font-bold text-lg text-gray-500">$24,433.84</span>
-                    <span className="text-xl text-gray-400"> | </span>
-                    <span style={{color: theme.colors.green}} className="font-bold text-lg">+4,756.21</span>
-                    <span className="text-xl text-gray-400"> | </span>
-                    <span style={{color: theme.colors.green}} className="font-bold text-lg">+7.89%</span>
-                  </div>
-                  <span onClick={()=>setShareModalVisibility(true)} className="cursor-pointer">
-                    <img src={ShareIcon} className="ml-4"/>
-                  </span>
-                </div>
-          }
+          <div div className="flex items-center justify-between">
+            {
+              !isFetchingBuckets
+                &&
+                  <>
+                    <div>
+                      <span className="font-bold text-lg text-gray-500">$24,433.84</span>
+                      <span className="text-xl text-gray-400"> | </span>
+                      <span style={{color: theme.colors.green}} className="font-bold text-lg">+4,756.21</span>
+                      <span className="text-xl text-gray-400"> | </span>
+                      <span style={{color: theme.colors.green}} className="font-bold text-lg">+7.89%</span>
+                    </div>
+                    <span onClick={()=>setShareModalVisibility(true)} className="cursor-pointer">
+                      <img src={ShareIcon} className="ml-4"/>
+                    </span>
+                  </>
+            }
+            <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
+          </div>
         </div>
         {
           isFetchingBuckets

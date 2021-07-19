@@ -13,6 +13,8 @@ import StaticStockRow from "../../Components/Molecular/StaticStockRow";
 import ShareIcon from "../../Assets/entypo_share.png";
 import stocksData from "../../Data/assets.json";
 import { getBucketData } from "../../Redux/Actions/bucket";
+import MenuIcon from "../../Assets/Icons/menu.png";
+import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
 import config from "../../Config";
 import { encryptDataString, showToast } from "../../Utils";
@@ -85,6 +87,10 @@ const Portfolio = (props)=> {
     }
   }
 
+  const handleOnNavMenuClick = () => {
+    dispatch(setNavMenuVisibility(true));
+  }
+
   return(
     <>
       <div className="p-11 flex flex-col min-h-screen">
@@ -107,6 +113,7 @@ const Portfolio = (props)=> {
                     <span onClick={handleOnClickBucketShare} className="cursor-pointer">
                       <img src={ShareIcon} className="ml-4"/>
                     </span>
+                    <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
                   </div>
                 </div>
                 <div className="block sm:block md:flex justify-between mt-6">

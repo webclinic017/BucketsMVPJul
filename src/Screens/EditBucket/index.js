@@ -13,6 +13,8 @@ import stocksData from "../../Data/assets.json";
 import { googleLogin } from "../../Redux/Actions/auth";
 import { getBucketData, updateBucket } from "../../Redux/Actions/bucket";
 import { insertTokenInHeaders } from "../../Services";
+import MenuIcon from "../../Assets/Icons/menu.png";
+import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import GoogleLoginPopup from "../../Components/Molecular/Popups/GoogleLogin";
 import { encryptDataString, showToast } from "../../Utils";
 import theme from "../../Theme";
@@ -120,6 +122,10 @@ const EditBucket = (props)=> {
     }));
   }
 
+  const handleOnNavMenuClick = () => {
+    dispatch(setNavMenuVisibility(true));
+  }
+
   return(
     <>
       <div className="p-11 flex flex-col min-h-screen">
@@ -140,6 +146,7 @@ const EditBucket = (props)=> {
                       isProcessing={isSavingBucket}
                       onClick={user ? saveBucket : ()=>setGooglLoginModalVisibility(true)}
                     />
+                    <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
                   </div>
                 </div>
                 <div className="block sm:block md:flex justify-between mt-6">

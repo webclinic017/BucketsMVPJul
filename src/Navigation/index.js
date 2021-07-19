@@ -6,6 +6,7 @@ import EditBucket from "../Screens/EditBucket";
 import Portfolio from "../Screens/Portfolio";
 import Homepage from "../Screens/Homepage";
 import Loading from "../Screens/Loading";
+import Menu from "./Menu";
 import AlpacaAuthorization from "../Screens/AlpacaAuthorization";
 import Buckets from "../Screens/Buckets";
 import {
@@ -34,6 +35,7 @@ const Navigation = () => {
 
   return (
     <Router>
+      <Menu />
       <Switch>
         <Route path='/' exact component={Homepage} />
         <Route path='/authorize-alpaca' component={AlpacaAuthorization} />
