@@ -16,8 +16,9 @@ const stocks = [
   {name: "Apple Inc. Common Stock", ticker: "AAPL", amount: 400, transactionType: "Sell"},
 ];
 
-const BuySell = ({open, onClose, ...props}) => {
+const BuySell = ({open, onClose, bucketId, ...props}) => {
   const dispatch = useDispatch();
+  const [type, setType] = useState("");
   const [amount, setAmount] = useState("$ ");
   const [step, setStep] = useState(1);
 
@@ -29,9 +30,22 @@ const BuySell = ({open, onClose, ...props}) => {
 
   const handleOnPressConfirm = () => {
     const data = {
-
+      bucketId,
+      type,
+      value: parseFloat(amount.slice(2, amount.length)),
+      accessToken: ""
     };
     dispatch(placeBucketLevelOrderOnAlpaca(data, ()=>{onClose()}));
+  }
+
+  const handleOnClickBuy = () => {
+    setType("buy");
+    setStep(2);
+  }
+
+  const handleOnClickSell = () => {
+    setType("sell");
+    setStep(2);
   }
 
   return (
@@ -58,13 +72,13 @@ const BuySell = ({open, onClose, ...props}) => {
                 <Button
                   title="Buy"
                   className="mt-6 mb-4 w-1/2"
-                  onClick={()=>setStep(2)}
+                  onClick={handleOnClickBuy}
                 />
                 <Button
                   secondary
                   title="Sell"
                   className="w-1/2"
-                  onClick={()=>setStep(2)}
+                  onClick={handleOnClickSell}
                 />
               </>
             :
