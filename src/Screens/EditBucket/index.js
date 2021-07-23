@@ -26,7 +26,7 @@ const EditBucket = (props)=> {
   const [totalPercentage, setTotalPercentage] = useState(0);
   const [stocks,setStocks] = useState({0: {name: "", logoUrl: "", percentage: 0}});
   const [isGoogleLoginModalVisible, setGooglLoginModalVisibility] = useState(false);
-  const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, logoUrl: stock.logo_url, value: stock}));
+  const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, logoUrl: stock.logo_url, name: stock.name, ticker: stock.symbol}));
   const user = useSelector(state => state.auth.user);
   const isFetchingBucket = useSelector(state => state.bucket.isFetchingBucketData);
   const bucketData = useSelector(state => state.bucket.bucketData);
@@ -62,7 +62,7 @@ const EditBucket = (props)=> {
   }
 
   const onStockSelect = (stock, key) => {
-    setStocks({...stocks, [key]: {...stocks[key], logoUrl: stock.logoUrl, name: stock.label}});
+    setStocks({...stocks, [key]: {...stocks[key], logoUrl: stock.logoUrl, name: stock.name, ticker: stock.ticker}});
   }
 
   const onStockPercentIncrement = (key) => {

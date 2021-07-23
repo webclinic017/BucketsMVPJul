@@ -1,29 +1,3 @@
-//https://nerdcave.com/tailwind-cheat-sheet
-// curly braces since js object
-//flex makes height of button and share icon same but span can help you get around this
-//only tailwind selectors have to use : with
-//useeffect- lifecycle - when component mounts- then it works- since we cannot call it, we cannot pass a paramaeter/arguments to it
-//on press, render new row molecule, only select stock from dropdown, no value can be empty,
-//array that stores stocks and values, on press => push new object, array.map when rendering
-//if ... (spread operator), then you dont have to list out all key value pairs like {value: stocks[key].value, name: e.target.value}
-//[Object.keys(stocks).length] - have to do it this way because the bucket is an object rather than an array where you could jsut do stocks.length
-// 2. dropdown implementation, 3. price data pull for all stocks in bucket 4. metrics 5. saving to a database 6. sharing functionality
-//1. %= value/sum of values
-//if, for, else, const = , console.lo, useeffect - when an event happens - cant pass parameter,
-//useEffect - stocks - value or anything update
-
-//total percent  - guiding user to make sure weights add to 100 - only when weight adds up to exactly 100, then only we post to get-analytics
-//dropdown - select - we have to make much quicker - our own implementation
-//delete row functionality - for 2nd row onwards
-//ticker + name - render from select
-//yahoo finance prices and graph
-//logo- clearbit logo
-
-//usesTAte(initialize number with not string, component level variable, no use of variable outside function - state comes in
-//gordon to add in assets table - whether stock is fractionable or not - minimum investment amount
-//since stocks is a state- you have setState to update
-//http://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/pedata.html
-
 import React, {
   useState,
   useEffect
@@ -48,7 +22,7 @@ const CreateBucket = (props)=> {
   const [totalPercentage, setTotalPercentage] = useState(0);
   const [stocks, setStocks] = useState({0: {name: "", logoUrl: "", percentage: 0}});
   const [isGoogleLoginModalVisible, setGooglLoginModalVisibility] = useState(false);
-  const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, logoUrl: stock.logo_url, value: stock}));
+  const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, logoUrl: stock.logo_url, name: stock.name, ticker: stock.symbol}));
   const user = useSelector(state => state.auth.user);
   const isSavingBucket = useSelector(state => state.bucket.isPosting);
 
@@ -65,7 +39,7 @@ const CreateBucket = (props)=> {
   }
 
   const onStockSelect = (stock, key) => {
-    setStocks({...stocks, [key]: {...stocks[key], logoUrl: stock.logoUrl, name: stock.value.name, ticker: stock.value.symbol}});
+    setStocks({...stocks, [key]: {...stocks[key], logoUrl: stock.logoUrl, name: stock.name, ticker: stock.ticker}});
   }
 
   const onStockPercentIncrement = (key) => {

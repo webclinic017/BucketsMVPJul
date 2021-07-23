@@ -5,10 +5,10 @@ import theme from "../../../Theme";
 
 const Button = ({onClick, title, isProcessing, className, ...props})=>{
   const style = {
-    backgroundColor: theme.colors.green,
-    borderColor: theme.colors.green,
-    boxShadow: theme.shadows.green,
-    width: "8rem"
+    backgroundColor: props.secondary ? theme.colors.lightPurple : theme.colors.green,
+    borderColor: props.secondary ? theme.colors.lightPurple : theme.colors.green,
+    boxShadow: props.secondary ? theme.shadows.lightPurple : theme.shadows.green,
+    // width: "8rem"
   };
 
   return (

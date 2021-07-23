@@ -5,6 +5,7 @@ import CreateBucket from "../Screens/CreateBucket";
 import EditBucket from "../Screens/EditBucket";
 import Portfolio from "../Screens/Portfolio";
 import Homepage from "../Screens/Homepage";
+import StockDetails from "../Screens/StockDetails";
 import Loading from "../Screens/Loading";
 import Menu from "./Menu";
 import AlpacaAuthorization from "../Screens/AlpacaAuthorization";
@@ -41,6 +42,7 @@ const Navigation = () => {
         <Route path='/authorize-alpaca' component={AlpacaAuthorization} />
         <Route path='/create-bucket' exact component={CreateBucket} />
         <Route path='/edit-bucket/:id' exact component={EditBucket} />
+        <Route path='/stock/:id' exact component={StockDetails} />
         <Route path='/bucket/:id' exact component={Portfolio} />
         <Route path='/my-buckets' exact component={Buckets} />
       </Switch>

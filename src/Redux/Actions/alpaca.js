@@ -57,7 +57,28 @@ const logoutFromAlpacaAccount = (onSuccess=()=>{}, onError=()=>{}) => (
   }
 )
 
+const placeBucketLevelOrderOnAlpaca = (data, onSuccess=()=>{}, onError=()=>{}) => (
+  (dispatch) => {
+    APIClient.post('/place-order-on-alpaca', data).then((response)=>{
+      if(response.data.status === 200) {
+        dispatch({
+          type: LOGOUT_FROM_ALPACA_ACCOUNT
+        });
+        showToast(response.data.message);
+        onSuccess();
+      } else {
+        showToast(response.data.message);
+        onError();
+      }
+    }).catch((error)=>{
+      showToast(error.message);
+      onError();
+    });
+  }
+)
+
 export {
   getAlpacaAccessToken,
-  logoutFromAlpacaAccount
+  logoutFromAlpacaAccount,
+  placeBucketLevelOrderOnAlpaca,
 };
