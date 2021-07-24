@@ -64,7 +64,7 @@ const Portfolio = (props)=> {
     }, 3000);
   }
 
-  const handleOnClickBuy = () => {
+  const handleOnClickBuySell = () => {
     if(!alpacaAuth) {
       setAlpacaModalVisibility(true);
     } else {
@@ -101,7 +101,7 @@ const Portfolio = (props)=> {
                     <Button
                       title="Buy/Sell"
                       isProcessing={isLinkingAlpaca}
-                      onClick={handleOnClickBuy}
+                      onClick={handleOnClickBuySell}
                     />
                     <span onClick={handleOnClickBucketShare} className="cursor-pointer">
                       <img src={ShareIcon} className="mx-4"/>
@@ -146,6 +146,7 @@ const Portfolio = (props)=> {
         }
       </div>
       <BuySellPopup
+        bucketId={bucketId}
         open={isBuySellModalVisible}
         onClose={()=>setBuySellModalVisibility(false)}
       />

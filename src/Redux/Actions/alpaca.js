@@ -1,5 +1,7 @@
+import axios from 'axios';
 import {
   SET_IS_LINKING,
+  SET_IS_PLACING_ORDER,
   LOGIN_INTO_ALPACA_ACCOUNT,
   LOGOUT_FROM_ALPACA_ACCOUNT
 } from "../Constants";
@@ -9,6 +11,13 @@ import { showToast } from "../../Utils";
 const setIsLinking = (status) => {
   return {
     type: SET_IS_LINKING,
+    payload: status
+  };
+}
+
+const setIsPlacingOrder = (status) => {
+  return {
+    type: SET_IS_PLACING_ORDER,
     payload: status
   };
 }
@@ -44,14 +53,14 @@ const logoutFromAlpacaAccount = (onSuccess=()=>{}, onError=()=>{}) => (
         dispatch({
           type: LOGOUT_FROM_ALPACA_ACCOUNT
         });
-        showToast(response.data.message);
+        showToast(response.data.message, "success");
         onSuccess();
       } else {
-        showToast(response.data.message);
+        showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
-      showToast(error.message);
+      showToast(error.message, "error");
       onError();
     });
   }
@@ -59,19 +68,23 @@ const logoutFromAlpacaAccount = (onSuccess=()=>{}, onError=()=>{}) => (
 
 const placeBucketLevelOrderOnAlpaca = (data, onSuccess=()=>{}, onError=()=>{}) => (
   (dispatch) => {
-    APIClient.post('/place-order-on-alpaca', data).then((response)=>{
+    dispatch(setIsPlacingOrder(true));
+    axios.post('http://127.0.0.1:7000/place-order-on-alpaca', data).then((response)=>{
       if(response.data.status === 200) {
-        dispatch({
-          type: LOGOUT_FROM_ALPACA_ACCOUNT
-        });
-        showToast(response.data.message);
+        // dispatch({
+        //   type: LOGOUT_FROM_ALPACA_ACCOUNT
+        // });
+        dispatch(setIsPlacingOrder(false));
+        showToast(response.data.message, "success");
         onSuccess();
       } else {
-        showToast(response.data.message);
+        dispatch(setIsPlacingOrder(false));
+        showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
-      showToast(error.message);
+      dispatch(setIsPlacingOrder(false));
+      showToast(error.message, "error");
       onError();
     });
   }

@@ -29,6 +29,7 @@ const fetchUser = (onSuccess=()=>{}, onError=()=>{}) => (
     dispatch(setIsFetching(true));
     APIClient.get('/auth/fetch-user').then((response)=>{
       if(response.data.success === true) {
+        console.log(response.data.user)
         dispatch({
           type: FETCH_USER,
           payload: {

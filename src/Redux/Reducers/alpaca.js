@@ -1,18 +1,19 @@
 import {
   LOGIN_INTO_ALPACA_ACCOUNT,
   LOGOUT_FROM_ALPACA_ACCOUNT,
+  SET_IS_PLACING_ORDER,
   SET_IS_FETCHING,
   SET_IS_POSTING,
-  SET_IS_LINKING
+  SET_IS_LINKING,
+  USER_LOGOUT,
+  USER_LOGIN,
+  FETCH_USER,
 } from "../Constants";
-
-const FETCH_USER = "FETCH_USER";
-const USER_LOGIN = "USER_LOGIN";
-const USER_LOGOUT = "USER_LOGOUT";
 
 const initState = {
   isPosting: false,
   isLinking: false,
+  isPlacingOrder: false,
   alpacaAuth: null,
   isFetching: true,
   isAlpacaAuthenticated: false
@@ -42,6 +43,13 @@ export default (state=initState, action) => {
       };
     }
 
+    case SET_IS_PLACING_ORDER: {
+      return {
+        ...state,
+        isPlacingOrder: payload
+      };
+    }
+
     case LOGIN_INTO_ALPACA_ACCOUNT: {
       return {
         ...state,
@@ -59,27 +67,31 @@ export default (state=initState, action) => {
       };
     }
 
-    // case FETCH_USER: {
-    //   return {
-    //     ...state,
-    //     user: payload.user,
-    //     isFetching: false,
-    //     alpacaAuth: payload.alpaca,
-    //     isAlpacaAuthenticated: payload.alpaca.access_token ? true : false,
-    //     isAuthenticated: true
-    //   };
-    // }
+    case FETCH_USER: {
+      let updates = {};
+      if(payload.user.hasOwnProperty("alpacaAccessToken")) {
+        updates["alpacaAuth"] = {"accessToken": payload.user.alpacaAccessToken};
+        updates["isAlpacaAuthenticated"] = true;
+        updates["isLinking"] = false;
+      }
+      return {
+        ...state,
+        ...updates
+      };
+    }
 
-    // case USER_LOGIN: {
-    //   return {
-    //     ...state,
-    //     user: payload.user,
-    //     isPosting: false,
-    //     alpacaAuth: payload.alpaca,
-    //     isAlpacaAuthenticated: payload.alpaca.access_token ? true : false,
-    //     isAuthenticated: true
-    //   };
-    // }
+    case USER_LOGIN: {
+      let updates = {};
+      if(payload.user.hasOwnProperty("alpacaAccessToken")) {
+        updates["alpacaAuth"] = {"accessToken": payload.user.alpacaAccessToken};
+        updates["isAlpacaAuthenticated"] = true;
+        updates["isLinking"] = false;
+      }
+      return {
+        ...state,
+        ...updates
+      };
+    }
 
     case USER_LOGOUT: {
       return {

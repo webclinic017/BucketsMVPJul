@@ -8,14 +8,13 @@ const Button = ({onClick, title, isProcessing, className, ...props})=>{
     backgroundColor: props.secondary ? theme.colors.lightPurple : theme.colors.green,
     borderColor: props.secondary ? theme.colors.lightPurple : theme.colors.green,
     boxShadow: props.secondary ? theme.shadows.lightPurple : theme.shadows.green,
-    // width: "8rem"
   };
 
   return (
     <div
       style={style}
       onClick={isProcessing ? ()=>{} : onClick}
-      className={`text-center px-8 py-2 rounded-full border-2 cursor-pointer ${className}`}
+      className={`text-center px-8 py-2 rounded-full border-2 cursor-pointer w-32 ${className}`}
     >
       {
         isProcessing

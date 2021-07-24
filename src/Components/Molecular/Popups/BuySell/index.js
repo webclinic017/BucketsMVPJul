@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   placeBucketLevelOrderOnAlpaca
 } from "../../../../Redux/Actions/alpaca";
@@ -20,6 +20,8 @@ const BuySell = ({open, onClose, bucketId, ...props}) => {
   const dispatch = useDispatch();
   const [type, setType] = useState("");
   const [amount, setAmount] = useState("$ ");
+  const alpacaAuth = useSelector(state => state.alpaca.alpacaAuth);
+  const isPlacingOrder = useSelector(state => state.alpaca.isPlacingOrder);
   const [step, setStep] = useState(1);
 
   const handleOnChangeAmount = (e) => {
@@ -33,7 +35,7 @@ const BuySell = ({open, onClose, bucketId, ...props}) => {
       bucketId,
       type,
       value: parseFloat(amount.slice(2, amount.length)),
-      accessToken: ""
+      accessToken: alpacaAuth.accessToken
     };
     dispatch(placeBucketLevelOrderOnAlpaca(data, ()=>{onClose()}));
   }
@@ -104,6 +106,7 @@ const BuySell = ({open, onClose, bucketId, ...props}) => {
                   secondary
                   title="Confirm"
                   className="mt-6 mb-4 w-1/2"
+                  isProcessing={isPlacingOrder}
                   onClick={handleOnPressConfirm}
                 />
               </div>
