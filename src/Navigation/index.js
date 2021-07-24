@@ -24,19 +24,18 @@ const CustomRoute = ({isProtected, path, exact, component}) => {
 
   if(isProtected) {
     if(user && isAuthenticated) {
-      return <Route to={path} exact={exact} component={component}/>;
+      return <Route path={path} exact={exact} component={component}/>;
     } else {
       return <Redirect to="/login"/>;
     }
   } else {
-    return <Route to={path} exact={exact} component={component}/>;
+    return <Route path={path} exact={exact} component={component}/>;
   }
 }
 
 const Navigation = () => {
   const dispatch = useDispatch();
   const isFetching = useSelector(state => state.auth.isFetching);
-
 
   useEffect(() => {
     const encryptedBucketAuth = localStorage.getItem("bucket_session");
