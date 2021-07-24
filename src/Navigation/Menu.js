@@ -4,19 +4,22 @@ import { Link, useLocation } from 'react-router-dom';
 import CloseIcon from "../Assets/Icons/close.png";
 import { setNavMenuVisibility } from "../Redux/Actions/app";
 
+
 const SlideMenu = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const isNavMenuVisible = useSelector(state => state.app.isNavMenuVisible);
+  const user = useSelector(state=>state.auth.user);
+  const isAuthenticated = useSelector(state=>state.auth.isAuthenticated);
 
   const handleOnMenuItemClick = () => {
     dispatch(setNavMenuVisibility(false));
   }
-  
+
   const handleOnClickOpen = () => {
     dispatch(setNavMenuVisibility(true));
   }
-  
+
   const handleOnClickClose = () => {
     dispatch(setNavMenuVisibility(false));
   }
@@ -41,21 +44,30 @@ const SlideMenu = (props) => {
         onClick={handleOnMenuItemClick}
         className={`menu-item pt-2 text-xl pl-4 ${location.pathname === '/' && 'font-bold'} ${location.pathname === '/' ? 'text-green-600' : 'text-white'}`}
       >Home</Link>
-      <Link
-        id="your-buckets" to="/my-buckets"
-        onClick={handleOnMenuItemClick}
-        className={`menu-item pt-4 text-xl pl-4 ${location.pathname === '/my-buckets' && 'font-bold'} ${location.pathname === '/my-buckets' ? 'text-green-600' : 'text-white'}`}
-      >My Buckets</Link>
+      {
+        user && isAuthenticated
+          &&
+            <Link
+              id="your-buckets" to="/my-buckets"
+              onClick={handleOnMenuItemClick}
+              className={`menu-item pt-4 text-xl pl-4 ${location.pathname === '/my-buckets' && 'font-bold'} ${location.pathname === '/my-buckets' ? 'text-green-600' : 'text-white'}`}
+            >My Buckets</Link>
+      }
+
       <Link
         id="create-bucket" to="/create-bucket"
         onClick={handleOnMenuItemClick}
         className={`menu-item pt-4 text-xl pl-4 ${location.pathname === '/create-bucket' && 'font-bold'} ${location.pathname === '/create-bucket' ? 'text-green-600' : 'text-white'}`}
       >Create Bucket</Link>
-      <Link
-        id="settings" to="/settings"
-        onClick={handleOnMenuItemClick}
-        className={`menu-item pt-4 text-xl pl-4 ${location.pathname === '/settings' && 'font-bold'} ${location.pathname === '/settings' ? 'text-green-600' : 'text-white'}`}
-      >Settings</Link>
+      {
+        user && isAuthenticated
+          &&
+            <Link
+              id="settings" to="/settings"
+              onClick={handleOnMenuItemClick}
+              className={`menu-item pt-4 text-xl pl-4 ${location.pathname === '/settings' && 'font-bold'} ${location.pathname === '/settings' ? 'text-green-600' : 'text-white'}`}
+            >Settings</Link>
+      }
     </Menu>
   );
 }

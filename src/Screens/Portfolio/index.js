@@ -45,17 +45,18 @@ const Portfolio = (props)=> {
   useEffect(() => {
     if(Object.keys(bucketData) && !isFetchingBucket) {
       setBucketName(bucketData.name);
+      console.log(bucketData)
       let newStocks = {};
       let ticker, name = "";
       bucketData?.stocks?.forEach((stock)=>{
-        ticker = stock.description.slice(0, stock.description.indexOf(":"));
-        name = stock.description.slice(stock.description.indexOf(":")+1, stock.description.length);
-        newStocks[Object.keys(newStocks).length] = {id: stock.id, logoUrl: stock.logoUrl, name, ticker, initialWeight: stock.initialWeight, percentWeight: stock.percentWeight};
+        ticker = stock.ticker;
+        name = stock.name;
+        newStocks[Object.keys(newStocks).length] = {id: stock.id, logoUrl: stock.logoUrl, name, ticker, targetWeight: stock.targetWeight, percentWeight: stock.percentWeight};
       });
       setStocks(newStocks);
     }
   }, [bucketData]);
-  
+
   const handleOnClickBucketShare = () => {
     setShareModalVisibility(true);
     setShowConfetti(true);
@@ -133,7 +134,7 @@ const Portfolio = (props)=> {
                           ticker={stocks[key].ticker}
                           logoUrl={stocks[key].logoUrl}
                           percentWeight={stocks[key].percentWeight}
-                          initialWeight={stocks[key].initialWeight}
+                          initialWeight={stocks[key].targetWeight}
                         />
                       ))
                     }
