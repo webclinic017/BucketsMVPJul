@@ -5,6 +5,7 @@ import CreateBucket from "../Screens/CreateBucket";
 import EditBucket from "../Screens/EditBucket";
 import Portfolio from "../Screens/Portfolio";
 import Login from "../Screens/Login";
+import Settings from "../Screens/Settings";
 import Homepage from "../Screens/Homepage";
 import StockDetails from "../Screens/StockDetails";
 import Loading from "../Screens/Loading";
@@ -54,14 +55,14 @@ const Navigation = () => {
     <Router>
       <Menu />
       <Switch>
-        <CustomRoute path='/' exact component={Homepage} />
+        <CustomRoute isProtected path='/' exact component={Homepage} />
         <CustomRoute isProtected path='/authorize-alpaca' component={AlpacaAuthorization} />
         <CustomRoute path='/create-bucket' exact component={CreateBucket} />
         <CustomRoute isProtected path='/edit-bucket/:id' exact component={EditBucket} />
         <CustomRoute isProtected path='/stock/:id' exact component={StockDetails} />
         <CustomRoute isProtected path='/bucket/:id' exact component={Portfolio} />
         <CustomRoute isProtected path='/my-buckets' exact component={Buckets} />
-        <CustomRoute isProtected path='/settings' exact component={Buckets} />
+        <CustomRoute isProtected path='/settings' exact component={Settings} />
         <CustomRoute path='/login' exact component={Login} />
       </Switch>
     </Router>

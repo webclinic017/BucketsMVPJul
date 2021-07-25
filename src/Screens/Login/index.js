@@ -45,27 +45,24 @@ const Login = (props)=> {
 
   return(
     <>
-      <div className="p-11" style={{ backgroundImage: `url(${LoginPic})`, height: '100vh', width: '100vw', backgroundSize: 'cover'}}>
-        <div className="flex justify-between">
-          <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
-          <div className="flex items-center justify-between">
+      <div className="flex ">
+        <div className="p-11 w-2/3" style={{ backgroundImage: `url(${LoginPic})`, height: '100vh', backgroundSize: 'cover'}}>
+          <h3 className="font-bold text-white-400 text-4xl">Buckets</h3>
+        </div>
+        <div className="p-11 w-1/3 " >
+          <div className="flex items-center justify-end">
             <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
           </div>
-        </div>
-        <div className="block sm:block md:flex justify-between mt-6  ">
-          <div className="w-full sm:w-full md:w-full lg:w-2/5" >
-
-          </div>
-          <div className="w-full sm:w-full md:w-full lg:w-2/5 flex items-center justify-center bg-white " >
-            <div>
+          <div className="flex h-full justify-center align-center">
+            <div className="my-auto">
               <GoogleLogin
-                clientId="280304099921-n923fr06n36om9d141neoua4s3p756oi.apps.googleusercontent.com"
-                buttonText="Sign in with Google"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                responseType=""
-                cookiePolicy={'single_host_origin'}
-              />
+                  clientId="280304099921-n923fr06n36om9d141neoua4s3p756oi.apps.googleusercontent.com"
+                  buttonText="Sign in with Google"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  responseType=""
+                  cookiePolicy={'single_host_origin'}
+                />
             </div>
           </div>
         </div>

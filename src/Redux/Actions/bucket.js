@@ -12,12 +12,19 @@ import {
   GET_BUCKET_DATA,
   FOLLOW_BUCKET,
   CREATE_BUCKET,
-  UPDATE_BUCKET
+  UPDATE_BUCKET,
+  FETCHING_HPRICES
 } from "../Constants";
 
 const setIsFetching = (status) => {
   return {
     type: SET_IS_FETCHING_BUCKETS,
+    payload: status
+  };
+}
+const fetchingHPrices = (status) => {
+  return {
+    type: FETCHING_HPRICES,
     payload: status
   };
 }
@@ -66,6 +73,18 @@ const getBucketData = (data, onSuccess=()=>{}, onError=()=>{}) => (
       showToast(error.message, "error");
       onError();
     });
+  }
+)
+
+const getHPrices = (data, onSuccess=()=>{}, onError=()=>{}) => (
+  (dispatch) => {
+    dispatch(fetchingHPrices(true));
+    console.log("getHPrices action working");
+    APIClient.post('/bucket/get-bucket-prices', data).then((response)=>{
+      if(response.data.success === true) {
+        console.log(response.data)
+      }
+    })
   }
 )
 
@@ -236,4 +255,5 @@ export {
   createBucket,
   updateBucket,
   shortenUrl,
+  getHPrices
 };

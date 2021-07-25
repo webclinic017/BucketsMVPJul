@@ -9,14 +9,14 @@ import Button from "../../../Atomic/Button";
 import theme from "../../../../Theme";
 import Input from "../../../Atomic/Input";
 
-const stocks = [
-  {name: "Microsoft Corporation Common Stock", ticker: "MSFT", amount: 200, transactionType: "Buy"},
-  {name: "Amazon.com, Inc. Common Stock", ticker: "AMZN", amount: 100, transactionType: "Sell"},
-  {name: "Facebook, Inc. Class A Common Stock", ticker: "FB", amount: 300, transactionType: "Buy"},
-  {name: "Apple Inc. Common Stock", ticker: "AAPL", amount: 400, transactionType: "Sell"},
-];
+// const stocks = [
+//   {name: "Microsoft Corporation Common Stock", ticker: "MSFT", amount: 200, transactionType: "Buy"},
+//   {name: "Amazon.com, Inc. Common Stock", ticker: "AMZN", amount: 100, transactionType: "Sell"},
+//   {name: "Facebook, Inc. Class A Common Stock", ticker: "FB", amount: 300, transactionType: "Buy"},
+//   {name: "Apple Inc. Common Stock", ticker: "AAPL", amount: 400, transactionType: "Sell"},
+// ];
 
-const BuySell = ({open, onClose, bucketId, ...props}) => {
+const BuySell = ({open, onClose, bucketId, stocks, ...props}) => {
   const dispatch = useDispatch();
   const [type, setType] = useState("");
   const [amount, setAmount] = useState("$ ");
@@ -86,18 +86,18 @@ const BuySell = ({open, onClose, bucketId, ...props}) => {
             :
               <div className="mt-4 w-full flex flex-col items-center">
                 {
-                  stocks.map((stock)=>(
+                  Object.keys(stocks).map((key)=>(
                     <div className="flex justify-between mb-2 w-3/4">
                       <span
-                        style={{color: stock.transactionType==="Buy" ? theme.colors.green : theme.colors.lightPurple}}
+                        style={{color: type==="Buy" ? theme.colors.green : theme.colors.lightPurple}}
                         className="w-1/5 text-right"
                       >
-                        {stock.transactionType}
+                        {type}
                       </span>
-                      <span className="w-1/5 text-center">${stock.amount}</span>
+                      <span className="w-1/5 text-center">${parseFloat(amount.slice(2, amount.length))*stocks[key].targetWeight/100}</span>
                       <div className="w-3/5">
-                        <span className="">{stock.name}</span><br/>
-                        <span className="text-gray-500">{stock.ticker}</span>
+                        <span className="">{stocks[key].name}</span><br/>
+                        <span className="text-gray-500">{stocks[key].ticker}</span>
                       </div>
                     </div>
                   ))

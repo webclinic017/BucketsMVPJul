@@ -12,7 +12,7 @@ import Button from "../../Components/Atomic/Button";
 import StaticStockRow from "../../Components/Molecular/StaticStockRow";
 import ShareIcon from "../../Assets/entypo_share.png";
 import stocksData from "../../Data/assets.json";
-import { getBucketData } from "../../Redux/Actions/bucket";
+import { getBucketData, getHPrices } from "../../Redux/Actions/bucket";
 import MenuIcon from "../../Assets/Icons/menu.png";
 import OptionsIcon from "../../Assets/Icons/options.png";
 import { setNavMenuVisibility } from "../../Redux/Actions/app";
@@ -39,8 +39,13 @@ const Portfolio = (props)=> {
   const alpacaAuth = useSelector(state => state.alpaca.alpacaAuth);
 
   useEffect(()=>{
-    dispatch(getBucketData({bucketId}));
+    const getBucket = (dispatch, getBucketData) => new Promise((resolve, reject) => {
+      dispatch(getBucketData({bucketId}));
+      resolve();
+    });
+    getBucket(dispatch, getBucketData).then(() => {dispatch(getHPrices({stocks: Object.values(stocks)}))});
   }, []);
+
 
   useEffect(() => {
     if(Object.keys(bucketData) && !isFetchingBucket) {
@@ -150,6 +155,7 @@ const Portfolio = (props)=> {
         bucketId={bucketId}
         open={isBuySellModalVisible}
         onClose={()=>setBuySellModalVisibility(false)}
+        stocks={stocks}
       />
       <AlpacaLoginPopup
         open={isAlpacaModalVisible}
