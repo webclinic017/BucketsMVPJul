@@ -3,6 +3,8 @@ import {
   showToast
 } from "../../Utils";
 import {
+  SET_IS_FETCHING_HISTORICAL_STOCK_PRICES,
+  SET_HISTORICAL_STOCK_PRICES,
   SET_IS_FETCHING_BUCKET_DATA,
   SET_IS_FETCHING_BUCKETS,
   SET_IS_POSTING_BUCKET,
@@ -12,8 +14,7 @@ import {
   GET_BUCKET_DATA,
   FOLLOW_BUCKET,
   CREATE_BUCKET,
-  UPDATE_BUCKET,
-  FETCHING_HPRICES
+  UPDATE_BUCKET
 } from "../Constants";
 
 const setIsFetching = (status) => {
@@ -22,9 +23,9 @@ const setIsFetching = (status) => {
     payload: status
   };
 }
-const fetchingHPrices = (status) => {
+const setIsFetchingHistoricalStockPrices = (status) => {
   return {
-    type: FETCHING_HPRICES,
+    type: SET_IS_FETCHING_HISTORICAL_STOCK_PRICES,
     payload: status
   };
 }
@@ -76,15 +77,29 @@ const getBucketData = (data, onSuccess=()=>{}, onError=()=>{}) => (
   }
 )
 
-const getHPrices = (data, onSuccess=()=>{}, onError=()=>{}) => (
+const getHistoricalStockPrices = (data, onSuccess=()=>{}, onError=()=>{}) => (
   (dispatch) => {
-    dispatch(fetchingHPrices(true));
-    console.log("getHPrices action working");
+    console.log("Request Stocks: ", data);
+    dispatch(setIsFetchingHistoricalStockPrices(true));
     APIClient.post('/bucket/get-bucket-prices', data).then((response)=>{
       if(response.data.success === true) {
-        console.log(response.data)
+        console.log("Historical Response: ", response.data);
+        dispatch({
+          type: SET_HISTORICAL_STOCK_PRICES,
+          payload: response.data.historicalPrices
+        });
+        dispatch(setIsFetchingHistoricalStockPrices(false));
+        onSuccess();
+      } else {
+        dispatch(setIsFetchingHistoricalStockPrices(false));
+        showToast(response.data.message, "error");
+        onError();
       }
-    })
+    }).catch((error)=>{
+      dispatch(setIsFetchingHistoricalStockPrices(false));
+      showToast(error.message, "error");
+      onError();
+    });
   }
 )
 
@@ -248,6 +263,7 @@ const shortenUrl = (data, onSuccess=()=>{}, onError=()=>{}) => (
 
 export {
   recordNoOfTimesBucketShared,
+  getHistoricalStockPrices,
   getUserBuckets,
   unFollowBucket,
   getBucketData,
@@ -255,5 +271,4 @@ export {
   createBucket,
   updateBucket,
   shortenUrl,
-  getHPrices
 };

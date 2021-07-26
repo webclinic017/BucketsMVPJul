@@ -1,4 +1,6 @@
 import {
+  SET_IS_FETCHING_HISTORICAL_STOCK_PRICES,
+  SET_HISTORICAL_STOCK_PRICES,
   SET_IS_FETCHING_BUCKET_DATA,
   SET_IS_FETCHING_BUCKETS,
   SET_IS_POSTING_BUCKET,
@@ -15,6 +17,8 @@ import {
 const initState = {
   buckets: [],
   bucketData: {},
+  bucketHistoricalPrices: null,
+  isFetchingBucketHistoricalPrices: false,
   shortenedUrl: "",
   isPosting: false,
   isFetching: false,
@@ -76,6 +80,21 @@ export default (state=initState, action) => {
         ...state,
         buckets: updatedBuckets,
         isFollowing: false
+      }
+    }
+
+    case SET_IS_FETCHING_HISTORICAL_STOCK_PRICES: {
+      return {
+        ...state,
+        isFetchingBucketHistoricalPrices: payload
+      }
+    }
+
+    case SET_HISTORICAL_STOCK_PRICES: {
+      return {
+        ...state,
+        bucketHistoricalPrices: payload,
+        isFetchingBucketHistoricalPrices: false
       }
     }
 

@@ -8,13 +8,7 @@ import {
 import Button from "../../../Atomic/Button";
 import theme from "../../../../Theme";
 import Input from "../../../Atomic/Input";
-
-// const stocks = [
-//   {name: "Microsoft Corporation Common Stock", ticker: "MSFT", amount: 200, transactionType: "Buy"},
-//   {name: "Amazon.com, Inc. Common Stock", ticker: "AMZN", amount: 100, transactionType: "Sell"},
-//   {name: "Facebook, Inc. Class A Common Stock", ticker: "FB", amount: 300, transactionType: "Buy"},
-//   {name: "Apple Inc. Common Stock", ticker: "AAPL", amount: 400, transactionType: "Sell"},
-// ];
+import { capitalizeString } from "../../../../Utils";
 
 const BuySell = ({open, onClose, bucketId, stocks, ...props}) => {
   const dispatch = useDispatch();
@@ -92,7 +86,7 @@ const BuySell = ({open, onClose, bucketId, stocks, ...props}) => {
                         style={{color: type==="Buy" ? theme.colors.green : theme.colors.lightPurple}}
                         className="w-1/5 text-right"
                       >
-                        {type}
+                        {capitalizeString(type)}
                       </span>
                       <span className="w-1/5 text-center">${parseFloat(amount.slice(2, amount.length))*stocks[key].targetWeight/100}</span>
                       <div className="w-3/5">

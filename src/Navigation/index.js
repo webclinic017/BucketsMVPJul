@@ -29,6 +29,8 @@ const CustomRoute = ({isProtected, path, exact, component}) => {
     } else {
       return <Redirect to="/login"/>;
     }
+  } else if(path==="/login" && user && isAuthenticated) {
+    return <Redirect to="/"/>;
   } else {
     return <Route path={path} exact={exact} component={component}/>;
   }

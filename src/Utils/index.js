@@ -60,9 +60,14 @@ const isNaN = (maybeNaN) => {
   return Object.is(myNaN, maybeNaN);
 }
 
+const capitalizeString = (phrase) => {
+  return phrase.replace(/\b\w/g, c => c.toUpperCase());
+}
+
 export {
   encryptDataString,
   decryptDataString,
+  capitalizeString,
   objectsEqual,
   showToast,
   isNaN

@@ -41,20 +41,18 @@ const EditBucket = (props)=> {
       setBucketName(bucketData.name);
       let newStocks = {};
       bucketData?.stocks?.forEach((stock)=>{
-        const ticker = stock.description.slice(0, stock.description.indexOf(":"));
-        const name = stock.description.slice(stock.description.indexOf(":")+1, stock.description.length);
-        newStocks[Object.keys(newStocks).length] = {id: stock.id, logoUrl: stock.logoUrl, name, ticker, initialWeight: stock.initialWeight, percentWeight: stock.percentWeight};
+        newStocks[Object.keys(newStocks).length] = stock;
       });
       setStocks(newStocks);
     }
   }, [bucketData]);
 
   useEffect(()=>{
-    setTotalPercentage(Object.values(stocks).reduce((total, current)=>(total+parseFloat(current.initialWeight)), 0));
+    setTotalPercentage(Object.values(stocks).reduce((total, current)=>(total+parseFloat(current.targetWeight)), 0));
   }, [stocks]);
 
   const addRow = () => {
-    setStocks({...stocks, [Object.keys(stocks).length]: { name: "", logoUrl: "", initialWeight: 0, percentWeight: 0}});
+    setStocks({...stocks, [Object.keys(stocks).length]: { name: "", logoUrl: "", targetWeight: 0, percentWeight: 0}});
   }
 
   const onChangeStockName = (e, key) => {
@@ -66,14 +64,14 @@ const EditBucket = (props)=> {
   }
 
   const onStockPercentIncrement = (key) => {
-    if(stocks[key].initialWeight < 100) {
-      setStocks({...stocks, [key]: {...stocks[key], initialWeight: stocks[key].initialWeight+1}});
+    if(stocks[key].targetWeight < 100) {
+      setStocks({...stocks, [key]: {...stocks[key], targetWeight: stocks[key].targetWeight+1}});
     }
   }
 
   const onStockPercentDecrement = (key) => {
-    if(stocks[key].initialWeight > 0) {
-      setStocks({...stocks, [key]: {...stocks[key], initialWeight: stocks[key].initialWeight-1}});
+    if(stocks[key].targetWeight > 0) {
+      setStocks({...stocks, [key]: {...stocks[key], targetWeight: stocks[key].targetWeight-1}});
     }
   }
 
@@ -90,7 +88,7 @@ const EditBucket = (props)=> {
   const saveBucket = () => {
     if(!bucketName.length) {
       showToast("Please enter bucket name!", "warning");
-    } else if(Object.values(stocks).filter((stock)=>(!stock.name.length || stock.initialWeight === 0)).length) {
+    } else if(Object.values(stocks).filter((stock)=>(!stock.name.length || stock.targetWeight === 0)).length) {
       showToast(`Please fill out all stock rows properly!`, "warning");
     } else if(totalPercentage!==100) {
       showToast(`Total percentage should add up to 100 not ${totalPercentage}!`, "warning");
@@ -173,7 +171,7 @@ const EditBucket = (props)=> {
                           stockName={stocks[key].name}
                           logoUrl={stocks[key].logoUrl}
                           stockValue={stocks[key].value}
-                          stockPercent={stocks[key].initialWeight}
+                          stockPercent={stocks[key].targetWeight}
                           stockOptions={stockOptions}
                           deleteable={Object.keys(stocks).length>1 && key!==0}
                           deleteRow={deleteRow}

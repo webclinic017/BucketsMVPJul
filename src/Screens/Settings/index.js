@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import MenuIcon from "../../Assets/Icons/menu.png";
 import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import Button from "../../Components/Atomic/Button";
+import { insertTokenInHeaders } from "../../Services";
 import {
   logoutUser
 } from "../../Redux/Actions/auth";
@@ -16,6 +17,8 @@ const Settings = (props)=> {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    insertTokenInHeaders(null);
+    localStorage.removeItem("bucket_session");
   }
 
   return(

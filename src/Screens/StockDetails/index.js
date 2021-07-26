@@ -4,65 +4,36 @@ import React, {
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 import MoonLoader from 'react-spinners/MoonLoader';
-import Chart from "../../Components/Atomic/LineChart";
-import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
-import Button from "../../Components/Atomic/Button";
-import StaticStockRow from "../../Components/Molecular/StaticStockRow";
 import ShareIcon from "../../Assets/entypo_share.png";
-import stocksData from "../../Data/assets.json";
-import { getBucketData } from "../../Redux/Actions/bucket";
 import MenuIcon from "../../Assets/Icons/menu.png";
 import Input from "../../Components/Atomic/Input";
-import OptionsIcon from "../../Assets/Icons/options.png";
+import Button from "../../Components/Atomic/Button";
 import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
 import AlpacaLoginPopup from "../../Components/Molecular/Popups/AlpacaLogin";
 import BuySellPopup from "../../Components/Molecular/Popups/BuySell";
-import config from "../../Config";
 import theme from "../../Theme";
-
-const dummyStocks = [
-  {date: "1st June", noOfShares: 2.4, amount: 200},
-  {date: "4th April", noOfShares: 1.4, amount: 100},
-  {date: "2nd April", noOfShares: 1.5, amount: 300},
-  {date: "1st March", noOfShares: 1.2, amount: 400}
-];
 
 const Portfolio = (props)=> {
   const dispatch = useDispatch();
-  const { id: bucketId } = useParams();
+  const { id: stockId } = useParams();
   const [amount, setAmount] = useState("$ ");
-  const [bucketName, setBucketName] = useState("");
-  const [stocks,setStocks] = useState({0: {name: "", logoUrl: "", percentage: 0}});
+  const [orders, setOrders] = useState([]);
   const [isShareModalVisible, setShareModalVisibility] = useState(false);
   const [isAlpacaModalVisible, setAlpacaModalVisibility] = useState(false);
   const [isBuySellModalVisible, setBuySellModalVisibility] = useState(false);
-  const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, logoUrl: stock.logo_url, value: stock}));
   const user = useSelector(state => state.auth.user);
   const isFetchingBucket = useSelector(state => state.bucket.isFetchingBucketData);
   const bucketData = useSelector(state => state.bucket.bucketData);
   const isLinkingAlpaca = useSelector(state => state.alpaca.isLinking);
   const alpacaAuth = useSelector(state => state.alpaca.alpacaAuth);
-
-  useEffect(()=>{
-    dispatch(getBucketData({bucketId}));
-  }, []);
-
-  useEffect(() => {
-    if(Object.keys(bucketData) && !isFetchingBucket) {
-      setBucketName(bucketData.name);
-      let newStocks = {};
-      let ticker, name = "";
-      bucketData?.stocks?.forEach((stock)=>{
-        ticker = stock.description.slice(0, stock.description.indexOf(":"));
-        name = stock.description.slice(stock.description.indexOf(":")+1, stock.description.length);
-        newStocks[Object.keys(newStocks).length] = {id: stock.id, logoUrl: stock.logoUrl, name, ticker, initialWeight: stock.initialWeight, percentWeight: stock.percentWeight};
-      });
-      setStocks(newStocks);
-    }
-  }, [bucketData]);
   
+  useEffect(() => {
+    setOrders(props.location.state.stock.orders);
+  }, [props]);
+
   const handleOnClickBucketShare = () => {
     setShareModalVisibility(true);
   }
@@ -77,10 +48,6 @@ const Portfolio = (props)=> {
 
   const handleOnNavMenuClick = () => {
     dispatch(setNavMenuVisibility(true));
-  }
-
-  const handleOnClickEdit = () => {
-    props.history.push(`/edit-bucket/${bucketData.id}`);
   }
 
   const handleOnClickRebalance = () => {
@@ -145,24 +112,30 @@ const Portfolio = (props)=> {
                         <span className="w-1/3 font-bold text-gray-600 text-center">price ($)</span>
                       </div>
                       {
-                        dummyStocks.map((stock)=>(
+                        orders.map((order)=>(
                           <div className="flex justify-between mb-3 w-full">
                             <span className="w-1/3 text-center">
-                              {stock.date}
+                              {moment(order.timestamp).format("MMM Do YY")}
                             </span>
-                            <span className="w-1/3 text-center">${stock.noOfShares}</span>
+                            {
+                              order.type==="buy"
+                                ?
+                                  <span style={{color: theme.colors.green}} className="w-1/3 text-center">+{order.qty.toFixed(2)}</span>
+                                :
+                                  <span style={{color: theme.colors.lightPurple}} className="w-1/3 text-center">-{order.qty.toFixed(2)}</span>
+                            }
                             <span
                               style={{color: theme.colors.lightPurple}}
                               className="w-1/3 text-center"
                             >
-                              ${stock.amount}
+                              ${order.price}
                             </span>
                           </div>
                         ))
                       }
                     </div>
                   </div>
-                  <div className="w-full sm:w-full md:w-full lg:w-2/5 flex flex-col items-center justify-center">
+                  <div style={{maxHeight: "80vh"}} className="w-full sm:w-full md:w-full lg:w-2/5 flex flex-col items-center justify-center">
                     <Input
                       className="w-32 text-center font-bold text-xl shadow-lg"
                       value={amount}

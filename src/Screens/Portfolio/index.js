@@ -12,7 +12,10 @@ import Button from "../../Components/Atomic/Button";
 import StaticStockRow from "../../Components/Molecular/StaticStockRow";
 import ShareIcon from "../../Assets/entypo_share.png";
 import stocksData from "../../Data/assets.json";
-import { getBucketData, getHPrices } from "../../Redux/Actions/bucket";
+import {
+  getBucketData,
+  getHistoricalStockPrices
+} from "../../Redux/Actions/bucket";
 import MenuIcon from "../../Assets/Icons/menu.png";
 import OptionsIcon from "../../Assets/Icons/options.png";
 import { setNavMenuVisibility } from "../../Redux/Actions/app";
@@ -27,38 +30,28 @@ const Portfolio = (props)=> {
   const { id: bucketId } = useParams();
   const [bucketName, setBucketName] = useState("");
   const [showConfetti, setShowConfetti] = useState(false);
-  const [stocks,setStocks] = useState({0: {name: "", logoUrl: "", percentage: 0}});
+  const [stocks, setStocks] = useState([]);
   const [isShareModalVisible, setShareModalVisibility] = useState(false);
   const [isAlpacaModalVisible, setAlpacaModalVisibility] = useState(false);
   const [isBuySellModalVisible, setBuySellModalVisibility] = useState(false);
-  const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, logoUrl: stock.logo_url, value: stock}));
   const user = useSelector(state => state.auth.user);
   const isFetchingBucket = useSelector(state => state.bucket.isFetchingBucketData);
   const bucketData = useSelector(state => state.bucket.bucketData);
   const isLinkingAlpaca = useSelector(state => state.alpaca.isLinking);
   const alpacaAuth = useSelector(state => state.alpaca.alpacaAuth);
+  const isFetchingBucketHistoricalPrices = useSelector(state => state.alpaca.isFetchingBucketHistoricalPrices);
 
   useEffect(()=>{
-    const getBucket = (dispatch, getBucketData) => new Promise((resolve, reject) => {
-      dispatch(getBucketData({bucketId}));
-      resolve();
-    });
-    getBucket(dispatch, getBucketData).then(() => {dispatch(getHPrices({stocks: Object.values(stocks)}))});
+    dispatch(getBucketData({bucketId}));
   }, []);
-
 
   useEffect(() => {
     if(Object.keys(bucketData) && !isFetchingBucket) {
       setBucketName(bucketData.name);
-      console.log(bucketData)
-      let newStocks = {};
-      let ticker, name = "";
-      bucketData?.stocks?.forEach((stock)=>{
-        ticker = stock.ticker;
-        name = stock.name;
-        newStocks[Object.keys(newStocks).length] = {id: stock.id, logoUrl: stock.logoUrl, name, ticker, targetWeight: stock.targetWeight, percentWeight: stock.percentWeight};
-      });
-      setStocks(newStocks);
+      if(bucketData.hasOwnProperty("stocks")) {
+        setStocks(bucketData.stocks);
+        dispatch(getHistoricalStockPrices({stocks: bucketData.stocks}));
+      }
     }
   }, [bucketData]);
 
@@ -132,20 +125,20 @@ const Portfolio = (props)=> {
                       </div>
                     </div>
                     {
-                      Object.keys(stocks).map((key)=>(
+                      stocks.map((stock, index)=>(
                         <StaticStockRow
-                          rowIndex={key}
-                          stockName={stocks[key].name}
-                          ticker={stocks[key].ticker}
-                          logoUrl={stocks[key].logoUrl}
-                          percentWeight={stocks[key].percentWeight}
-                          initialWeight={stocks[key].targetWeight}
+                          rowIndex={index}
+                          stock={stock}
                         />
                       ))
                     }
                   </div>
                   <div className="w-full sm:w-full md:w-full lg:w-2/5">
-                    <Chart/>
+                    {
+                      !isFetchingBucketHistoricalPrices
+                        &&
+                          <Chart/>
+                    }
                   </div>
                 </div>
               </>

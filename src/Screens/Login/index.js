@@ -7,7 +7,7 @@ import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import GoogleLogin from 'react-google-login';
 import { googleLogin } from "../../Redux/Actions/auth";
 import { insertTokenInHeaders } from "../../Services";
-import { encryptDataString, showToast } from "../../Utils";
+import { encryptDataString } from "../../Utils";
 
 
 const Login = (props)=> {
@@ -40,8 +40,6 @@ const Login = (props)=> {
       props.history.push("/my-buckets");
     }));
   }
-
-  if(user && isAuthenticated) return <Redirect to="/my-buckets" />;
 
   return(
     <>
