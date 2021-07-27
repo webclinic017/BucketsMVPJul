@@ -3,11 +3,12 @@ import React from 'react';
 import PulseLoader from "react-spinners/PulseLoader";
 import theme from "../../../Theme";
 
-const Button = ({onClick, title, isProcessing, className, ...props})=>{
+const Button = ({onClick, title, isProcessing, className, styles, ...props})=>{
   const style = {
     backgroundColor: props.secondary ? theme.colors.lightPurple : theme.colors.green,
     borderColor: props.secondary ? theme.colors.lightPurple : theme.colors.green,
     boxShadow: props.secondary ? theme.shadows.lightPurple : theme.shadows.green,
+    ...styles
   };
 
   return (

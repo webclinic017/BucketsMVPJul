@@ -14,6 +14,7 @@ import ShareIcon from "../../Assets/entypo_share.png";
 import stocksData from "../../Data/assets.json";
 import {
   getBucketData,
+  getBucketCurrentValue,
   getHistoricalStockPrices
 } from "../../Redux/Actions/bucket";
 import MenuIcon from "../../Assets/Icons/menu.png";
@@ -43,6 +44,7 @@ const Portfolio = (props)=> {
 
   useEffect(()=>{
     dispatch(getBucketData({bucketId}));
+    dispatch(getBucketCurrentValue({bucketId}));
   }, []);
 
   useEffect(() => {

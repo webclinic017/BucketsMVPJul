@@ -77,6 +77,33 @@ const getBucketData = (data, onSuccess=()=>{}, onError=()=>{}) => (
   }
 )
 
+const getBucketCurrentValue = (data, onSuccess=()=>{}, onError=()=>{}) => (
+  (dispatch) => {
+    dispatch(setIsFetchingBucketData(true));
+    APIClient.post('/bucket/get-bucket-current-value', data).then((response)=>{
+      if(response.data.success === true) {
+        alert(response.data.totalValue);
+        dispatch({
+          type: GET_BUCKET_DATA,
+          payload: response.data.totalValue
+        });
+        onSuccess();
+      } else {
+        dispatch({
+          type: GET_BUCKET_DATA,
+          payload: {}
+        });
+        showToast(response.data.message, "error");
+        onError();
+      }
+    }).catch((error)=>{
+      dispatch(setIsFetchingBucketData(false));
+      showToast(error.message, "error");
+      onError();
+    });
+  }
+)
+
 const getHistoricalStockPrices = (data, onSuccess=()=>{}, onError=()=>{}) => (
   (dispatch) => {
     console.log("Request Stocks: ", data);
@@ -264,6 +291,7 @@ const shortenUrl = (data, onSuccess=()=>{}, onError=()=>{}) => (
 export {
   recordNoOfTimesBucketShared,
   getHistoricalStockPrices,
+  getBucketCurrentValue,
   getUserBuckets,
   unFollowBucket,
   getBucketData,
