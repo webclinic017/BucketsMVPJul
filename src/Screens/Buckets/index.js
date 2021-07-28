@@ -19,6 +19,7 @@ import { showToast } from "../../Utils";
 const Portfolio = (props)=> {
   const dispatch = useDispatch();
   const [isShareModalVisible, setShareModalVisibility] = useState(false);
+  const [metrics, setMetrics] = useState(null);
   const user = useSelector(state => state.auth.user);
   const buckets = useSelector(state => state.bucket.buckets);
   const isFetchingBuckets = useSelector(state => state.bucket.isFetching);
@@ -26,6 +27,23 @@ const Portfolio = (props)=> {
   useEffect(()=>{
     dispatch(getUserBuckets());
   }, []);
+
+  useEffect(()=>{
+    if(buckets.length) {
+      let currentValue=0, costBasis=0;
+      for(const bucket of buckets) {
+        if(bucket.hasMetrics) {
+          currentValue += bucket.currentValue;
+          costBasis += bucket.costBasis;
+        }
+      }
+      setMetrics({
+        currentValue,
+        valueReturn: currentValue-costBasis,
+        percentReturn: (currentValue-costBasis)/costBasis
+      });
+    }
+  }, [buckets]);
 
   const handleOnClickBucket = (bucket) => {
     props.history.push(`/bucket/${bucket._id}`);
@@ -54,15 +72,25 @@ const Portfolio = (props)=> {
           </div>
           <div div className="flex items-center justify-between">
             {
-              !isFetchingBuckets
+              !isFetchingBuckets && metrics
                 &&
                   <>
                     <div>
-                      <span className="font-bold text-lg text-gray-500">$24,433.84</span>
-                      <span className="text-xl text-gray-400"> | </span>
-                      <span style={{color: theme.colors.green}} className="font-bold text-lg">+4,756.21</span>
-                      <span className="text-xl text-gray-400"> | </span>
-                      <span style={{color: theme.colors.green}} className="font-bold text-lg">+7.89%</span>
+                      <span className="font-bold text-md text-gray-500">${metrics.currentValue.toFixed(2)}</span>
+                      <span className="text-lg text-gray-400 mx-1">|</span>
+                      <span
+                        style={{color: metrics.valueReturn>0 ? theme.colors.green : theme.colors.red}}
+                        className="font-bold text-md"
+                      >
+                        {metrics.valueReturn>0 && "+"}{metrics.valueReturn.toFixed(2)}
+                      </span>
+                      <span className="text-lg text-gray-400 mx-1">|</span>
+                      <span
+                        style={{color: metrics.percentReturn>0 ? theme.colors.green : theme.colors.red}}
+                        className="font-bold text-md"
+                      >
+                        {metrics.percentReturn>0 && "+"}{metrics.percentReturn.toFixed(2)}%
+                      </span>
                     </div>
                     <span onClick={()=>setShareModalVisibility(true)} className="cursor-pointer">
                       <img src={ShareIcon} className="ml-4"/>
@@ -85,16 +113,30 @@ const Portfolio = (props)=> {
                     buckets.map((bucket, index)=>(
                       <div key={index} onClick={()=>handleOnClickBucket(bucket)} className="flex mt-4 min-w-full items-center cursor-pointer justify-between">
                         <div className="flex items-center">
-                          <img className="mx-2 w-16 h-16 object-contain" src={BucketsLogo} />
+                          <img className="mx-2 rounded-full w-12 h-12 object-contain" src={bucket.userId===user._id?user.profilePicture:BucketsLogo} />
                           <div>
                             <span className="text-gray-500 text-xl font-bold">{bucket.name}</span>
-                            <div>
-                              <span className="font-bold text-md text-gray-500">$24,433.84</span>
-                              <span className="text-lg text-gray-400"> | </span>
-                              <span style={{color: theme.colors.green}} className="font-bold text-md">+4,756.21</span>
-                              <span className="text-lg text-gray-400"> | </span>
-                              <span style={{color: theme.colors.green}} className="font-bold text-md">+7.89%</span>
-                            </div>
+                            {
+                              bucket.hasMetrics
+                                &&
+                                  <div>
+                                    <span className="font-bold text-md text-gray-500">${bucket.currentValue.toFixed(2)}</span>
+                                    <span className="text-lg text-gray-400 mx-1">|</span>
+                                    <span
+                                      style={{color: bucket.valueReturn>0 ? theme.colors.green : theme.colors.red}}
+                                      className="font-bold text-md"
+                                    >
+                                      {bucket.valueReturn>0 && "+"}{bucket.valueReturn.toFixed(2)}
+                                    </span>
+                                    <span className="text-lg text-gray-400 mx-1">|</span>
+                                    <span
+                                      style={{color: bucket.percentReturn>0 ? theme.colors.green : theme.colors.red}}
+                                      className="font-bold text-md"
+                                    >
+                                      {bucket.percentReturn>0 && "+"}{bucket.percentReturn.toFixed(2)}%
+                                    </span>
+                                  </div>
+                            }
                           </div>
                         </div>
                         <img className="mx-6 w-4 h-4 object-contain" src={ForwardArrow} />

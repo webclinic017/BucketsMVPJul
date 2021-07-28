@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import theme from "../../../../Theme";
 import Input from "../../../Atomic/Input";
 import { capitalizeString } from "../../../../Utils";
 
-const BuySell = ({open, onClose, bucketId, stocks, ...props}) => {
+const BuySell = forwardRef(({open, onClose, bucketId, stocks, ...props}, ref) => {
   const dispatch = useDispatch();
   const [type, setType] = useState("");
   const [amount, setAmount] = useState("$ ");
@@ -18,8 +18,19 @@ const BuySell = ({open, onClose, bucketId, stocks, ...props}) => {
   const isPlacingOrder = useSelector(state => state.alpaca.isPlacingOrder);
   const [step, setStep] = useState(1);
 
+  useImperativeHandle(
+    ref,
+    () => ({
+      resetComponentState () {
+        setStep(1);
+        setType("");
+        setAmount("$ ");
+      }
+    }),
+  );
+
   const handleOnChangeAmount = (e) => {
-    if(e.target.value.length>=2 && e.target.value.includes("$ ")) {
+    if(e.target.value.length>=2 && e.target.value.includes("$ ") && e.target.value.indexOf("$ ")===0) {
       setAmount(e.target.value);
     }
   }
@@ -83,7 +94,7 @@ const BuySell = ({open, onClose, bucketId, stocks, ...props}) => {
                   Object.keys(stocks).map((key)=>(
                     <div className="flex justify-between mb-2 w-3/4">
                       <span
-                        style={{color: type==="Buy" ? theme.colors.green : theme.colors.lightPurple}}
+                        style={{color: type==="buy" ? theme.colors.green : theme.colors.lightPurple}}
                         className="w-1/5 text-right"
                       >
                         {capitalizeString(type)}
@@ -108,6 +119,6 @@ const BuySell = ({open, onClose, bucketId, stocks, ...props}) => {
       </div>
     </Popup>
   );
-}
+});
 
 export default BuySell;

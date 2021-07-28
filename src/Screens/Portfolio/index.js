@@ -1,4 +1,5 @@
 import React, {
+  useRef,
   useState,
   useEffect
 } from 'react';
@@ -14,6 +15,7 @@ import ShareIcon from "../../Assets/entypo_share.png";
 import stocksData from "../../Data/assets.json";
 import {
   getBucketData,
+  setBucketValueToNull,
   getBucketCurrentValue,
   getHistoricalStockPrices
 } from "../../Redux/Actions/bucket";
@@ -27,6 +29,7 @@ import config from "../../Config";
 import theme from "../../Theme";
 
 const Portfolio = (props)=> {
+  const buySellPopupRef = useRef();
   const dispatch = useDispatch();
   const { id: bucketId } = useParams();
   const [bucketName, setBucketName] = useState("");
@@ -35,16 +38,24 @@ const Portfolio = (props)=> {
   const [isShareModalVisible, setShareModalVisibility] = useState(false);
   const [isAlpacaModalVisible, setAlpacaModalVisibility] = useState(false);
   const [isBuySellModalVisible, setBuySellModalVisibility] = useState(false);
+  const [bucketCostBasis, setBucketCostBasis] = useState(0);
   const user = useSelector(state => state.auth.user);
   const isFetchingBucket = useSelector(state => state.bucket.isFetchingBucketData);
+  const isFetchingBucketValue = useSelector(state => state.bucket.isFetchingBucketValue);
   const bucketData = useSelector(state => state.bucket.bucketData);
+  const bucketValue = useSelector(state => state.bucket.bucketValue);
   const isLinkingAlpaca = useSelector(state => state.alpaca.isLinking);
   const alpacaAuth = useSelector(state => state.alpaca.alpacaAuth);
   const isFetchingBucketHistoricalPrices = useSelector(state => state.alpaca.isFetchingBucketHistoricalPrices);
 
   useEffect(()=>{
-    dispatch(getBucketData({bucketId}));
-    dispatch(getBucketCurrentValue({bucketId}));
+    dispatch(getBucketData({bucketId}, (bucketValue)=>{
+      if(bucketValue>0) {
+        dispatch(getBucketCurrentValue({bucketId}));
+      } else {
+        dispatch(setBucketValueToNull());
+      }
+    }));
   }, []);
 
   useEffect(() => {
@@ -52,6 +63,7 @@ const Portfolio = (props)=> {
       setBucketName(bucketData.name);
       if(bucketData.hasOwnProperty("stocks")) {
         setStocks(bucketData.stocks);
+        setBucketCostBasis(stocks.reduce((total, stock)=>(stock.costBasis+total), 0));
         dispatch(getHistoricalStockPrices({stocks: bucketData.stocks}));
       }
     }
@@ -69,6 +81,7 @@ const Portfolio = (props)=> {
     if(!alpacaAuth) {
       setAlpacaModalVisibility(true);
     } else {
+      buySellPopupRef.current.resetComponentState();
       setBuySellModalVisibility(true);
     }
   }
@@ -97,7 +110,7 @@ const Portfolio = (props)=> {
             :
               <>
                 <div className="flex justify-between">
-                  <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
+                  <h3 className="font-bold text-gray-400 text-4xl">{bucketName}</h3>
                   <div className="flex items-center justify-between">
                     <Button
                       title="Buy/Sell"
@@ -120,12 +133,12 @@ const Portfolio = (props)=> {
                 </div>
                 <div className="block sm:block md:flex justify-between mt-6">
                   <div className="w-full sm:w-full md:w-full lg:w-2/5 ">
-                    <div className="flex items-center w-full">
-                      <span className="text-2xl text-gray-600">{bucketName}</span>
+                    {/* <div className="flex items-center w-full">
+                      <span className="text-2xl text-gray-600"></span>
                       <div className="flex w-2/5 justify-center">
-                        {/* <div className={`${totalPercentage < 100 ? 'text-gray-500' : totalPercentage > 100 ? 'text-red-600' : 'text-green-600'}`}>Total: {totalPercentage} %</div> */}
+                        <div className={`${totalPercentage < 100 ? 'text-gray-500' : totalPercentage > 100 ? 'text-red-600' : 'text-green-600'}`}>Total: {totalPercentage} %</div>
                       </div>
-                    </div>
+                    </div> */}
                     {
                       stocks.map((stock, index)=>(
                         <StaticStockRow
@@ -137,6 +150,29 @@ const Portfolio = (props)=> {
                   </div>
                   <div className="w-full sm:w-full md:w-full lg:w-2/5">
                     {
+                      !isFetchingBucketValue && bucketValue
+                        &&
+                          <div className="flex justify-center mb-4">
+                            <span className="font-bold text-lg text-gray-500">${bucketValue.toFixed(2)}</span>
+                            <span className="text-xl text-gray-400 mx-1">|</span>
+                            <span
+                              style={{color: bucketValue-bucketCostBasis>0 ? theme.colors.green : theme.colors.red}}
+                              className="font-bold text-lg"
+                            >
+                              {(bucketValue-bucketCostBasis>0) && "+"}
+                              {(bucketValue-bucketCostBasis).toFixed(2)}
+                            </span>
+                            <span className="text-xl text-gray-400 mx-1">|</span>
+                            <span
+                              style={{color: ((bucketValue-bucketCostBasis)/bucketCostBasis)>0 ? theme.colors.green : theme.colors.red}}
+                              className="font-bold text-lg"
+                            >
+                              {(((bucketValue-bucketCostBasis)/bucketCostBasis)>0) && "+"}
+                              {(((bucketValue-bucketCostBasis)/bucketCostBasis)).toFixed(2)}%
+                            </span>
+                          </div>
+                    }
+                    {
                       !isFetchingBucketHistoricalPrices
                         &&
                           <Chart/>
@@ -147,6 +183,7 @@ const Portfolio = (props)=> {
         }
       </div>
       <BuySellPopup
+        ref={buySellPopupRef}
         bucketId={bucketId}
         open={isBuySellModalVisible}
         onClose={()=>setBuySellModalVisibility(false)}

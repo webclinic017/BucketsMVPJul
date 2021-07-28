@@ -57,7 +57,7 @@ const Navigation = () => {
     <Router>
       <Menu />
       <Switch>
-        <CustomRoute isProtected path='/' exact component={Homepage} />
+        <CustomRoute path='/' exact component={Homepage} />
         <CustomRoute isProtected path='/authorize-alpaca' component={AlpacaAuthorization} />
         <CustomRoute path='/create-bucket' exact component={CreateBucket} />
         <CustomRoute isProtected path='/edit-bucket/:id' exact component={EditBucket} />

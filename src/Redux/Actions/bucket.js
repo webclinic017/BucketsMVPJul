@@ -4,6 +4,7 @@ import {
 } from "../../Utils";
 import {
   SET_IS_FETCHING_HISTORICAL_STOCK_PRICES,
+  SET_IS_FETCHING_BUCKET_VALUE,
   SET_HISTORICAL_STOCK_PRICES,
   SET_IS_FETCHING_BUCKET_DATA,
   SET_IS_FETCHING_BUCKETS,
@@ -11,6 +12,7 @@ import {
   UN_FOLLOW_BUCKET,
   SET_IS_FOLLOWING,
   GET_USER_BUCKETS,
+  SET_BUCKET_VALUE,
   GET_BUCKET_DATA,
   FOLLOW_BUCKET,
   CREATE_BUCKET,
@@ -33,6 +35,13 @@ const setIsFetchingHistoricalStockPrices = (status) => {
 const setIsFetchingBucketData = (status) => {
   return {
     type: SET_IS_FETCHING_BUCKET_DATA,
+    payload: status
+  };
+}
+
+const setIsFetchingBucketValue = (status) => {
+  return {
+    type: SET_IS_FETCHING_BUCKET_VALUE,
     payload: status
   };
 }
@@ -60,7 +69,7 @@ const getBucketData = (data, onSuccess=()=>{}, onError=()=>{}) => (
           type: GET_BUCKET_DATA,
           payload: response.data.bucketData
         });
-        onSuccess();
+        onSuccess(response.data.bucketData.value);
       } else {
         dispatch({
           type: GET_BUCKET_DATA,
@@ -77,27 +86,33 @@ const getBucketData = (data, onSuccess=()=>{}, onError=()=>{}) => (
   }
 )
 
+const setBucketValueToNull = () => {
+  return {
+    type: SET_BUCKET_VALUE,
+    payload: null
+  };
+}
+
 const getBucketCurrentValue = (data, onSuccess=()=>{}, onError=()=>{}) => (
   (dispatch) => {
-    dispatch(setIsFetchingBucketData(true));
+    dispatch(setIsFetchingBucketValue(true));
     APIClient.post('/bucket/get-bucket-current-value', data).then((response)=>{
       if(response.data.success === true) {
-        alert(response.data.totalValue);
         dispatch({
-          type: GET_BUCKET_DATA,
+          type: SET_BUCKET_VALUE,
           payload: response.data.totalValue
         });
         onSuccess();
       } else {
         dispatch({
-          type: GET_BUCKET_DATA,
-          payload: {}
+          type: SET_BUCKET_VALUE,
+          payload: null
         });
         showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
-      dispatch(setIsFetchingBucketData(false));
+      dispatch(setIsFetchingBucketValue(false));
       showToast(error.message, "error");
       onError();
     });
@@ -292,6 +307,7 @@ export {
   recordNoOfTimesBucketShared,
   getHistoricalStockPrices,
   getBucketCurrentValue,
+  setBucketValueToNull,
   getUserBuckets,
   unFollowBucket,
   getBucketData,

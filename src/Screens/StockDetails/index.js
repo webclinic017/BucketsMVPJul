@@ -21,6 +21,7 @@ const Portfolio = (props)=> {
   const { id: stockId } = useParams();
   const [amount, setAmount] = useState("$ ");
   const [orders, setOrders] = useState([]);
+  const [totalStockValue, setTotalStockValue] = useState(0);
   const [isShareModalVisible, setShareModalVisibility] = useState(false);
   const [isAlpacaModalVisible, setAlpacaModalVisibility] = useState(false);
   const [isBuySellModalVisible, setBuySellModalVisibility] = useState(false);
@@ -32,6 +33,7 @@ const Portfolio = (props)=> {
   
   useEffect(() => {
     setOrders(props.location.state.stock.orders);
+    setTotalStockValue(props.location.state.stock.totalNoOfShares*props.location.state.stock.latestPrice);
   }, [props]);
 
   const handleOnClickBucketShare = () => {
@@ -55,7 +57,7 @@ const Portfolio = (props)=> {
   }
 
   const handleOnChangeAmount = (e) => {
-    if(e.target.value.length>=2 && e.target.value.includes("$ ")) {
+    if(e.target.value.length>=2 && e.target.value.includes("$ ") && e.target.value.indexOf("$ ")===0) {
       setAmount(e.target.value);
     }
   }
@@ -72,14 +74,26 @@ const Portfolio = (props)=> {
             :
               <>
                 <div className="flex justify-between">
-                  <h3 className="font-bold text-gray-400 text-4xl">Microsoft in Fav Tech Names</h3>
+                  <h3 className="font-bold text-gray-400 text-4xl">{props.location.state.stock.ticker} {bucketData.name}</h3>
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="font-bold text-lg text-gray-500">$24,433.84</span>
-                      <span className="text-xl text-gray-400"> | </span>
-                      <span style={{color: theme.colors.green}} className="font-bold text-lg">+4,756.21</span>
-                      <span className="text-xl text-gray-400"> | </span>
-                      <span style={{color: theme.colors.green}} className="font-bold text-lg">+7.89%</span>
+                      <span className="font-bold text-lg text-gray-500">${totalStockValue.toFixed(2)}</span>
+                      <span className="text-xl text-gray-400 mx-1">|</span>
+                      <span
+                        style={{color: totalStockValue-props.location.state.stock.costBasis>0 ? theme.colors.green : theme.colors.red}}
+                        className="font-bold text-lg"
+                      >
+                        {(totalStockValue-props.location.state.stock.costBasis>0) && "+"}
+                        {(totalStockValue-props.location.state.stock.costBasis).toFixed(2)}
+                      </span>
+                      <span className="text-xl text-gray-400 mx-1">|</span>
+                      <span
+                        style={{color: ((totalStockValue-props.location.state.stock.costBasis)/props.location.state.stock.costBasis)>0 ? theme.colors.green : theme.colors.red}}
+                        className="font-bold text-lg"
+                      >
+                        {(((totalStockValue-props.location.state.stock.costBasis)/props.location.state.stock.costBasis)>0) && "+"}
+                        {(((totalStockValue-props.location.state.stock.costBasis)/props.location.state.stock.costBasis)).toFixed(2)}%
+                      </span>
                     </div>
                     <span onClick={handleOnClickBucketShare} className="cursor-pointer">
                       <img src={ShareIcon} className="mx-4"/>
@@ -91,16 +105,16 @@ const Portfolio = (props)=> {
                   <div className="w-full sm:w-full md:w-full lg:w-2/5 ">
                     <div className="flex justify-around">
                       <div className="py-2 px-8 rounded-md" style={{backgroundColor: theme.colors.red}}>
-                        <span className="my-2 text-white">Avg Cost</span><br/>
-                        <p className="text-center mb-2 text-white">$268,65</p>
+                        <span className="my-2 text-white font-bold">Avg Cost</span><br/>
+                        <p className="text-center mb-2 text-white">${props.location.state.stock.overallPrice.toFixed(2)}</p>
                       </div>
                       <div className="py-2 px-8 rounded-md" style={{backgroundColor: theme.colors.lighterGray}}>
-                        <span className="my-2"># of shares</span><br/>
-                        <p className="text-center mb-2 mx-auto">73</p>
+                        <span className="my-2 font-bold text-gray-700"># of shares</span><br/>
+                        <p className="text-center mb-2 mx-auto">{props.location.state.stock.totalNoOfShares.toFixed(2)}</p>
                       </div>
                       <div className="py-2 px-8 rounded-md" style={{backgroundColor: theme.colors.lightPurple}}>
-                        <span className="my-2 text-white">Cost Basis</span><br/>
-                        <p className="text-center mb-2 text-white">$9,000</p>
+                        <span className="my-2 text-white font-bold">Cost Basis</span><br/>
+                        <p className="text-center mb-2 text-white">${props.location.state.stock.costBasis.toFixed(2)}</p>
                       </div>
                     </div>
                     <div className="mt-4 w-full flex flex-col items-center">
@@ -122,7 +136,7 @@ const Portfolio = (props)=> {
                                 ?
                                   <span style={{color: theme.colors.green}} className="w-1/3 text-center">+{order.qty.toFixed(2)}</span>
                                 :
-                                  <span style={{color: theme.colors.lightPurple}} className="w-1/3 text-center">-{order.qty.toFixed(2)}</span>
+                                  <span style={{color: theme.colors.lightPurple}} className="w-1/3 text-center">{order.qty.toFixed(2)}</span>
                             }
                             <span
                               style={{color: theme.colors.lightPurple}}

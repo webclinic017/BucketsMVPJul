@@ -1,38 +1,74 @@
-import { StockChartComponent, StockChartSeriesCollectionDirective, StockChartSeriesDirective, Inject, DateTime, Tooltip, RangeTooltip, Crosshair, LineSeries, SplineSeries, CandleSeries, HiloOpenCloseSeries, HiloSeries, RangeAreaSeries, Trendlines } from '@syncfusion/ej2-react-charts';
-import { EmaIndicator, RsiIndicator, BollingerBands, TmaIndicator, MomentumIndicator, SmaIndicator, AtrIndicator, AccumulationDistributionIndicator, MacdIndicator, StochasticIndicator, Export } from '@syncfusion/ej2-react-charts';
-import chartData from './datasource.js';
+import React, { Component } from 'react';
+import Highcharts from 'highcharts';
+import {
+  HighchartsStockChart, Chart, withHighcharts, XAxis, YAxis, Title, Legend,
+  AreaSplineSeries, SplineSeries, Navigator, RangeSelector, Tooltip
+} from 'react-jsx-highstock';
+// import ExampleCode from './ExampleCode';
+// import code from './exampleCode';
+import { createRandomData } from './data-helpers';
 
-const StockChart = (props) => {
-  const primaryxAxis = {
-    valueType: 'DateTime',
-    majorGridLines: { width: 0 },
-    majorTickLines: { color: 'transparent' }
-  };
+class App extends Component {
 
-  const primaryyAxis = {
-    labelFormat: 'n0',
-    majorTickLines: { width: 0 }
-  };
+  constructor (props) {
+    super(props);
 
-  const crosshair = { enable: true };
+    const now = Date.now();
+    this.state = {
+      data1: createRandomData(now, 1e7, 500),
+      data2: createRandomData(now, 1e7, 500)
+    };
+  }
 
-  const periodselector = [
-    { text: '1M', interval: 1, intervalType: 'Months' },
-    { text: '3M', interval: 3, intervalType: 'Months' },
-    { text: '6M', interval: 6, intervalType: 'Months' }, { text: 'YTD' },
-    { text: '1Y', interval: 1, intervalType: 'Years' },
-    { text: '2Y', interval: 2, intervalType: 'Years', selected: true }, { text: 'All' }
-  ];
+  render() {
+    const { data1, data2 } = this.state;
 
-  return (
-    <StockChartComponent id='stockcharts' primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} crosshair={crosshair} periods={periodselector} height='350' title='AAPL Stock Price'>
-      <Inject services={[DateTime, Tooltip, RangeTooltip, Crosshair, LineSeries, SplineSeries, CandleSeries, HiloOpenCloseSeries, HiloSeries, RangeAreaSeries, Trendlines, EmaIndicator, RsiIndicator, BollingerBands, TmaIndicator, MomentumIndicator, SmaIndicator, AtrIndicator, Export, AccumulationDistributionIndicator, MacdIndicator, StochasticIndicator]}/>
-      <StockChartSeriesCollectionDirective>
-        <StockChartSeriesDirective dataSource={chartData} type='Candle' animation={{ enable: true }}>
-        </StockChartSeriesDirective>
-      </StockChartSeriesCollectionDirective>
-    </StockChartComponent>
-  );
+    return (
+      <div className="app">
+        <HighchartsStockChart>
+          <Chart zoomType="x" />
+
+          <Title>Highstocks Example</Title>
+
+          <Legend>
+            <Legend.Title>Key</Legend.Title>
+          </Legend>
+
+          <Tooltip />
+
+          <XAxis>
+            <XAxis.Title>Time</XAxis.Title>
+          </XAxis>
+
+          <YAxis>
+            <YAxis.Title>Price</YAxis.Title>
+            <AreaSplineSeries id="profit" name="Profit" data={data1} />
+          </YAxis>
+
+          <YAxis opposite>
+            <YAxis.Title>Social Buzz</YAxis.Title>
+            <SplineSeries id="twitter" name="Twitter mentions" data={data2} />
+          </YAxis>
+
+          <RangeSelector selected={1}>
+            <RangeSelector.Button count={1} type="day">1d</RangeSelector.Button>
+            <RangeSelector.Button count={7} type="day">7d</RangeSelector.Button>
+            <RangeSelector.Button count={1} type="month">1m</RangeSelector.Button>
+            <RangeSelector.Button type="all">All</RangeSelector.Button>
+            <RangeSelector.Input boxBorderColor="#7cb5ec" />
+          </RangeSelector>
+
+          <Navigator>
+            <Navigator.Series seriesId="profit" />
+            <Navigator.Series seriesId="twitter" />
+          </Navigator>
+        </HighchartsStockChart>
+
+        {/* <ExampleCode name="Highstocks">{code}</ExampleCode> */}
+
+      </div>
+    );
+  }
 }
 
-export default StockChart;
+export default withHighcharts(App, Highcharts);
