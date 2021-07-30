@@ -3,7 +3,8 @@ import {
   SET_IS_LINKING,
   SET_IS_PLACING_ORDER,
   LOGIN_INTO_ALPACA_ACCOUNT,
-  LOGOUT_FROM_ALPACA_ACCOUNT
+  LOGOUT_FROM_ALPACA_ACCOUNT,
+  SET_SINGLE_STOCK_ALPACA_ORDER
 } from "../Constants";
 import APIClient from "../../Services";
 import { showToast } from "../../Utils";
@@ -71,9 +72,34 @@ const placeBucketLevelOrderOnAlpaca = (data, onSuccess=()=>{}, onError=()=>{}) =
     dispatch(setIsPlacingOrder(true));
     axios.post('http://127.0.0.1:7000/place-order-on-alpaca', data).then((response)=>{
       if(response.data.status === 200) {
-        // dispatch({
-        //   type: LOGOUT_FROM_ALPACA_ACCOUNT
-        // });
+        dispatch(setIsPlacingOrder(false));
+        showToast(response.data.message, "success");
+        onSuccess();
+      } else {
+        dispatch(setIsPlacingOrder(false));
+        showToast(response.data.message, "error");
+        onError();
+      }
+    }).catch((error)=>{
+      dispatch(setIsPlacingOrder(false));
+      showToast(error.message, "error");
+      onError();
+    });
+  }
+)
+
+const placeStockLevelOrderOnAlpaca = (data, onSuccess=()=>{}, onError=()=>{}) => (
+  (dispatch) => {
+    dispatch(setIsPlacingOrder(true));
+    axios.post('http://127.0.0.1:7000/place-single-stock-alpaca-order', data).then((response)=>{
+      if(response.data.status === 200) {
+        dispatch({
+          type: SET_SINGLE_STOCK_ALPACA_ORDER,
+          payload: {
+            stockId: data.stockId,
+            order: response.data.order
+          }
+        })
         dispatch(setIsPlacingOrder(false));
         showToast(response.data.message, "success");
         onSuccess();
@@ -93,5 +119,6 @@ const placeBucketLevelOrderOnAlpaca = (data, onSuccess=()=>{}, onError=()=>{}) =
 export {
   getAlpacaAccessToken,
   logoutFromAlpacaAccount,
-  placeBucketLevelOrderOnAlpaca,
+  placeStockLevelOrderOnAlpaca,
+  placeBucketLevelOrderOnAlpaca
 };

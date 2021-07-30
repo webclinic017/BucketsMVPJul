@@ -14,12 +14,16 @@ import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
 import AlpacaLoginPopup from "../../Components/Molecular/Popups/AlpacaLogin";
 import BuySellPopup from "../../Components/Molecular/Popups/BuySell";
+import {
+  placeStockLevelOrderOnAlpaca
+} from "../../Redux/Actions/alpaca";
 import theme from "../../Theme";
 
 const Portfolio = (props)=> {
   const dispatch = useDispatch();
   const { id: stockId } = useParams();
   const [amount, setAmount] = useState("$ ");
+  const [type, setType] = useState("");
   const [orders, setOrders] = useState([]);
   const [totalStockValue, setTotalStockValue] = useState(0);
   const [isShareModalVisible, setShareModalVisibility] = useState(false);
@@ -30,6 +34,7 @@ const Portfolio = (props)=> {
   const bucketData = useSelector(state => state.bucket.bucketData);
   const isLinkingAlpaca = useSelector(state => state.alpaca.isLinking);
   const alpacaAuth = useSelector(state => state.alpaca.alpacaAuth);
+  const isPlacingOrder = useSelector(state => state.alpaca.isPlacingOrder);
   
   useEffect(() => {
     setOrders(props.location.state.stock.orders);
@@ -38,14 +43,6 @@ const Portfolio = (props)=> {
 
   const handleOnClickBucketShare = () => {
     setShareModalVisibility(true);
-  }
-
-  const handleOnClickBuy = () => {
-    if(!alpacaAuth) {
-      setAlpacaModalVisibility(true);
-    } else {
-      setBuySellModalVisibility(true);
-    }
   }
 
   const handleOnNavMenuClick = () => {
@@ -59,6 +56,36 @@ const Portfolio = (props)=> {
   const handleOnChangeAmount = (e) => {
     if(e.target.value.length>=2 && e.target.value.includes("$ ") && e.target.value.indexOf("$ ")===0) {
       setAmount(e.target.value);
+    }
+  }
+
+  const handleOnClickBuy = () => {
+    if(!alpacaAuth) {
+      setAlpacaModalVisibility(true);
+    } else if(!isPlacingOrder) {
+      setType("buy");
+      const data = {
+        stockId,
+        type: "buy",
+        value: parseFloat(amount.slice(2, amount.length)),
+        accessToken: alpacaAuth.accessToken
+      };
+      dispatch(placeStockLevelOrderOnAlpaca(data, ()=>setAmount("$ ")));
+    }
+  }
+
+  const handleOnClickSell = () => {
+    if(!alpacaAuth) {
+      setAlpacaModalVisibility(true);
+    } else if(!isPlacingOrder) {
+      setType("sell");
+      const data = {
+        stockId,
+        type: "sell",
+        value: parseFloat(amount.slice(2, amount.length)),
+        accessToken: alpacaAuth.accessToken
+      };
+      dispatch(placeStockLevelOrderOnAlpaca(data, ()=>setAmount("$ ")));
     }
   }
 
@@ -158,13 +185,15 @@ const Portfolio = (props)=> {
                     <Button
                       title="Buy"
                       className="mt-6 mb-4 w-1/2"
-                      onClick={()=>{}}
+                      onClick={handleOnClickBuy}
+                      isProcessing={type==="buy" && isPlacingOrder}
                     />
                     <Button
                       secondary
                       title="Sell"
                       className="w-1/2"
-                      onClick={()=>{}}
+                      onClick={handleOnClickSell}
+                      isProcessing={type==="sell" && isPlacingOrder}
                     />
                   </div>
                 </div>

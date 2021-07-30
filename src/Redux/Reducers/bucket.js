@@ -1,5 +1,6 @@
 import {
   SET_IS_FETCHING_HISTORICAL_STOCK_PRICES,
+  SET_SINGLE_STOCK_ALPACA_ORDER,
   SET_IS_FETCHING_BUCKET_VALUE,
   SET_HISTORICAL_STOCK_PRICES,
   SET_IS_FETCHING_BUCKET_DATA,
@@ -117,32 +118,22 @@ export default (state=initState, action) => {
       }
     }
 
-    case UN_FOLLOW_BUCKET: {
-      let updatedBuckets = [];
-      if(payload.hasOwnProperty("bucketId")) {
-        state.buckets.forEach(bucket => {
-          if(bucket.id === payload.bucketId) {
-            const {originalBucketId, ...restBucketData} = bucket;
-            updatedBuckets.push(restBucketData);
-          } else {
-            updatedBuckets.push(bucket);
-          }
-        });
-      } else {
-        state.buckets.forEach(bucket => {
-          if(bucket?.originalBucketId && bucket.originalBucketId === payload.followedBucketId) {
-            const {originalBucketId, ...restBucketData} = bucket;
-            updatedBuckets.push(restBucketData);
-          } else {
-            updatedBuckets.push(bucket);
-          }
-        });
-      }
+    case SET_SINGLE_STOCK_ALPACA_ORDER: {
+      let updatedStocks = [];
+      state.bucketData.stocks.forEach(stock => {
+        if(stock.id===payload.stockId) {
+          updatedStocks.push({...stock, orders: [...stock.orders, payload.order]});
+        } else {
+          updatedStocks.push(stock);
+        }
+      });
       return {
         ...state,
-        buckets: updatedBuckets,
-        isFollowing: false
-      }
+        bucketData: {
+          ...state.bucketData,
+          stocks: updatedStocks
+        }
+      };
     }
 
     case GET_BUCKET_DATA: {
