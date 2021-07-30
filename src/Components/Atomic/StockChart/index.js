@@ -1,74 +1,42 @@
 import React, { Component } from 'react';
-import Highcharts from 'highcharts';
+import Highcharts from 'highcharts/highstock';
 import {
-  HighchartsStockChart, Chart, withHighcharts, XAxis, YAxis, Title, Legend,
-  AreaSplineSeries, SplineSeries, Navigator, RangeSelector, Tooltip
+  HighchartsStockChart, Chart, withHighcharts, XAxis, YAxis, SplineSeries, RangeSelector, Tooltip
 } from 'react-jsx-highstock';
-// import ExampleCode from './ExampleCode';
-// import code from './exampleCode';
-import { createRandomData } from './data-helpers';
 
-class App extends Component {
-
-  constructor (props) {
-    super(props);
-
-    const now = Date.now();
-    this.state = {
-      data1: createRandomData(now, 1e7, 500),
-      data2: createRandomData(now, 1e7, 500)
-    };
-  }
-
+class StockChart extends Component {
   render() {
-    const { data1, data2 } = this.state;
-
     return (
-      <div className="app">
-        <HighchartsStockChart>
-          <Chart zoomType="x" />
+      <HighchartsStockChart>
+        <Chart zoomType="x" />
 
-          <Title>Highstocks Example</Title>
+        <Tooltip />
 
-          <Legend>
-            <Legend.Title>Key</Legend.Title>
-          </Legend>
+        <XAxis>
+        </XAxis>
 
-          <Tooltip />
+        <YAxis>
+          {
+            Object.entries(this.props.data).map(([key, value])=>(
+              <SplineSeries id={key} name={key} data={value.map((entry)=>([new Date(entry.date).getTime(), entry.close]))} />
+            ))
+          }
+        </YAxis>
 
-          <XAxis>
-            <XAxis.Title>Time</XAxis.Title>
-          </XAxis>
+        <RangeSelector selected={8}>
+          <RangeSelector.Button count={1} type="day">1d</RangeSelector.Button>
+          <RangeSelector.Button count={7} type="day">1w</RangeSelector.Button>
+          <RangeSelector.Button count={30} type="day">1m</RangeSelector.Button>
+          <RangeSelector.Button count={256} type="day">1y</RangeSelector.Button>
+          <RangeSelector.Button count={356*2} type="day">2y</RangeSelector.Button>
+          <RangeSelector.Button count={356*3} type="month">3y</RangeSelector.Button>
+          <RangeSelector.Button count={356*4} type="month">4y</RangeSelector.Button>
+          <RangeSelector.Button type="all">All</RangeSelector.Button>
+        </RangeSelector>
 
-          <YAxis>
-            <YAxis.Title>Price</YAxis.Title>
-            <AreaSplineSeries id="profit" name="Profit" data={data1} />
-          </YAxis>
-
-          <YAxis opposite>
-            <YAxis.Title>Social Buzz</YAxis.Title>
-            <SplineSeries id="twitter" name="Twitter mentions" data={data2} />
-          </YAxis>
-
-          <RangeSelector selected={1}>
-            <RangeSelector.Button count={1} type="day">1d</RangeSelector.Button>
-            <RangeSelector.Button count={7} type="day">7d</RangeSelector.Button>
-            <RangeSelector.Button count={1} type="month">1m</RangeSelector.Button>
-            <RangeSelector.Button type="all">All</RangeSelector.Button>
-            <RangeSelector.Input boxBorderColor="#7cb5ec" />
-          </RangeSelector>
-
-          <Navigator>
-            <Navigator.Series seriesId="profit" />
-            <Navigator.Series seriesId="twitter" />
-          </Navigator>
-        </HighchartsStockChart>
-
-        {/* <ExampleCode name="Highstocks">{code}</ExampleCode> */}
-
-      </div>
+      </HighchartsStockChart>
     );
   }
 }
 
-export default withHighcharts(App, Highcharts);
+export default withHighcharts(StockChart, Highcharts);

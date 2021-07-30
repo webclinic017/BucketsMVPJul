@@ -6,13 +6,12 @@ import React, {
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import MoonLoader from 'react-spinners/MoonLoader';
-import Chart from "../../Components/Atomic/LineChart";
+import StockChart from "../../Components/Atomic/StockChart";
 import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
 import Confetti from "../../Components/Atomic/Confetti";
 import Button from "../../Components/Atomic/Button";
 import StaticStockRow from "../../Components/Molecular/StaticStockRow";
 import ShareIcon from "../../Assets/entypo_share.png";
-import stocksData from "../../Data/assets.json";
 import {
   getBucketData,
   setBucketValueToNull,
@@ -25,7 +24,6 @@ import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
 import AlpacaLoginPopup from "../../Components/Molecular/Popups/AlpacaLogin";
 import BuySellPopup from "../../Components/Molecular/Popups/BuySell";
-import config from "../../Config";
 import theme from "../../Theme";
 
 const Portfolio = (props)=> {
@@ -46,7 +44,8 @@ const Portfolio = (props)=> {
   const bucketValue = useSelector(state => state.bucket.bucketValue);
   const isLinkingAlpaca = useSelector(state => state.alpaca.isLinking);
   const alpacaAuth = useSelector(state => state.alpaca.alpacaAuth);
-  const isFetchingBucketHistoricalPrices = useSelector(state => state.alpaca.isFetchingBucketHistoricalPrices);
+  const bucketHistoricalPrices = useSelector(state => state.bucket.bucketHistoricalPrices);
+  const isFetchingBucketHistoricalPrices = useSelector(state => state.bucket.isFetchingBucketHistoricalPrices);
 
   useEffect(()=>{
     dispatch(getBucketData({bucketId}, (bucketValue)=>{
@@ -61,9 +60,9 @@ const Portfolio = (props)=> {
   useEffect(() => {
     if(Object.keys(bucketData) && !isFetchingBucket) {
       setBucketName(bucketData.name);
-      if(bucketData.hasOwnProperty("stocks")) {
+      if(bucketData.hasOwnProperty("stocks") && bucketData.stocks.length) {
         setStocks(bucketData.stocks);
-        setBucketCostBasis(stocks.reduce((total, stock)=>(stock.costBasis+total), 0));
+        setBucketCostBasis(bucketData.stocks.reduce((total, stock)=>(stock.costBasis+total), 0));
         dispatch(getHistoricalStockPrices({stocks: bucketData.stocks}));
       }
     }
@@ -72,9 +71,6 @@ const Portfolio = (props)=> {
   const handleOnClickBucketShare = () => {
     setShareModalVisibility(true);
     setShowConfetti(true);
-    setTimeout(() => {
-      setShowConfetti(false);
-    }, 3000);
   }
 
   const handleOnClickBuySell = () => {
@@ -133,12 +129,6 @@ const Portfolio = (props)=> {
                 </div>
                 <div className="block sm:block md:flex justify-between mt-6">
                   <div className="w-full sm:w-full md:w-full lg:w-2/5 ">
-                    {/* <div className="flex items-center w-full">
-                      <span className="text-2xl text-gray-600"></span>
-                      <div className="flex w-2/5 justify-center">
-                        <div className={`${totalPercentage < 100 ? 'text-gray-500' : totalPercentage > 100 ? 'text-red-600' : 'text-green-600'}`}>Total: {totalPercentage} %</div>
-                      </div>
-                    </div> */}
                     {
                       stocks.map((stock, index)=>(
                         <StaticStockRow
@@ -173,9 +163,11 @@ const Portfolio = (props)=> {
                           </div>
                     }
                     {
-                      !isFetchingBucketHistoricalPrices
+                      !isFetchingBucketHistoricalPrices && bucketHistoricalPrices
                         &&
-                          <Chart/>
+                          <StockChart
+                            data={bucketHistoricalPrices}
+                          />
                     }
                   </div>
                 </div>
@@ -197,7 +189,14 @@ const Portfolio = (props)=> {
         open={isShareModalVisible}
         onClose={()=>setShareModalVisibility(false)}
       />
-      <Confetti recycle={showConfetti} />
+      {
+        showConfetti
+          &&
+            <Confetti
+              recycle={false}
+              onConfettiComplete={()=>setShowConfetti(false)}
+            />
+      }
     </>
   );
 }

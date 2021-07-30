@@ -8,8 +8,8 @@ const ConfettiComponent = (props) => {
   return (
     <Confetti
       {...props}
-      width={width}
-      height={height}
+      width={width-2}
+      height={height-2}
     />
   )
 }

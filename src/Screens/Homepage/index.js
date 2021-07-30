@@ -60,9 +60,14 @@ const Homepage = (props)=> {
         </Element>
         <Element name="section2" className="element">
           <div
-            style={{backgroundImage: `url(${YellowCliff})`, backgroundRepeat: "no-repeat", backgroundPosition: "left bottom", backgroundSize: '30% 30%'}}
-            className="flex flex-col-reverse sm:flex-col-reverse md:flex-row justify-between h-screen"
+            style={{backgroundImage: `url(${YellowCliff})`, backgroundRepeat: "no-repeat", backgroundPosition: "right bottom", backgroundSize: '30% 30%'}}
+            className="flex flex-col sm:flex-col md:flex-row justify-between h-screen"
           >
+            <div style={{backgroundImage: `url(${Welcome})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex items-end">
+              <Link activeClass="active" to="section3" spy={true} smooth={true} offset={0} duration={500} delay={300}>
+                <img src={ArrowDownCircle} className="w-8 h-8 mb-8 cursor-pointer" />
+              </Link>
+            </div>
             <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
               <div className="my-auto w-full sm:w-full md:w-4/5">
                 <h1 className="text-3xl text-gray-700 font-bold">By Theme</h1>
@@ -77,11 +82,6 @@ const Homepage = (props)=> {
                   className="ml-6"
                 />
               </div>
-            </div>
-            <div style={{backgroundImage: `url(${Welcome})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex items-end">
-              <Link activeClass="active" to="section3" spy={true} smooth={true} offset={0} duration={500} delay={300}>
-                <img src={ArrowDownCircle} className="w-8 h-8 mb-8 cursor-pointer" />
-              </Link>
             </div>
           </div>
         </Element>
@@ -115,8 +115,13 @@ const Homepage = (props)=> {
         <Element name="section4" className="element">
           <div
             style={{backgroundImage: `url(${YellowCliff})`, backgroundRepeat: "no-repeat", backgroundPosition: "left bottom", backgroundSize: '30% 30%'}}
-            className="flex flex-col-reverse sm:flex-col-reverse md:flex-row justify-between h-screen"
+            className="flex flex-col sm:flex-col md:flex-row justify-between h-screen"
           >
+            <div style={{backgroundImage: `url(${Victory})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex items-end">
+              <Link activeClass="active" to="section5" spy={true} smooth={true} offset={0} duration={500} delay={300}>
+                <img src={ArrowDownCircle} className="w-8 h-8 mb-8 cursor-pointer" />
+              </Link>
+            </div>
             <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
               <div className="my-auto w-full sm:w-full md:w-4/5">
                 <h1 className="text-3xl text-gray-700 font-bold">Retirement Planning</h1>
@@ -131,11 +136,6 @@ const Homepage = (props)=> {
                   className="ml-6"
                 />
               </div>
-            </div>
-            <div style={{backgroundImage: `url(${Victory})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex items-end">
-              <Link activeClass="active" to="section5" spy={true} smooth={true} offset={0} duration={500} delay={300}>
-                <img src={ArrowDownCircle} className="w-8 h-8 mb-8 cursor-pointer" />
-              </Link>
             </div>
           </div>
         </Element>
@@ -169,8 +169,13 @@ const Homepage = (props)=> {
         <Element name="section6" className="element">
           <div
             style={{backgroundImage: `url(${YellowCliff})`, backgroundRepeat: "no-repeat", backgroundPosition: "left bottom", backgroundSize: '30% 30%'}}
-            className="flex flex-col-reverse sm:flex-col-reverse md:flex-row justify-between h-screen"
+            className="flex flex-col sm:flex-col md:flex-row justify-between h-screen"
           >
+            <div style={{backgroundImage: `url(${Finances})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex items-end">
+              <Link activeClass="active" to="section1" spy={true} smooth={true} offset={0} duration={1500} delay={300}>
+                <img src={ArrowDownCircle} className="rotateImg180 w-8 h-8 mb-8 cursor-pointer" />
+              </Link>
+            </div>
             <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
               <div className="my-auto w-full sm:w-full md:w-4/5">
                 <h1 className="text-3xl text-gray-700 font-bold">Create Your Own</h1>
@@ -185,11 +190,6 @@ const Homepage = (props)=> {
                   className="ml-6"
                 />
               </div>
-            </div>
-            <div style={{backgroundImage: `url(${Finances})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex items-end">
-              <Link activeClass="active" to="section1" spy={true} smooth={true} offset={0} duration={1500} delay={300}>
-                <img src={ArrowDownCircle} className="rotateImg180 w-8 h-8 mb-8 cursor-pointer" />
-              </Link>
             </div>
           </div>
         </Element>
