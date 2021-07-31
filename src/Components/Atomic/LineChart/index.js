@@ -4,8 +4,8 @@
 
 
 
-import React from 'react'
-import theme from "../../../Theme"
+import React from 'react';
+import theme from "../../../Theme";
 import {
   LineChart,
   Line,

@@ -10,6 +10,9 @@ import StockChart from "../../Components/Atomic/StockChart";
 import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
 import Confetti from "../../Components/Atomic/Confetti";
 import Button from "../../Components/Atomic/Button";
+import PyramidChart from "../../Components/Atomic/PyramidChart";
+import PieChart from "../../Components/Atomic/PieChart";
+import GuageChart from "../../Components/Atomic/GuageChart";
 import StaticStockRow from "../../Components/Molecular/StaticStockRow";
 import ShareIcon from "../../Assets/entypo_share.png";
 import {
@@ -27,6 +30,7 @@ import BuySellPopup from "../../Components/Molecular/Popups/BuySell";
 import theme from "../../Theme";
 import stocksData from "../../Data/assets.json";
 
+const colors = ["#5AE579", "#FFBA69", "#FF708B", "#8676FF", "#F0008B", "#424242", "#90E500", "#993874", "#383874", "#FFD700", "#a0a0a0"]
 
 const Portfolio = (props)=> {
   const buySellPopupRef = useRef();
@@ -39,6 +43,9 @@ const Portfolio = (props)=> {
   const [isAlpacaModalVisible, setAlpacaModalVisibility] = useState(false);
   const [isBuySellModalVisible, setBuySellModalVisibility] = useState(false);
   const [bucketCostBasis, setBucketCostBasis] = useState(0);
+  const [bucketBeta, setBucketBeta] = useState(null);
+  const [bucketSize, setBucketSize] = useState(null);
+  const [bucketSectorWeights, setBucketSectorWeights] = useState(null);
   const user = useSelector(state => state.auth.user);
   const isFetchingBucket = useSelector(state => state.bucket.isFetchingBucketData);
   const isFetchingBucketValue = useSelector(state => state.bucket.isFetchingBucketValue);
@@ -67,9 +74,106 @@ const Portfolio = (props)=> {
         setStocks(bucketData.stocks);
         setBucketCostBasis(bucketData.stocks.reduce((total, stock)=>(stock.costBasis+total), 0));
         dispatch(getHistoricalStockPrices({stocks: bucketData.stocks}));
-
+        let sectorWeights = {};
+        let beta = 0;
+        let size = {
+          small: 0,
+          medium: 0,
+          large: 0
+        };
+        bucketData.stocks.forEach((oStock) => {
+          const fStock = stocksData.filter((iStock)=>(oStock.ticker===iStock.symbol))[0];
+          beta += ((oStock.targetWeight/100)*parseFloat(fStock.beta));
+          if(fStock.size_type.toLowerCase() === "small") {
+            size = {...size, small: size.small+oStock.targetWeight};
+          } else if(fStock.size_type.toLowerCase() === "medium") {
+            size = {...size, medium: size.medium+oStock.targetWeight};
+          } else if(fStock.size_type.toLowerCase() === "large") {
+            size = {...size, large: size.large+oStock.targetWeight};
+          }
+          if(fStock.sector_basic_materials) {
+            if(sectorWeights.hasOwnProperty("Basic Materials")) {
+              sectorWeights["Basic Materials"] += oStock.targetWeight*parseFloat(fStock.sector_basic_materials);
+            } else {
+              sectorWeights["Basic Materials"] = oStock.targetWeight*parseFloat(fStock.sector_basic_materials);
+            }
+          }
+          if(fStock.sector_consumer_cyclical) {
+            if(sectorWeights.hasOwnProperty("Consumer Cyclical")) {
+              sectorWeights["Consumer Cyclical"] += oStock.targetWeight*parseFloat(fStock.sector_consumer_cyclical);
+            } else {
+              sectorWeights["Consumer Cyclical"] = oStock.targetWeight*parseFloat(fStock.sector_consumer_cyclical);
+            }
+          }
+          if(fStock.sector_financial_services) {
+            if(sectorWeights.hasOwnProperty("Financial Services")) {
+              sectorWeights["Financial Services"] += oStock.targetWeight*parseFloat(fStock.sector_financial_services);
+            } else {
+              sectorWeights["Financial Services"] = oStock.targetWeight*parseFloat(fStock.sector_financial_services);
+            }
+          }
+          if(fStock.sector_real_estate) {
+            if(sectorWeights.hasOwnProperty("Real Estate")) {
+              sectorWeights["Real Estate"] += oStock.targetWeight*parseFloat(fStock.sector_real_estate);
+            } else {
+              sectorWeights["Real Estate"] = oStock.targetWeight*parseFloat(fStock.sector_real_estate);
+            }
+          }
+          if(fStock.sector_consumer_defensive) {
+            if(sectorWeights.hasOwnProperty("Consumer Defensive")) {
+              sectorWeights["Consumer Defensive"] += oStock.targetWeight*parseFloat(fStock.sector_consumer_defensive);
+            } else {
+              sectorWeights["Consumer Defensive"] = oStock.targetWeight*parseFloat(fStock.sector_consumer_defensive);
+            }
+          }
+          if(fStock.sector_healthcare) {
+            if(sectorWeights.hasOwnProperty("Sector Healthcare")) {
+              sectorWeights["Sector Healthcare"] += oStock.targetWeight*parseFloat(fStock.sector_healthcare);
+            } else {
+              sectorWeights["Sector Healthcare"] = oStock.targetWeight*parseFloat(fStock.sector_healthcare);
+            }
+          }
+          if(fStock.sector_basic_materials) {
+            if(sectorWeights.hasOwnProperty("Sector Utilities")) {
+              sectorWeights["Sector Utilities"] += oStock.targetWeight*parseFloat(fStock.sector_basic_materials);
+            } else {
+              sectorWeights["Sector Utilities"] = oStock.targetWeight*parseFloat(fStock.sector_basic_materials);
+            }
+          }
+          if(fStock.sector_communication_services) {
+            if(sectorWeights.hasOwnProperty("Communication Services")) {
+              sectorWeights["Communication Services"] += oStock.targetWeight*parseFloat(fStock.sector_communication_services);
+            } else {
+              sectorWeights["Communication Services"] = oStock.targetWeight*parseFloat(fStock.sector_communication_services);
+            }
+          }
+          if(fStock.sector_energy) {
+            if(sectorWeights.hasOwnProperty("Sector Energy")) {
+              sectorWeights["Sector Energy"] += oStock.targetWeight*parseFloat(fStock.sector_energy);
+            } else {
+              sectorWeights["Sector Energy"] = oStock.targetWeight*parseFloat(fStock.sector_energy);
+            }
+          }
+          if(fStock.sector_industrials) {
+            if(sectorWeights.hasOwnProperty("Industrials")) {
+              sectorWeights["Industrials"] += oStock.targetWeight*parseFloat(fStock.sector_industrials);
+            } else {
+              sectorWeights["Industrials"] = oStock.targetWeight*parseFloat(fStock.sector_industrials);
+            }
+          }
+          if(fStock.sector_technology) {
+            if(sectorWeights.hasOwnProperty("Technology")) {
+              sectorWeights["Technology"] += oStock.targetWeight*parseFloat(fStock.sector_technology);
+            } else {
+              sectorWeights["Technology"] = oStock.targetWeight*parseFloat(fStock.sector_technology);
+            }
+          }
+        });
+        setBucketSectorWeights(sectorWeights);
+        console.log({sectorWeights});
+        setBucketBeta(beta);
+        setBucketSize(size);
       }
-
     }
   }, [bucketData]);
 
@@ -106,11 +210,33 @@ const Portfolio = (props)=> {
       const metric = stocksData.filter(obj => obj.symbol === stock.ticker)
       yieldWeight.push(metric[0].fund_yield * weight)
     })
-    const final = yieldWeight.reduce(function(a,b){return a + b;}, 0);
-    return final
+    return yieldWeight.reduce(function(a,b){return a + b;}, 0);
   }
 
-
+  const getDataForPyramidChart = () => {
+    return [
+      {
+        value: 50,
+        name: "large",
+        fill: theme.colors.green
+      },
+      {
+        value: 30,
+        name: "medium",
+        fill: theme.colors.lightPurple
+      },
+      {
+        value: 20,
+        name: "small",
+        fill: theme.colors.red
+      },
+    ];
+    // return Object.entries(bucketSize).map(([key, value])=>({
+    //   value: value,
+    //   name: key,
+    //   fill: key==="large" ? theme.colors.green : key==="medium" ? theme.colors.lightPurple : theme.colors.red
+    // }));
+  }
 
   return(
     <>
@@ -187,8 +313,26 @@ const Portfolio = (props)=> {
                             data={bucketHistoricalPrices}
                           />
                     }
+                    <div> <h3>Yield: {bucketYield()}</h3></div>
+                    {
+                      bucketSize
+                        &&
+                          <PyramidChart data={getDataForPyramidChart()} />
+                    }
+                    {
+                      bucketSectorWeights
+                        &&
+                          <PieChart
+                            data={Object.entries(bucketSectorWeights).map(([key, value], i)=>({title: key, value, color: colors[i]}))}
+                            total={Object.values(bucketSectorWeights).reduce((total, value)=>(total+value), 0)}
+                          />
+                    }
+                    {
+                      bucketBeta
+                        &&
+                          <GuageChart beta={bucketBeta} />
+                    }
                   </div>
-                  <div> <h3>Yield: {bucketYield()}</h3></div>
                 </div>
               </>
         }
