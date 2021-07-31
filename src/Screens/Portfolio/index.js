@@ -25,6 +25,8 @@ import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
 import AlpacaLoginPopup from "../../Components/Molecular/Popups/AlpacaLogin";
 import BuySellPopup from "../../Components/Molecular/Popups/BuySell";
 import theme from "../../Theme";
+import stocksData from "../../Data/assets.json";
+
 
 const Portfolio = (props)=> {
   const buySellPopupRef = useRef();
@@ -44,8 +46,9 @@ const Portfolio = (props)=> {
   const bucketValue = useSelector(state => state.bucket.bucketValue);
   const isLinkingAlpaca = useSelector(state => state.alpaca.isLinking);
   const alpacaAuth = useSelector(state => state.alpaca.alpacaAuth);
-  const bucketHistoricalPrices = useSelector(state => state.bucket.bucketHistoricalPrices);
+  const bucketHistoricalPrices = useSelector(state => state.bucket.bucketHistoricalPrices );
   const isFetchingBucketHistoricalPrices = useSelector(state => state.bucket.isFetchingBucketHistoricalPrices);
+
 
   useEffect(()=>{
     dispatch(getBucketData({bucketId}, (bucketValue)=>{
@@ -64,7 +67,9 @@ const Portfolio = (props)=> {
         setStocks(bucketData.stocks);
         setBucketCostBasis(bucketData.stocks.reduce((total, stock)=>(stock.costBasis+total), 0));
         dispatch(getHistoricalStockPrices({stocks: bucketData.stocks}));
+
       }
+
     }
   }, [bucketData]);
 
@@ -93,6 +98,19 @@ const Portfolio = (props)=> {
   const handleOnClickRebalance = () => {
 
   }
+
+  const bucketYield = () => {
+    const yieldWeight = []
+    stocks.map(stock => {
+      const weight = stock.targetWeight / 100
+      const metric = stocksData.filter(obj => obj.symbol === stock.ticker)
+      yieldWeight.push(metric[0].fund_yield * weight)
+    })
+    const final = yieldWeight.reduce(function(a,b){return a + b;}, 0);
+    return final
+  }
+
+
 
   return(
     <>
@@ -170,6 +188,7 @@ const Portfolio = (props)=> {
                           />
                     }
                   </div>
+                  <div> <h3>Yield: {bucketYield()}</h3></div>
                 </div>
               </>
         }
