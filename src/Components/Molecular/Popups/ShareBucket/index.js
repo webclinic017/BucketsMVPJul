@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import useClipboard from "react-use-clipboard";
@@ -7,7 +7,7 @@ import Copy from "../../../../Assets/Icons/copy.png";
 import theme from '../../../../Theme';
 
 const ShareBucketPopup = ({open, onClose, ...props}) => {
-  const [isCopied, setCopied] = useClipboard("http://buckets-investing.com/bucket/56js9j3559rs95i404", {successDuration: 1000});
+  const [isCopied, setCopied] = useClipboard(window.location.href, {successDuration: 1000});
 
   return (
     <Popup overlayStyle={{zIndex: 0}} open={open} onClose={onClose} closeOnDocumentClick position="center" modal>
@@ -26,7 +26,7 @@ const ShareBucketPopup = ({open, onClose, ...props}) => {
           className="flex items-center justify-center mt-16 mb-4 py-2 px-4 rounded-md cursor-pointer border-gray-400"
         >
           <img className="object-contain h-6 w-6 mx-3" src={RightArrow} />
-          <span className="text-center text-gray-600">https://buckets-investing.com/bucket/56js9j3559rs95i404</span>
+          <span className="text-center text-gray-600">{window.location.href}</span>
           <img className="object-contain h-6 w-6 ml-7" src={Copy} />
         </div>
         <h2

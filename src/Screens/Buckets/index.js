@@ -61,13 +61,13 @@ const Portfolio = (props)=> {
             <img className="w-16 h-16 object-contain rounded-full mr-3" src={user?.profilePicture} />
             <div>
               <h3 className="font-bold text-gray-400 text-4xl">{user?.firstName} {user?.lastName}</h3>
-              <div>
+              {/* <div>
                 <span className="font-bold" style={{color: theme.colors.lightPurple}}>$7.1M </span>
                 Follower Assets  |
                 <span className="font-bold"> 11 </span> 
                 Following |
                 <span className="font-bold"> 164</span> Followers
-              </div>
+              </div> */}
             </div>
           </div>
           <div div className="flex items-center justify-between">
@@ -145,10 +145,10 @@ const Portfolio = (props)=> {
                   }
                 </div>
                 <div className="w-full sm:w-full md:w-full lg:w-2/5">
-                  <Chart/>
+                  {/* <Chart/>
                   <ProgressBar color={theme.colors.lightPurple} month="January" value={613} progress={0.6} />
                   <ProgressBar color={theme.colors.red} month="February" value={613} progress={0.8} />
-                  <ProgressBar color={theme.colors.orange} month="March" value={613} progress={0.7} />
+                  <ProgressBar color={theme.colors.orange} month="March" value={613} progress={0.7} /> */}
                 </div>
               </div>
         }

@@ -210,32 +210,15 @@ const Portfolio = (props)=> {
       const metric = stocksData.filter(obj => obj.symbol === stock.ticker)
       yieldWeight.push(metric[0].fund_yield * weight)
     })
-    return yieldWeight.reduce(function(a,b){return a + b;}, 0);
+    return yieldWeight.reduce(function(a,b){return a + b;}, 0).toFixed(2)+"%";
   }
 
   const getDataForPyramidChart = () => {
-    return [
-      {
-        value: 50,
-        name: "large",
-        fill: theme.colors.green
-      },
-      {
-        value: 30,
-        name: "medium",
-        fill: theme.colors.lightPurple
-      },
-      {
-        value: 20,
-        name: "small",
-        fill: theme.colors.red
-      },
-    ];
-    // return Object.entries(bucketSize).map(([key, value])=>({
-    //   value: value,
-    //   name: key,
-    //   fill: key==="large" ? theme.colors.green : key==="medium" ? theme.colors.lightPurple : theme.colors.red
-    // }));
+    return Object.entries(bucketSize).map(([key, value])=>({
+      value: value,
+      name: key,
+      fill: key==="large" ? theme.colors.green : key==="medium" ? theme.colors.lightPurple : theme.colors.red
+    })).filter((item)=>item.value!==0);
   }
 
   return(
@@ -252,22 +235,28 @@ const Portfolio = (props)=> {
                 <div className="flex justify-between">
                   <h3 className="font-bold text-gray-400 text-4xl">{bucketName}</h3>
                   <div className="flex items-center justify-between">
-                    <Button
-                      title="Buy/Sell"
-                      isProcessing={isLinkingAlpaca}
-                      onClick={handleOnClickBuySell}
-                    />
-                    <span onClick={handleOnClickBucketShare} className="cursor-pointer">
-                      <img src={ShareIcon} className="mx-4"/>
-                    </span>
-                    <DropdownMenu
-                      trigger={<img src={OptionsIcon} className="mx-1 mt-1 object-contain cursor-pointer w-5 h-5"/> }
-                    >
-                      <DropdownItemGroup>
-                        <DropdownItem onMouseDown={handleOnClickEdit}>Edit</DropdownItem>
-                        <DropdownItem onMouseDown={handleOnClickRebalance}>Rebalance</DropdownItem>
-                      </DropdownItemGroup>
-                    </DropdownMenu>
+                    {
+                      user && user._id===bucketData.userId
+                        &&
+                          <>
+                            <Button
+                              title="Buy/Sell"
+                              isProcessing={isLinkingAlpaca}
+                              onClick={handleOnClickBuySell}
+                            />
+                            <span onClick={handleOnClickBucketShare} className="cursor-pointer">
+                              <img src={ShareIcon} className="mx-4"/>
+                            </span>
+                            <DropdownMenu
+                              trigger={<img src={OptionsIcon} className="mx-1 mt-1 object-contain cursor-pointer w-5 h-5"/> }
+                            >
+                              <DropdownItemGroup>
+                                <DropdownItem onMouseDown={handleOnClickEdit}>Edit</DropdownItem>
+                                <DropdownItem onMouseDown={handleOnClickRebalance}>Rebalance</DropdownItem>
+                              </DropdownItemGroup>
+                            </DropdownMenu>
+                          </>
+                    }
                     <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
                   </div>
                 </div>
@@ -315,24 +304,26 @@ const Portfolio = (props)=> {
                     }
 
                     <div> <h3>Yield: {bucketYield()}</h3></div>
-                    {
-                      bucketSize
-                        &&
-                          <PyramidChart data={getDataForPyramidChart()} />
-                    }
-                    {
-                      bucketSectorWeights
-                        &&
-                          <PieChart
-                            data={Object.entries(bucketSectorWeights).map(([key, value], i)=>({title: key, value, color: colors[i]}))}
-                            total={Object.values(bucketSectorWeights).reduce((total, value)=>(total+value), 0)}
-                          />
-                    }
-                    {
-                      bucketBeta
-                        &&
-                          <GuageChart beta={bucketBeta} />
-                    }
+                    <div className="block sm:block md:flex flex-wrap">
+                      {
+                        bucketSize
+                          &&
+                            <PyramidChart data={getDataForPyramidChart()} />
+                      }
+                      {
+                        bucketSectorWeights
+                          &&
+                            <PieChart
+                              data={Object.entries(bucketSectorWeights).map(([key, value], i)=>({title: key, value, color: colors[i]}))}
+                              total={Object.values(bucketSectorWeights).reduce((total, value)=>(total+value), 0)}
+                            />
+                      }
+                      {
+                        bucketBeta
+                          &&
+                            <GuageChart beta={bucketBeta} />
+                      }
+                    </div>
                   </div>
                 </div>
               </>
