@@ -313,6 +313,7 @@ const Portfolio = (props)=> {
                             data={bucketHistoricalPrices}
                           />
                     }
+
                     <div> <h3>Yield: {bucketYield()}</h3></div>
                     {
                       bucketSize

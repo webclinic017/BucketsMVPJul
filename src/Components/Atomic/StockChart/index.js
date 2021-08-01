@@ -4,6 +4,7 @@ import {
   HighchartsStockChart, Chart, withHighcharts, XAxis, YAxis, SplineSeries, RangeSelector, Tooltip
 } from 'react-jsx-highstock';
 
+
 class StockChart extends Component {
   render() {
     return (

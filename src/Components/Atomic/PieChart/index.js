@@ -3,7 +3,7 @@ import { PieChart } from 'react-minimal-pie-chart';
 
 export default function index({data, total, ...props}) {
   return (
-    <div style={{width: "95%", height: 400}}>
+    <div style={{width: "95%", height: 200}}>
       <PieChart
         animate={true}
         label={({ x, y, dx, dy, dataEntry }) => (

@@ -9,7 +9,7 @@ import {
 
 const PyramidChart = ({data, ...props}) => {
   return (
-    <ResponsiveContainer width="95%" height={400}>
+    <ResponsiveContainer width="55%" height={200}>
       <FunnelChart>
         <Tooltip />
         <Funnel
