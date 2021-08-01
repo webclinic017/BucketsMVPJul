@@ -277,7 +277,7 @@ const Portfolio = (props)=> {
                   </div>
                   <div className="w-full sm:w-full md:w-full lg:w-2/5">
                     {
-                      !isFetchingBucketValue && bucketValue
+                      !isFetchingBucketValue && bucketValue && user && user._id===bucketData.userId
                         &&
                           <div className="flex justify-center mb-4">
                             <span className="font-bold text-lg text-gray-500">${bucketValue.toFixed(2)}</span>
