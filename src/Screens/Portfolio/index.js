@@ -83,12 +83,14 @@ const Portfolio = (props)=> {
         };
         bucketData.stocks.forEach((oStock) => {
           const fStock = stocksData.filter((iStock)=>(oStock.ticker===iStock.symbol))[0];
-          beta += ((oStock.targetWeight/100)*parseFloat(fStock.beta));
-          if(fStock.size_type.toLowerCase() === "small") {
+          if(fStock.beta!==null) {
+            beta += ((oStock.targetWeight/100)*parseFloat(fStock.beta));
+          }
+          if(fStock.size_type!==null && fStock.size_type.toLowerCase() === "small") {
             size = {...size, small: size.small+oStock.targetWeight};
-          } else if(fStock.size_type.toLowerCase() === "medium") {
+          } else if(fStock.size_type!==null && fStock.size_type.toLowerCase() === "medium") {
             size = {...size, medium: size.medium+oStock.targetWeight};
-          } else if(fStock.size_type.toLowerCase() === "large") {
+          } else if(fStock.size_type!==null && fStock.size_type.toLowerCase() === "large") {
             size = {...size, large: size.large+oStock.targetWeight};
           }
           if(fStock.sector_basic_materials) {
@@ -214,11 +216,13 @@ const Portfolio = (props)=> {
   }
 
   const getDataForPyramidChart = () => {
-    return Object.entries(bucketSize).map(([key, value])=>({
+    const response = Object.entries(bucketSize).map(([key, value])=>({
       value: value,
       name: key,
       fill: key==="large" ? theme.colors.green : key==="medium" ? theme.colors.lightPurple : theme.colors.red
-    })).filter((item)=>item.value!==0);
+    })).filter((item)=>item.value!==0).sort((a, b)=>(a.value-b.value));
+    console.log({response});
+    return response;
   }
 
   return(

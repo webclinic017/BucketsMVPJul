@@ -70,7 +70,7 @@ const logoutFromAlpacaAccount = (onSuccess=()=>{}, onError=()=>{}) => (
 const placeBucketLevelOrderOnAlpaca = (data, onSuccess=()=>{}, onError=()=>{}) => (
   (dispatch) => {
     dispatch(setIsPlacingOrder(true));
-    axios.post('http://127.0.0.1:7000/place-order-on-alpaca', data).then((response)=>{
+    axios.post('https://buckets-server.herokuapp.com/place-order-on-alpaca', data).then((response)=>{
       if(response.data.status === 200) {
         dispatch(setIsPlacingOrder(false));
         showToast(response.data.message, "success");
@@ -91,7 +91,7 @@ const placeBucketLevelOrderOnAlpaca = (data, onSuccess=()=>{}, onError=()=>{}) =
 const placeStockLevelOrderOnAlpaca = (data, onSuccess=()=>{}, onError=()=>{}) => (
   (dispatch) => {
     dispatch(setIsPlacingOrder(true));
-    axios.post('http://127.0.0.1:7000/place-single-stock-alpaca-order', data).then((response)=>{
+    axios.post('https://buckets-server.herokuapp.com/place-single-stock-alpaca-order', data).then((response)=>{
       if(response.data.status === 200) {
         dispatch({
           type: SET_SINGLE_STOCK_ALPACA_ORDER,

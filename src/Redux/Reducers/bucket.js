@@ -6,6 +6,7 @@ import {
   SET_IS_FETCHING_BUCKET_DATA,
   SET_IS_FETCHING_BUCKETS,
   SET_IS_POSTING_BUCKET,
+  GET_EXPERT_BUCKETS,
   GET_USER_BUCKETS,
   UN_FOLLOW_BUCKET,
   SET_IS_FOLLOWING,
@@ -19,6 +20,7 @@ import {
 
 const initState = {
   buckets: [],
+  expertBuckets: [],
   bucketData: {},
   bucketHistoricalPrices: null,
   isFetchingBucketHistoricalPrices: false,
@@ -66,6 +68,14 @@ export default (state=initState, action) => {
       return {
         ...state,
         buckets: payload,
+        isFetching: false
+      };
+    }
+
+    case GET_EXPERT_BUCKETS: {
+      return {
+        ...state,
+        expertBuckets: payload,
         isFetching: false
       };
     }

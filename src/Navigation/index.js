@@ -12,7 +12,8 @@ import StockDetails from "../Screens/StockDetails";
 import Loading from "../Screens/Loading";
 import Menu from "./Menu";
 import AlpacaAuthorization from "../Screens/AlpacaAuthorization";
-import Buckets from "../Screens/Buckets";
+import UserBuckets from "../Screens/UserBuckets";
+import ExpertBuckets from "../Screens/ExpertBuckets";
 import {
   fetchUser,
   setIsFetching
@@ -60,12 +61,13 @@ const Navigation = () => {
       <Switch>
         <CustomRoute path='/' exact component={GetStarted} />
         <CustomRoute path='/home' exact component={Homepage} />
+        <CustomRoute path='/browse' isProtected exact component={ExpertBuckets} />
         <CustomRoute isProtected path='/authorize-alpaca' component={AlpacaAuthorization} />
         <CustomRoute path='/create-bucket' exact component={CreateBucket} />
         <CustomRoute isProtected path='/edit-bucket/:id' exact component={EditBucket} />
         <CustomRoute isProtected path='/stock/:id' exact component={StockDetails} />
         <CustomRoute path='/bucket/:id' exact component={Portfolio} />
-        <CustomRoute isProtected path='/my-buckets' exact component={Buckets} />
+        <CustomRoute isProtected path='/my-buckets' exact component={UserBuckets} />
         <CustomRoute isProtected path='/settings' exact component={Settings} />
         <CustomRoute path='/login' exact component={Login} />
       </Switch>

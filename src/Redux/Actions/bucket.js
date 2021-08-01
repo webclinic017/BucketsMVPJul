@@ -9,6 +9,7 @@ import {
   SET_IS_FETCHING_BUCKET_DATA,
   SET_IS_FETCHING_BUCKETS,
   SET_IS_POSTING_BUCKET,
+  GET_EXPERT_BUCKETS,
   UN_FOLLOW_BUCKET,
   SET_IS_FOLLOWING,
   GET_USER_BUCKETS,
@@ -267,6 +268,29 @@ const getUserBuckets = (onSuccess=()=>{}, onError=()=>{}) => (
   }
 )
 
+const getExpertBuckets = (onSuccess=()=>{}, onError=()=>{}) => (
+  (dispatch) => {
+    dispatch(setIsFetching(true));
+    APIClient.get('/bucket/get-expert-buckets').then((response)=>{
+      if(response.data.success === true) {
+        dispatch({
+          type: GET_EXPERT_BUCKETS,
+          payload: response.data.buckets
+        });
+        onSuccess();
+      } else {
+        dispatch(setIsFetching(false));
+        showToast(response.data.message, "error");
+        onError();
+      }
+    }).catch((error)=>{
+      dispatch(setIsFetching(false));
+      showToast(error.message, "error");
+      onError();
+    });
+  }
+)
+
 const recordNoOfTimesBucketShared = (data, onSuccess=()=>{}, onError=()=>{}) => (
   (dispatch) => {
     APIClient.post('/record-no-of-bucket-shares', data).then((response)=>{
@@ -307,6 +331,7 @@ export {
   getHistoricalStockPrices,
   getBucketCurrentValue,
   setBucketValueToNull,
+  getExpertBuckets,
   getUserBuckets,
   unFollowBucket,
   getBucketData,

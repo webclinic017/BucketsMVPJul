@@ -103,25 +103,29 @@ const Portfolio = (props)=> {
                 <div className="flex justify-between">
                   <h3 className="font-bold text-gray-400 text-4xl">{props.location.state.stock.ticker} {bucketData.name}</h3>
                   <div className="flex items-center justify-between">
-                    <div>
-                      <span className="font-bold text-lg text-gray-500">${totalStockValue.toFixed(2)}</span>
-                      <span className="text-xl text-gray-400 mx-1">|</span>
-                      <span
-                        style={{color: totalStockValue-props.location.state.stock.costBasis>0 ? theme.colors.green : theme.colors.red}}
-                        className="font-bold text-lg"
-                      >
-                        {(totalStockValue-props.location.state.stock.costBasis>0) && "+"}
-                        {(totalStockValue-props.location.state.stock.costBasis).toFixed(2)}
-                      </span>
-                      <span className="text-xl text-gray-400 mx-1">|</span>
-                      <span
-                        style={{color: ((totalStockValue-props.location.state.stock.costBasis)/props.location.state.stock.costBasis)>0 ? theme.colors.green : theme.colors.red}}
-                        className="font-bold text-lg"
-                      >
-                        {(((totalStockValue-props.location.state.stock.costBasis)/props.location.state.stock.costBasis)>0) && "+"}
-                        {(((totalStockValue-props.location.state.stock.costBasis)/props.location.state.stock.costBasis)).toFixed(2)}%
-                      </span>
-                    </div>
+                    {
+                      bucketData.value>0
+                        &&
+                          <div>
+                            <span className="font-bold text-lg text-gray-500">${totalStockValue.toFixed(2)}</span>
+                            <span className="text-xl text-gray-400 mx-1">|</span>
+                            <span
+                              style={{color: totalStockValue-props.location.state.stock.costBasis>0 ? theme.colors.green : theme.colors.red}}
+                              className="font-bold text-lg"
+                            >
+                              {(totalStockValue-props.location.state.stock.costBasis>0) && "+"}
+                              {(totalStockValue-props.location.state.stock.costBasis).toFixed(2)}
+                            </span>
+                            <span className="text-xl text-gray-400 mx-1">|</span>
+                            <span
+                              style={{color: ((totalStockValue-props.location.state.stock.costBasis)/props.location.state.stock.costBasis)>0 ? theme.colors.green : theme.colors.red}}
+                              className="font-bold text-lg"
+                            >
+                              {(((totalStockValue-props.location.state.stock.costBasis)/props.location.state.stock.costBasis)>0) && "+"}
+                              {(((totalStockValue-props.location.state.stock.costBasis)/props.location.state.stock.costBasis)).toFixed(2)}%
+                            </span>
+                          </div>
+                    }
                     <span onClick={handleOnClickBucketShare} className="cursor-pointer">
                       <img src={ShareIcon} className="mx-4"/>
                     </span>

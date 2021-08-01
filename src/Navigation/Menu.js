@@ -60,6 +60,15 @@ const SlideMenu = (props) => {
         className={`menu-item pt-4 text-xl pl-4 ${location.pathname === '/create-bucket' && 'font-bold'} ${location.pathname === '/create-bucket' ? 'text-green-600' : 'text-white'}`}
       >Create Bucket</Link>
       {
+        !user && !isAuthenticated
+          &&
+            <Link
+              id="settings" to="/login"
+              onClick={handleOnMenuItemClick}
+              className={`menu-item pt-4 text-xl pl-4 ${location.pathname === '/login' && 'font-bold'} ${location.pathname === '/login' ? 'text-green-600' : 'text-white'}`}
+            >Login</Link>
+      }
+      {
         user && isAuthenticated
           &&
             <Link

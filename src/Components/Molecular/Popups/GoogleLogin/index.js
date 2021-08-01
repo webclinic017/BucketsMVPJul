@@ -26,7 +26,7 @@ const GoogleLoginPopup = ({open, onClose, onGoogleLogin, ...props}) => {
             clientId="280304099921-n923fr06n36om9d141neoua4s3p756oi.apps.googleusercontent.com"
             buttonText="Sign in with Google"
             onSuccess={responseGoogle}
-            onFailure={responseGoogle}
+            onFailure={()=>console.log("An error occurred while logging in with google!")}
             responseType=""
             cookiePolicy={'single_host_origin'}
           />
