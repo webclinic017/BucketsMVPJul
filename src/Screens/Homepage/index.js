@@ -25,14 +25,14 @@ const Homepage = (props)=> {
     <>
       <div className="h-screen">
         <div className="flex px-11 py-6 w-full justify-between fixed">
-          <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
+          <h3 className="text-5xl text-gray-700 font-bold">Buckets</h3>
           <div className="flex items-center justify-between">
             <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
           </div>
         </div>
         <Element name="section1" className="element">
           <div
-            style={{backgroundImage: `url(${YellowCliffRight})`, backgroundRepeat: "no-repeat", backgroundPosition: "right bottom", backgroundSize: '30% 30%'}}
+            style={{ backgroundRepeat: "no-repeat", backgroundPosition: "right bottom", backgroundSize: '30% 30%'}}
             className="flex flex-col sm:flex-col md:flex-row justify-between h-screen"
           >
             <div style={{backgroundImage: `url(${Welcome})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex flex-col items-end justify-end">
@@ -42,8 +42,8 @@ const Homepage = (props)=> {
             </div>
             <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
               <div className="my-auto w-full sm:w-full md:w-4/5">
-                <h1 className="text-3xl text-gray-700 font-bold">By Theme</h1>
-                <p className="text-gray-500 my-4">Blockchain, AI,  Renewable Energy and more ...</p>
+                <h1 className="text-5xl text-gray-700 font-bold">By Theme</h1>
+                <p className="text-3xl text-gray-500 my-4">Blockchain, AI,  Renewable Energy and more ...</p>
                 <Link to="/browse">
                   <Button
                     title="Browse"
@@ -52,7 +52,7 @@ const Homepage = (props)=> {
                       borderColor: theme.colors.red,
                       boxShadow: theme.shadows.red
                     }}
-                    className="ml-6"
+                    className="ml-6 "
                   />
                 </Link>
               </div>
@@ -61,13 +61,13 @@ const Homepage = (props)=> {
         </Element>
         <Element name="section2" className="element">
           <div
-            style={{backgroundImage: `url(${YellowCliffLeft})`, backgroundRepeat: "no-repeat", backgroundPosition: "left bottom", backgroundSize: '30% 30%'}}
+            style={{ backgroundRepeat: "no-repeat", backgroundPosition: "left bottom", backgroundSize: '30% 30%'}}
             className="flex flex-col-reverse sm:flex-col-reverse md:flex-row justify-between h-screen"
           >
             <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
               <div className="my-auto w-full sm:w-full md:w-4/5">
-                <h1 className="text-3xl text-gray-700 font-bold">General Investing</h1>
-                <p className="text-gray-500 my-4">Put your money on autopilot while you focus on the rest</p>
+                <h1 className="text-5xl text-gray-700 font-bold">General Investing</h1>
+                <p className="text-3xl text-gray-500 my-4">Put your money on autopilot while you focus on the rest</p>
                 <Link to="/browse">
                   <Button
                     title="Browse"
@@ -90,7 +90,7 @@ const Homepage = (props)=> {
         </Element>
         <Element name="section3" className="element">
           <div
-            style={{backgroundImage: `url(${YellowCliffRight})`, backgroundRepeat: "no-repeat", backgroundPosition: "right bottom", backgroundSize: '30% 30%'}}
+            style={{ backgroundRepeat: "no-repeat", backgroundPosition: "right bottom", backgroundSize: '30% 30%'}}
             className="flex flex-col sm:flex-col md:flex-row justify-between h-screen"
           >
             <div style={{backgroundImage: `url(${Victory})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex flex-col items-end justify-end">
@@ -100,8 +100,8 @@ const Homepage = (props)=> {
             </div>
             <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
               <div className="my-auto w-full sm:w-full md:w-4/5">
-                <h1 className="text-3xl text-gray-700 font-bold">Retirement Planning</h1>
-                <p className="text-gray-500 my-4">High dividend yielding and target retirement buckets</p>
+                <h1 className="text-5xl text-gray-700 font-bold">Retirement Planning</h1>
+                <p className="text-3xl text-gray-500 my-4">High dividend yielding and target retirement buckets</p>
                 <Link to="/browse">
                   <Button
                     title="Browse"
@@ -119,13 +119,13 @@ const Homepage = (props)=> {
         </Element>
         <Element name="section4" className="element">
           <div
-            style={{backgroundImage: `url(${YellowCliffLeft})`, backgroundRepeat: "no-repeat", backgroundPosition: "left bottom", backgroundSize: '30% 30%'}}
+            style={{ backgroundRepeat: "no-repeat", backgroundPosition: "left bottom", backgroundSize: '30% 30%'}}
             className="flex flex-col-reverse sm:flex-col-reverse md:flex-row justify-between h-screen"
           >
             <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
               <div className="my-auto w-full sm:w-full md:w-4/5">
-                <h1 className="text-3xl text-gray-700 font-bold">Advanced Strategies</h1>
-                <p className="text-gray-500 my-4">Smart Beta/Volatility and more</p>
+                <h1 className="text-5xl text-gray-700 font-bold">Advanced Strategies</h1>
+                <p className="text-3xl text-gray-500 my-4">Smart Beta/Volatility and more</p>
                 <Link to="/browse">
                   <Button
                     title="Browse"
@@ -148,7 +148,7 @@ const Homepage = (props)=> {
         </Element>
         <Element name="section5" className="element">
           <div
-            style={{backgroundImage: `url(${YellowCliffRight})`, backgroundRepeat: "no-repeat", backgroundPosition: "right bottom", backgroundSize: '30% 30%'}}
+            style={{ backgroundRepeat: "no-repeat", backgroundPosition: "right bottom", backgroundSize: '30% 30%'}}
             className="flex flex-col sm:flex-col md:flex-row justify-between h-screen"
           >
             <div style={{backgroundImage: `url(${Finances})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex flex-col items-end justify-end">
@@ -158,8 +158,8 @@ const Homepage = (props)=> {
             </div>
             <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
               <div className="my-auto w-full sm:w-full md:w-4/5">
-                <h1 className="text-3xl text-gray-700 font-bold">Create Your Own</h1>
-                <p className="text-gray-500 my-4">Create your own investment bucket and share it!</p>
+                <h1 className="text-5xl text-gray-700 font-bold">Create Your Own</h1>
+                <p className="text-3xl text-gray-500 my-4">Create your own investment bucket and share it!</p>
                 <Link to="/browse">
                   <Button
                     title="Create"

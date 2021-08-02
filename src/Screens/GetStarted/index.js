@@ -18,7 +18,7 @@ const Homepage = (props)=> {
     <>
       <div className="h-screen">
         <div className="flex px-11 py-6 w-full justify-between fixed">
-          <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
+          <h3 className="text-5xl text-gray-700 font-bold">Buckets</h3>
           <div className="flex items-center justify-between">
             <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
           </div>
@@ -29,8 +29,8 @@ const Homepage = (props)=> {
         >
           <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
             <div className="my-auto w-full sm:w-full md:w-4/5">
-              <h1 className="text-3xl text-gray-700 font-bold">Why pay management fees?</h1>
-              <p className="text-gray-500 my-4">Buy investment baskets created by you or experts within a few clicks at no cost</p>
+              <h1 className="text-5xl text-gray-700 font-bold">Why pay management fees?</h1>
+              <p className="text-3xl text-gray-500 my-4">Buy investment baskets created by you or experts within a few clicks at no cost</p>
               <Link to="/home" >
                 <Button
                   title="Explore"
