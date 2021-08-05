@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import MoonLoader from 'react-spinners/MoonLoader';
 import StockChart from "../../Components/Atomic/StockChart";
+import StockChartNew from "../../Components/Atomic/HighChart";
 import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
 import Confetti from "../../Components/Atomic/Confetti";
 import Button from "../../Components/Atomic/Button";
@@ -215,6 +216,32 @@ const Portfolio = (props)=> {
     return yieldWeight.reduce(function(a,b){return a + b;}, 0).toFixed(2)+"%";
   }
 
+  const getPE = () => {
+    const priceEarnings = []
+    stocks.map(stock => {
+      const weight = stock.targetWeight / 100
+      const metric = stocksData.filter(obj => obj.symbol === stock.ticker)
+      priceEarnings.push(metric[0].price_earnings_ratio * weight)
+    })
+    return priceEarnings.reduce(function(a,b){return a + b;}, 0).toFixed(2);
+  }
+  const getME = () => {
+    const managementExpense = []
+    stocks.map(stock => {
+      const weight = stock.targetWeight / 100
+      const metric = stocksData.filter(obj => obj.symbol === stock.ticker)
+      managementExpense.push(metric[0].fund_net_annual_expense_ratio * weight)
+    })
+    return managementExpense.reduce(function(a,b){return a + b;}, 0).toFixed(2)+"%";
+  }
+
+
+
+
+  const getBucketHPrices = () => {}
+
+
+
   const getDataForPyramidChart = () => {
     const response = Object.entries(bucketSize).map(([key, value])=>({
       value: value,
@@ -295,25 +322,25 @@ const Portfolio = (props)=> {
                               className="font-bold text-lg"
                             >
                               {(((bucketValue-bucketCostBasis)/bucketCostBasis)>0) && "+"}
-                              {(((bucketValue-bucketCostBasis)/bucketCostBasis)).toFixed(2)}%
+                              {(((bucketValue-bucketCostBasis)/bucketCostBasis)).toFixed(0)}%
                             </span>
                           </div>
                     }
                     {
                       !isFetchingBucketHistoricalPrices && bucketHistoricalPrices
+
                         &&
-                          <StockChart
+                          <StockChartNew
                             data={bucketHistoricalPrices}
                           />
                     }
 
-                    <div> <h3>Yield: {bucketYield()}</h3></div>
+                    <div> <h4 className="text-2xl mt-12 font-bold text-gray-600 my-5">Yield: {bucketYield()}</h4></div>
+                    <div> <h4 className="text-2xl mt-12 font-bold text-gray-600 my-5">Price to Earnings: {getPE()}</h4></div>
+                    <div> <h4 className="text-2xl mt-12 font-bold text-gray-600 my-5">Management Expense: {getME()}</h4></div>
                     <div className="block sm:block md:flex flex-wrap">
-                      {
-                        bucketSize
-                          &&
-                            <PyramidChart data={getDataForPyramidChart()} />
-                      }
+
+
                       {
                         bucketSectorWeights
                           &&
@@ -322,11 +349,18 @@ const Portfolio = (props)=> {
                               total={Object.values(bucketSectorWeights).reduce((total, value)=>(total+value), 0)}
                             />
                       }
+                      {/* {
+                        bucketSize
+                          &&
+                            <PyramidChart data={getDataForPyramidChart()} />
+                      } */}
+
                       {
                         bucketBeta
                           &&
                             <GuageChart beta={bucketBeta} />
                       }
+
                     </div>
                   </div>
                 </div>

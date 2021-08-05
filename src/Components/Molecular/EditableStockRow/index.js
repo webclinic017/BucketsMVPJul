@@ -6,7 +6,7 @@
 //make ui -
 
 import React, {useState} from 'react';
-import BucketsLogo from "../../../Assets/buckets_logo.png";
+import BucketsLogo from "../../../Assets/bucketslogo.png";
 import PlusIcon from "../../../Assets/plus.png";
 import MinusIcon from "../../../Assets/minus.png";
 import DropdownInput from "../DropdownInput";
@@ -36,7 +36,7 @@ const EditableStockRow = ({stockName, onChangeStockName, onStockPercentIncrement
   return (
     <div key={rowIndex} className="flex items-center justify-between mt-4">
       <div className="flex items-center">
-        <img src={!logoUrl.length ? BucketsLogo : logoUrl} className="mr-4 h-14 w-14 object-contain ml-2"/>
+        <img src={logoUrl === null ? BucketsLogo : logoUrl.length ? logoUrl : BucketsLogo} className="mr-4 h-14 w-14 object-contain ml-2"/>
         <DropdownInput
           value={stockName}
           shouldSuggest={shouldSuggest && stockName.length>1}

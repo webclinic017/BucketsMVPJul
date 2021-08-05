@@ -26,12 +26,12 @@ class StockChart extends Component {
 
         <RangeSelector selected={8}>
           <RangeSelector.Button count={1} type="day">1d</RangeSelector.Button>
-          <RangeSelector.Button count={7} type="day">1w</RangeSelector.Button>
-          <RangeSelector.Button count={30} type="day">1m</RangeSelector.Button>
-          <RangeSelector.Button count={256} type="day">1y</RangeSelector.Button>
-          <RangeSelector.Button count={356*2} type="day">2y</RangeSelector.Button>
-          <RangeSelector.Button count={356*3} type="month">3y</RangeSelector.Button>
-          <RangeSelector.Button count={356*4} type="month">4y</RangeSelector.Button>
+          <RangeSelector.Button count={7} type="week">1w</RangeSelector.Button>
+          <RangeSelector.Button count={1} type="month">1m</RangeSelector.Button>
+          <RangeSelector.Button count={1} type="year">1y</RangeSelector.Button>
+          <RangeSelector.Button count={2} type="year">2y</RangeSelector.Button>
+          <RangeSelector.Button count={3} type="year">3y</RangeSelector.Button>
+          <RangeSelector.Button count={4} type="year">4y</RangeSelector.Button>
           <RangeSelector.Button type="all">All</RangeSelector.Button>
         </RangeSelector>
 
