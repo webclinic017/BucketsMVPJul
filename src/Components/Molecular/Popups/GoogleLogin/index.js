@@ -23,7 +23,7 @@ const GoogleLoginPopup = ({open, onClose, onGoogleLogin, ...props}) => {
           className="flex items-center justify-center mt-16 mb-4"
         >
           <GoogleLogin
-            clientId="280304099921-n923fr06n36om9d141neoua4s3p756oi.apps.googleusercontent.com"
+            clientId="331803921206-00bmrs4p2qrbldscela5lv18nk5n849m.apps.googleusercontent.com"
             buttonText="Sign in with Google"
             onSuccess={responseGoogle}
             onFailure={()=>console.log("An error occurred while logging in with google!")}
