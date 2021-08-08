@@ -291,6 +291,24 @@ const getExpertBuckets = (onSuccess=()=>{}, onError=()=>{}) => (
   }
 )
 
+const loginRobinhood = (onSuccess=()=>{}, onError=()=>{}) => (
+  (dispatch) => {
+    APIClient.post('/robinhood-login').then((response)=>{
+      if(response.data.success === true) {
+        onSuccess();
+      } else {
+        showToast(response.data.message, "error");
+        onError();
+      }
+    }).catch((error)=>{
+      showToast(error.message, "error");
+      onError();
+    });
+  }
+)
+
+
+
 const recordNoOfTimesBucketShared = (data, onSuccess=()=>{}, onError=()=>{}) => (
   (dispatch) => {
     APIClient.post('/record-no-of-bucket-shares', data).then((response)=>{
@@ -337,6 +355,7 @@ export {
   getBucketData,
   followBucket,
   createBucket,
+  loginRobinhood,
   updateBucket,
   shortenUrl,
 };

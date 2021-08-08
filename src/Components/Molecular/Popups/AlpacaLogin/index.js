@@ -3,13 +3,23 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import theme from '../../../../Theme';
 import config from "../../../../Config";
+import {loginRobinhood} from "../../../../Redux/Actions/bucket";
+import { useDispatch} from 'react-redux';
+
 
 const AlpacaLoginPopup = ({open, onClose, ...props}) => {
+  const dispatch = useDispatch();
   const handleOnClickLinkAlpaca = () => {
     setTimeout(() => {
       onClose();
     }, 500);
     window.location.href = `https://app.alpaca.markets/oauth/authorize?response_type=code&client_id=${config.constants.alpacaClientId}&redirect_uri=${config.constants.redirectUri}&state=${config.constants.alpacaState}&scope=account:write%20trading`;
+  }
+  const handleOnLinkRobinhood = () => {
+    setTimeout(() => {
+      onClose();
+    }, 500);
+    dispatch(loginRobinhood());
   }
 
   return (
@@ -28,6 +38,13 @@ const AlpacaLoginPopup = ({open, onClose, ...props}) => {
             className="cursor-pointer rounded-md py-4 px-6"
           >
             <span className="font-bold text-lg hover:text-white">Link Alpaca</span>
+          </div>
+          <div
+            onClick={handleOnLinkRobinhood}
+            style={{backgroundColor: theme.colors.green}}
+            className="cursor-pointer rounded-md py-4 px-6"
+          >
+            <span className="font-bold text-lg hover:text-white">Login Robinhood</span>
           </div>
         </div>
         <h2
