@@ -39,13 +39,13 @@ const AlpacaLoginPopup = ({open, onClose, ...props}) => {
           >
             <span className="font-bold text-lg hover:text-white">Link Alpaca</span>
           </div>
-          <div
+          {/* <div
             onClick={handleOnLinkRobinhood}
             style={{backgroundColor: theme.colors.green}}
             className="cursor-pointer rounded-md py-4 px-6 m-2"
           >
             <span className="font-bold text-lg hover:text-white">Login Robinhood</span>
-          </div>
+          </div> */}
         </div>
         <h2
           style={{color: theme.colors.lightPurple}}

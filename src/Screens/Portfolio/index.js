@@ -247,18 +247,21 @@ const Portfolio = (props)=> {
     stocks.map(stock => {
       const amountInvested = 10000 * (stock.targetWeight/100)
       const ticker = stock.ticker
-      stock.numberDummyShares = amountInvested/(bucketHistoricalPrices[ticker][bucketHistoricalPrices[ticker].length - 1].close)
-      bucketHistoricalPrices[ticker].forEach((price) => {
-        price.value = stock.numberDummyShares * price.close
-        price.date = new Date(price.date).getTime()
-        valueArray.push(price)
-      })
+      stock.numberDummyShares = bucketHistoricalPrices[ticker] ? amountInvested/(bucketHistoricalPrices[ticker][bucketHistoricalPrices[ticker].length - 1].close) : 'FAILSAFE-VAULE';
+     
+      if (typeof bucketHistoricalPrices[ticker] !== 'undefined') {
+        bucketHistoricalPrices[ticker].forEach((price) => {
+          price.value = stock.numberDummyShares * price.close
+          price.date = new Date(price.date).getTime()
+          valueArray.push(price)
+        })
+    }
     });
 
     const res = Array.from(valueArray.reduce(
       (m, {date, value}) => m.set(date, (m.get(date) || 0) + value), new Map
     ), ([date, value]) => ({date, value}));
-    console.log(res);
+    // console.log(res);
 
     var outputData = res.map( Object.values );
     return outputData.reverse()
@@ -294,10 +297,7 @@ const Portfolio = (props)=> {
                 <div className="flex justify-between">
                   <h3 className="font-bold text-gray-400 text-4xl">{bucketName}</h3>
                   <div className="flex items-center justify-between">
-                    {
-                      user && user._id===bucketData.userId
-                        &&
-                          <>
+                   
                             <Button
                               title="Buy/Sell"
                               isProcessing={isLinkingAlpaca}
@@ -306,12 +306,16 @@ const Portfolio = (props)=> {
                             <span onClick={handleOnClickBucketShare} className="cursor-pointer">
                               <img src={ShareIcon} className="mx-4"/>
                             </span>
+                            {
+                      user && user._id===bucketData.userId
+                        &&
+                          <>
                             <DropdownMenu
                               trigger={<img src={OptionsIcon} className="mx-1 mt-1 object-contain cursor-pointer w-5 h-5"/> }
                             >
                               <DropdownItemGroup>
                                 <DropdownItem onMouseDown={handleOnClickEdit}>Edit</DropdownItem>
-                                <DropdownItem onMouseDown={handleOnClickRebalance}>Rebalance</DropdownItem>
+                                {/* <DropdownItem onMouseDown={handleOnClickRebalance}>Rebalance</DropdownItem> */}
                               </DropdownItemGroup>
                             </DropdownMenu>
                           </>
@@ -390,7 +394,7 @@ const Portfolio = (props)=> {
                         </table>
                       </div>
 
-                      <div> <h4 className="text-l mt-12 font-semibold text-gray-500 my-5">On a $10,000 investment, you save {"$"+getMESavings()} in management fees every year with this bucket 💰 😀 </h4></div>
+                      <div> <h4 className="text-l mt-12 font-semibold text-gray-500 my-5">Compared to the average ETF, you save {"$"+getMESavings()} in management fees every year with this bucket on a $10,000 investment 💰 😀 </h4></div>
 
 
                     </div>

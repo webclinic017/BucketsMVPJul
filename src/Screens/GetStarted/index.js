@@ -30,7 +30,7 @@ const Homepage = (props)=> {
           <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
             <div className="my-auto w-full sm:w-full md:w-4/5">
               <h1 className="text-5xl text-gray-700 font-bold">Why pay management fees?</h1>
-              <p className="text-3xl text-gray-500 my-4">Buy investment baskets created by you or experts within a few clicks at no cost</p>
+              <p className="text-2xl text-gray-500 my-4">Buy investment baskets created by you or experts within a few clicks at no cost, with securities bought directly in to your brokerage account</p>
               <Link to="/home" >
                 <Button
                   title="Explore"
