@@ -54,7 +54,7 @@ const Login = (props)=> {
           <div className="flex h-full justify-center align-center">
             <div className="my-auto">
               <GoogleLogin
-                  clientId="280304099921-n923fr06n36om9d141neoua4s3p756oi.apps.googleusercontent.com"
+                  clientId="331803921206-00bmrs4p2qrbldscela5lv18nk5n849m.apps.googleusercontent.com"
                   buttonText="Sign in with Google"
                   onSuccess={responseGoogle}
                   onFailure={responseGoogle}
