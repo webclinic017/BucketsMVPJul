@@ -22,7 +22,7 @@ export default class StockChartNew extends Component {
             "color": "#000", "position": "absolute"
 
           },
-          align: 'left'
+          align: 'center'
         },
       },
 
@@ -44,10 +44,10 @@ export default class StockChartNew extends Component {
         selected: 1
       },
       title: {
-        text: `Returns based on an initial deposit of $10,000 `
+        text: `If you invested $10,000 in this bucket:`
       },
       chart: {
-        height: 600,
+        height: 500,
       },
 
       credits: {
@@ -61,11 +61,7 @@ export default class StockChartNew extends Component {
         type: 'date',
       },
       rangeSelector: {
-        buttons: [{
-          type: 'day',
-          count: 1,
-          text: '1d',
-        }, {
+        buttons: [ {
           type: 'day',
           count: 5,
           text: '5d'
@@ -78,17 +74,28 @@ export default class StockChartNew extends Component {
           count: 6,
           text: '6m'
         },
-          {
-          type: 'all',
-          text: 'All'
+        {
+          type: 'year',
+          count: 1,
+          text: '1y'
+        },
+        {
+          type: 'year',
+          count: 2,
+          text: '2y'
+        },
+        {
+          type: 'year',
+          count: 5,
+          text: '5y'
         }],
         selected: 4
       },
       series: [{
-        name: 'Price',
+        name: 'Bucket Value',
         type: 'spline',
 
-        data: priceData,
+        data: this.props.data,
         tooltip: {
           valueDecimals: 0
         },

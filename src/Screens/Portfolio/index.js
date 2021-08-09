@@ -223,7 +223,7 @@ const Portfolio = (props)=> {
       const metric = stocksData.filter(obj => obj.symbol === stock.ticker)
       priceEarnings.push(metric[0].price_earnings_ratio * weight)
     })
-    return priceEarnings.reduce(function(a,b){return a + b;}, 0).toFixed(2);
+    return priceEarnings.reduce(function(a,b){return a + b;}, 0).toFixed(0);
   }
   const getME = () => {
     const managementExpense = []
@@ -232,15 +232,43 @@ const Portfolio = (props)=> {
       const metric = stocksData.filter(obj => obj.symbol === stock.ticker)
       managementExpense.push(metric[0].fund_net_annual_expense_ratio * weight)
     })
-    return managementExpense.reduce(function(a,b){return a + b;}, 0).toFixed(2)+"%";
+    const final = managementExpense.reduce(function(a,b){return a + b;}, 0).toFixed(2)
+    return final;
+  }
+
+  const getMESavings = () => {
+    const dollarsSaved = 10000 * (0.4 - getME())/100
+    return dollarsSaved
   }
 
 
+  const getBucketHPrices = () => {
+    let valueArray = []
+    stocks.map(stock => {
+      const amountInvested = 10000 * (stock.targetWeight/100)
+      const ticker = stock.ticker
+      stock.numberDummyShares = amountInvested/(bucketHistoricalPrices[ticker][bucketHistoricalPrices[ticker].length - 1].close)
+      bucketHistoricalPrices[ticker].forEach((price) => {
+        price.value = stock.numberDummyShares * price.close
+        price.date = new Date(price.date).getTime()
+        valueArray.push(price)
+      })
+    });
 
+    const res = Array.from(valueArray.reduce(
+      (m, {date, value}) => m.set(date, (m.get(date) || 0) + value), new Map
+    ), ([date, value]) => ({date, value}));
+    console.log(res);
 
-  const getBucketHPrices = () => {}
-
-
+    var outputData = res.map( Object.values );
+    return outputData.reverse()
+    // console.log(valueArray)
+    // for (const [key, value] of Object.entries(res)) {
+    //   const map = value.map((entry)=>([entry.date, entry.value]));
+    //   return map.reverse()
+    // }
+    }
+  
 
   const getDataForPyramidChart = () => {
     const response = Object.entries(bucketSize).map(([key, value])=>({
@@ -302,7 +330,7 @@ const Portfolio = (props)=> {
                       ))
                     }
                   </div>
-                  <div className="w-full sm:w-full md:w-full lg:w-2/5">
+                  <div className="w-full sm:w-full md:w-full lg:w-2/5 justify-center mr-4">
                     {
                       !isFetchingBucketValue && bucketValue && user && user._id===bucketData.userId
                         &&
@@ -327,18 +355,46 @@ const Portfolio = (props)=> {
                           </div>
                     }
                     {
-                      !isFetchingBucketHistoricalPrices && bucketHistoricalPrices
+                      !isFetchingBucketHistoricalPrices && bucketHistoricalPrices 
 
                         &&
                           <StockChartNew
-                            data={bucketHistoricalPrices}
+                            data={getBucketHPrices()}
                           />
                     }
+                   
 
-                    <div> <h4 className="text-2xl mt-12 font-bold text-gray-600 my-5">Yield: {bucketYield()}</h4></div>
+                    {/* <div> <h4 className="text-2xl mt-12 font-bold text-gray-600 my-5">Yield: {bucketYield()}</h4></div>
                     <div> <h4 className="text-2xl mt-12 font-bold text-gray-600 my-5">Price to Earnings: {getPE()}</h4></div>
-                    <div> <h4 className="text-2xl mt-12 font-bold text-gray-600 my-5">Management Expense: {getME()}</h4></div>
-                    <div className="block sm:block md:flex flex-wrap">
+                    <div> <h4 className="text-2xl mt-12 font-bold text-gray-600 my-5">Management Expense: {getME()}</h4></div> */}
+                    <div className = "flex-auto justify-items-center m-auto">
+                      <div className = "m-auto" >
+                        <table className="table-auto ">
+
+                          <tbody>
+                            <tr>
+                              <td><span className="font-semibold text-l text-gray-600">Yield</span></td>
+                              <td><span className="font-semibold text-l text-gray-500">{bucketYield()}</span></td>
+                            </tr>
+                            <tr className="bg-emerald-200">
+                              <td><span className="font-semibold text-l text-gray-600">Price to Earnings</span></td>
+                              <td><span className="font-semibold text-l text-gray-500">{getPE()}</span></td>
+
+                            </tr>
+                            <tr>
+                              <td><span className="font-semibold text-l text-gray-600 mr-4">Management Expense</span></td>
+                              <td><span className="font-semibold text-l text-gray-500">{getME()+"%"}</span></td>
+
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div> <h4 className="text-l mt-12 font-semibold text-gray-500 my-5">On a $10,000 investment, you save {"$"+getMESavings()} in management fees every year with this bucket 💰 😀 </h4></div>
+
+
+                    </div>
+                    <div className="block sm:block md:flex flex-auto">
 
 
                       {

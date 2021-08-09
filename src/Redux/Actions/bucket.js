@@ -125,7 +125,7 @@ const getHistoricalStockPrices = (data, onSuccess=()=>{}, onError=()=>{}) => (
     dispatch(setIsFetchingHistoricalStockPrices(true));
     APIClient.post('/bucket/get-bucket-prices', data).then((response)=>{
       if(response.data.success === true) {
-        console.log("Historical Response: ", response.data.historicalPrices);
+        // console.log("Historical Response: ", response.data.historicalPrices);
         dispatch({
           type: SET_HISTORICAL_STOCK_PRICES,
           payload: response.data.historicalPrices
