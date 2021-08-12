@@ -238,7 +238,7 @@ const Portfolio = (props)=> {
 
   const getMESavings = () => {
     const dollarsSaved = 10000 * (0.4 - getME())/100
-    return dollarsSaved
+    return dollarsSaved.toFixed(2)
   }
 
 
@@ -273,15 +273,15 @@ const Portfolio = (props)=> {
     }
   
 
-  const getDataForPyramidChart = () => {
-    const response = Object.entries(bucketSize).map(([key, value])=>({
-      value: value,
-      name: key,
-      fill: key==="large" ? theme.colors.green : key==="medium" ? theme.colors.lightPurple : theme.colors.red
-    })).filter((item)=>item.value!==0).sort((a, b)=>(a.value-b.value));
-    console.log({response});
-    return response;
-  }
+  // const getDataForPyramidChart = () => {
+  //   const response = Object.entries(bucketSize).map(([key, value])=>({
+  //     value: value,
+  //     name: key,
+  //     fill: key==="large" ? theme.colors.green : key==="medium" ? theme.colors.lightPurple : theme.colors.red
+  //   })).filter((item)=>item.value!==0).sort((a, b)=>(a.value-b.value));
+  //   console.log({response});
+  //   return response;
+  // }
 
   return(
     <>

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import LogRocket from 'logrocket';
+LogRocket.init('n38my9/buckets-investing');
 
 ReactDOM.render(
   <React.StrictMode>
