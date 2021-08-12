@@ -18,6 +18,7 @@ const DropdownInput = ({value, onChange, onStockSelect, shouldSuggest, setShould
         className="w-full focus:outline-none rounded-md py-2 px-4 bg-gray-300"
         type="text" value={value}
         onChange={onChange}
+        value={"Security Name"}
       />
       {
         shouldSuggest
