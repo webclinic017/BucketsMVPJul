@@ -89,10 +89,10 @@ const BuySell = forwardRef(({open, onClose, bucketId, stocks, ...props}, ref) =>
                 />
               </>
             :
-              <div className="mt-4 w-full flex flex-col items-center">
+              <div className="mt-4 w-full flex flex-col items-center overflow-y-auto h-64">
                 {
                   Object.keys(stocks).map((key)=>(
-                    <div className="flex justify-between mb-2 w-3/4">
+                    <div className="flex justify-between mb-2 w-3/4 ">
                       <span
                         style={{color: type==="buy" ? theme.colors.green : theme.colors.lightPurple}}
                         className="w-1/5 text-right"

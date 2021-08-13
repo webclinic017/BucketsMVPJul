@@ -70,7 +70,7 @@ const logoutFromAlpacaAccount = (onSuccess=()=>{}, onError=()=>{}) => (
 const placeBucketLevelOrderOnAlpaca = (data, onSuccess=()=>{}, onError=()=>{}) => (
   (dispatch) => {
     dispatch(setIsPlacingOrder(true));
-    axios.post('127.0.0.1:7000/place-order-on-alpaca', data).then((response)=>{
+    axios.post('https://buckets-server.herokuapp.com/place-order-on-alpaca', data).then((response)=>{
       if(response.data.status === 200) {
         dispatch(setIsPlacingOrder(false));
         showToast(response.data.message, "success");
