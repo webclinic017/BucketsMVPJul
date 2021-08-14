@@ -90,11 +90,11 @@ const Portfolio = (props)=> {
                           <img className="mx-2 rounded-full w-12 h-12 object-contain" src={bucket.userId===user._id?user.profilePicture:BucketsLogo} />
                           <div>
                             <span className="text-gray-500 text-xl font-bold">{bucket.name}</span>
-                            {
+                            {/* {
                               bucket.hasMetrics
                                 &&
                                   <div>
-                                    <span className="font-bold text-md text-gray-500">${bucket.currentValue.toFixed(2)}</span>
+                                    <span className="font-bold text-md text-gray-500">${bucket?.currentValue?.toFixed(2)}</span>
                                     <span className="text-lg text-gray-400 mx-1">|</span>
                                     <span
                                       style={{color: bucket.valueReturn>0 ? theme.colors.green : theme.colors.red}}
@@ -110,7 +110,7 @@ const Portfolio = (props)=> {
                                       {bucket.percentReturn>0 && "+"}{bucket.percentReturn.toFixed(2)}%
                                     </span>
                                   </div>
-                            }
+                            } */}
                           </div>
                         </div>
                         <img className="mx-6 w-4 h-4 object-contain" src={ForwardArrow} />
