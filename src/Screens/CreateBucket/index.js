@@ -19,7 +19,7 @@ import { encryptDataString, showToast } from "../../Utils";
 const CreateBucket = (props)=> {
   const dispatch = useDispatch();
   const [bucketName, setBucketName] = useState("");
-  const [totalPercentage, setTotalPercentage] = useState(0);
+  const [totalPercentage, setTotalPercentage] = useState("0");
   const [stocks, setStocks] = useState({0: {name: "", logoUrl: "", targetWeight: 0}});
   const [isGoogleLoginModalVisible, setGooglLoginModalVisibility] = useState(false);
   const stockOptions = stocksData.map((stock)=>({label: `${stock.name} ${stock.symbol}`, logoUrl: stock.logo_url, name: stock.name, ticker: stock.symbol}));
@@ -27,11 +27,11 @@ const CreateBucket = (props)=> {
   const isSavingBucket = useSelector(state => state.bucket.isPosting);
 
   useEffect(()=>{
-    setTotalPercentage(Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(current.targetWeight)), 0))
+    setTotalPercentage(Object.values(stocks).reduce((prev, current)=>(prev+parseFloat(+current.targetWeight)), +0))
   }, [stocks]);
 
   const addRow = () => {
-    setStocks({...stocks, [Object.keys(stocks).length]: { name: "", logoUrl: "", targetWeight: 0}});
+    setStocks({...stocks, [Object.keys(stocks).length]: { name: "", logoUrl: "", targetWeight: +0}});
   }
 
   const onChangeStockName = (e, key) => {
@@ -44,13 +44,13 @@ const CreateBucket = (props)=> {
 
   const onStockPercentIncrement = (key) => {
     if(stocks[key].targetWeight < 100) {
-      setStocks({...stocks, [key]: {...stocks[key], targetWeight: stocks[key].targetWeight+1}});
+      setStocks({...stocks, [key]: {...stocks[key], targetWeight: +stocks[key].targetWeight+ +1}});
     }
   }
 
   const onStockPercentDecrement = (key) => {
     if(stocks[key].targetWeight > 0) {
-      setStocks({...stocks, [key]: {...stocks[key], targetWeight: stocks[key].targetWeight-1}});
+      setStocks({...stocks, [key]: {...stocks[key], targetWeight: +stocks[key].targetWeight- +1}});
     }
   }
 
@@ -68,9 +68,9 @@ const CreateBucket = (props)=> {
     if(!bucketName.length) {
       showToast("Please enter bucket name!", "warning");
     } else if(Object.values(stocks).filter((stock)=>(!stock.name.length || stock.targetWeight === 0)).length) {
-      showToast(`Please fill out all stock rows properly!`, "warning");
+      showToast(`Row properties cannot be empty`, "warning");
     } else if(totalPercentage!==100) {
-      showToast(`Total percentage should add up to 100 not ${totalPercentage}!`, "warning");
+      showToast(`Total weight allocation should add up to 100 not ${totalPercentage}!`, "warning");
     } else {
       const data = {
         bucketName,
@@ -144,6 +144,7 @@ const CreateBucket = (props)=> {
                   stockOptions={stockOptions}
                   deleteable={Object.keys(stocks).length>1 && key!==0}
                   deleteRow={deleteRow}
+                  setStockPercent={(percent)=>setStocks({...stocks, [key]: {...stocks[key], targetWeight: percent}})}
                 />
               ))
             }

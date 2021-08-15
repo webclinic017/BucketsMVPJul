@@ -12,8 +12,9 @@ import MinusIcon from "../../../Assets/minus.png";
 import DropdownInput from "../DropdownInput";
 import trash_grey from "../../../Assets/Icons/trash_grey.png";
 import trash_red from "../../../Assets/Icons/trash_red.png";
+import Input from "../../../Components/Atomic/Input";
 
-const EditableStockRow = ({stockName, onChangeStockName, onStockPercentIncrement, onStockPercentDecrement, logoUrl, stockPercent, onStockSelect, suggestions, deleteable, deleteRow, rowIndex})=>{
+const EditableStockRow = ({stockName, onChangeStockName, onStockPercentIncrement, onStockPercentDecrement, logoUrl, stockPercent, onStockSelect, suggestions, deleteable, deleteRow, rowIndex, setStockPercent})=>{
   const [shouldSuggest, setShouldSuggest] = useState(false);
   const [hover, setHover] = useState(false);
 
@@ -48,9 +49,16 @@ const EditableStockRow = ({stockName, onChangeStockName, onStockPercentIncrement
       </div>
       <div className="flex items-center justify-between">
         <img onClick={onStockPercentDecrement} className="w-5 h-5 cursor-pointer object-contain" src={MinusIcon} />
-        <span className="mx-4 w-12 text-center">
+        <Input className="mx-4 w-12 text-center"
+                value={+stockPercent ? +stockPercent : +0}
+                onChange={(e)=>setStockPercent(e.target.value)}
+                placeholder=""
+              />
+        
+        
+        {/* <span className="mx-4 w-12 text-center">
           {`${Math.round(stockPercent)}%`}
-        </span>
+        </span> */}
         <img onClick={(onStockPercentIncrement)} className="w-5 h-5 object-contain cursor-pointer" src={PlusIcon} />
         <img className="w-4 h-4 object-contain ml-6 cursor-pointer -mt-1" onClick={handleOnClickDelete} src={hover ? trash_red : trash_grey} onMouseOver={handleOnMouseOver} onMouseOut={handleOnMouseOut}/>
       </div>
