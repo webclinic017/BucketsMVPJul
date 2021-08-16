@@ -15,7 +15,7 @@ const DropdownInput = ({value, onChange, onStockSelect, shouldSuggest, setShould
       <input
         onFocus={()=>setShouldSuggest(true)}
         onBlur={handleOnBlur}
-        className="w-full focus:outline-none rounded-md py-2 px-4 bg-gray-300"
+        className="w-full focus:outline-none rounded-md py-2 px-10 bg-gray-300"
         type="text" value={value}
         onChange={onChange}
         // value={"Security Name"}
