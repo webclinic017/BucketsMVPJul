@@ -15,6 +15,8 @@ import MenuIcon from "../../Assets/Icons/menu.png";
 import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import GoogleLoginPopup from "../../Components/Molecular/Popups/GoogleLogin";
 import { encryptDataString, showToast } from "../../Utils";
+import { Helmet } from 'react-helmet';
+
 
 const CreateBucket = (props)=> {
   const dispatch = useDispatch();
@@ -105,6 +107,10 @@ const CreateBucket = (props)=> {
   return(
     <>
       <div className="p-11">
+      <Helmet>
+          <title>Create a new basket of stocks</title>
+          <meta name="description" content= "A great tool to manifest a new theme or strategy or to analyze your current stock portfolio"/>
+      </Helmet>
         <div className="flex justify-between">
           <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
           <div className="flex items-center justify-between">

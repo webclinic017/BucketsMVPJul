@@ -30,6 +30,8 @@ import AlpacaLoginPopup from "../../Components/Molecular/Popups/AlpacaLogin";
 import BuySellPopup from "../../Components/Molecular/Popups/BuySell";
 import theme from "../../Theme";
 import stocksData from "../../Data/assets.json";
+import {Helmet} from "react-helmet";
+
 
 const colors = ["#5AE579", "#FFBA69", "#FF708B", "#8676FF", "#F0008B", "#424242", "#90E500", "#993874", "#383874", "#FFD700", "#a0a0a0"]
 
@@ -287,6 +289,7 @@ const Portfolio = (props)=> {
   return(
     <>
       <div className="p-11 flex flex-col min-h-screen">
+
         {
           isFetchingBucket
             ?
@@ -297,6 +300,7 @@ const Portfolio = (props)=> {
               <>
                 <div className="flex justify-between">
                   <h3 className="font-bold text-gray-400 text-4xl">{bucketName}</h3>
+                  
                   <div className="flex items-center justify-between">
                    
                             <Button
@@ -335,6 +339,10 @@ const Portfolio = (props)=> {
                       ))
                     }
                   </div>
+                  <Helmet>
+                    <title>{bucketName}</title>
+                    <meta name="description" content= "Check out this stock portfolio I made!"/>
+                  </Helmet>
                   <div className="w-full sm:w-full md:w-full lg:w-2/5 justify-center mr-4">
                     {
                       !isFetchingBucketValue && bucketValue && user && user._id===bucketData.userId
