@@ -13,6 +13,7 @@ import Victory from "../../Assets/backgrounds/Victory.png";
 import Science from "../../Assets/backgrounds/Science.png";
 import Finances from "../../Assets/backgrounds/Finances.png";
 import theme from '../../Theme';
+import {Helmet} from "react-helmet";
 
 const Homepage = (props)=> {
   const dispatch = useDispatch();
@@ -24,6 +25,10 @@ const Homepage = (props)=> {
   return(
     <>
       <div className="h-screen">
+        <Helmet>
+          <title>Home - Browse Portfolios</title>
+          <meta name="description" content="Browse and buy pre-made portfolios. Portfolios made by expert investors. Whether you are planning for retirement, looking for a low volatility strategy or general investing, this is the place to start."/>
+        </Helmet>
         <div className="flex px-11 py-6 w-full justify-between fixed">
           <h3 className="text-5xl text-gray-700 font-bold">Buckets</h3>
           <div className="flex items-center justify-between">

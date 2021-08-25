@@ -241,6 +241,7 @@ const Portfolio = (props)=> {
     return dollarsSaved.toFixed(2)
   }
 
+  const xCallback = (value) => {console.log(value)};
 
   const getBucketHPrices = () => {
     let valueArray = []
@@ -364,6 +365,7 @@ const Portfolio = (props)=> {
                         &&
                           <StockChartNew
                             data={getBucketHPrices()}
+                            passToParent = {xCallback}
                           />
                     }
                    

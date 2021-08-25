@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ReactHighcharts from 'react-highcharts/ReactHighstock.src'
-import priceData from '../../../Assets/btcdata.json'
 import moment from 'moment'
 
 export default class StockChartNew extends Component {
@@ -59,6 +58,14 @@ export default class StockChartNew extends Component {
       },
       xAxis: {
         type: 'date',
+      //   events: {
+       
+      //     afterSetExtremes: function(e) {
+      //         // console.log(e.min)
+      //         // console.logthis.props)
+      //         this.props.passToParent(e.min);
+      //     }
+      // }
       },
       rangeSelector: {
         buttons: [ {
@@ -103,9 +110,11 @@ export default class StockChartNew extends Component {
       }
       ]
     };
+    // const xAxis = StockChartNew.xAxis[0]
     return (
       <div>
          <ReactHighcharts config = {configPrice}></ReactHighcharts>
+         {/* {console.log(this.from)} */}
       </div>
     )
   }
