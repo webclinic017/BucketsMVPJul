@@ -17,7 +17,6 @@ import GoogleLoginPopup from "../../Components/Molecular/Popups/GoogleLogin";
 import { encryptDataString, showToast } from "../../Utils";
 import { Helmet } from 'react-helmet';
 
-
 const CreateBucket = (props)=> {
   const dispatch = useDispatch();
   const [bucketName, setBucketName] = useState("");
