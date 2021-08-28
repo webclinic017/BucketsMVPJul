@@ -37,11 +37,13 @@ const Portfolio = (props)=> {
           costBasis += bucket.costBasis;
         }
       }
-      setMetrics({
-        currentValue,
-        valueReturn: currentValue-costBasis,
-        percentReturn: (currentValue-costBasis)/costBasis
-      });
+      if(currentValue>0 && costBasis>0) {
+        setMetrics({
+          currentValue,
+          valueReturn: currentValue-costBasis,
+          percentReturn: (currentValue-costBasis)/costBasis
+        });
+      }
     }
   }, [buckets]);
 
