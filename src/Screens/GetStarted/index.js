@@ -12,38 +12,38 @@ import MenuIcon from "../../Assets/Icons/menu.png";
 import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import RevenueBro1 from "../../Assets/backgrounds/Revenue-bro_1.png";
 import ProgressGif from "../../Assets/gifs/Progress.gif";
-import gif1 from "../../Assets/gifs/gif1.gif";
+import gif1 from "../../Assets/gifs/finalgif.gif";
 // import YellowCliffLeft from "../../Assets/backgrounds/yellow_cliff_left.png";
 import theme from '../../Theme';
 import FeaturesBlocks from "../../Components/Molecular/FeatureBlocks"; 
 // import Demo from "../../Components/Molecular/AutomateImages"
 import Newsletter from "../../Components/Molecular/Newsletter"; 
 import { Helmet } from 'react-helmet';
-import Frame1 from "../../Assets/backgrounds/Frame1.png";
-import Frame2 from "../../Assets/backgrounds/Frame2.png";
-import Frame3 from "../../Assets/backgrounds/Frame3.png";
-import Frame4 from "../../Assets/backgrounds/Frame4.png";
-import Frame5 from "../../Assets/backgrounds/Frame5.png";
-import Frame6 from "../../Assets/backgrounds/Frame6.png";
-import Frame7 from "../../Assets/backgrounds/Frame7.png";
-import Frame8 from "../../Assets/backgrounds/Frame8.png";
-import Frame9 from "../../Assets/backgrounds/Frame9.png";
-import Frame10 from "../../Assets/backgrounds/Frame10.png";
-import Frame11 from "../../Assets/backgrounds/Frame11.png";
-import Frame12 from "../../Assets/backgrounds/Frame12.png";
-import Frame13 from "../../Assets/backgrounds/Frame13.png";
-import Frame14 from "../../Assets/backgrounds/Frame14.png";
+// import Frame1 from "../../Assets/backgrounds/Frame1.png";
+// import Frame2 from "../../Assets/backgrounds/Frame2.png";
+// import Frame3 from "../../Assets/backgrounds/Frame3.png";
+// import Frame4 from "../../Assets/backgrounds/Frame4.png";
+// import Frame5 from "../../Assets/backgrounds/Frame5.png";
+// import Frame6 from "../../Assets/backgrounds/Frame6.png";
+// import Frame7 from "../../Assets/backgrounds/Frame7.png";
+// import Frame8 from "../../Assets/backgrounds/Frame8.png";
+// import Frame9 from "../../Assets/backgrounds/Frame9.png";
+// import Frame10 from "../../Assets/backgrounds/Frame10.png";
+// import Frame11 from "../../Assets/backgrounds/Frame11.png";
+// import Frame12 from "../../Assets/backgrounds/Frame12.png";
+// import Frame13 from "../../Assets/backgrounds/Frame13.png";
+// import Frame14 from "../../Assets/backgrounds/Frame14.png";
 
 // import { useSetState } from 'react-use';
 // import { WaterfallSeries } from 'react-jsx-highcharts';
 
 
 const Homepage = (props)=> {
-  const slides = [Frame1, Frame2, Frame3, Frame4, Frame5, Frame6, Frame7, Frame8,Frame9, Frame10, Frame11, Frame12, Frame13, Frame14 ]
-  const [index, set] = useState(0)
-  const item = slides[index]
-  const increment = () => set(state => (state+1) % slides.length)
-  useInterval(increment, 200)
+  // const slides = [Frame1, Frame2, Frame3, Frame4, Frame5, Frame6, Frame7, Frame8,Frame9, Frame10, Frame11, Frame12, Frame13, Frame14 ]
+  // const [index, set] = useState(0)
+  // const item = slides[index]
+  // const increment = () => set(state => (state+1) % slides.length)
+  // useInterval(increment, 200)
 
 
 
@@ -88,7 +88,7 @@ const Homepage = (props)=> {
         </div>
         <div
           // style={{backgroundImage: `url(${YellowCliffLeft})`, backgroundRepeat: "no-repeat", backgroundPosition: "left bottom", backgroundSize: '30% 30%'}}
-          className="flex flex-col-reverse sm:flex-col-reverse md:flex-row justify-between h-screen bg-acapulco-400 "
+          className="flex flex-col-reverse sm:flex-col-reverse md:flex-row justify-between h-screen bg-acapulco-500 "
         >
           <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
             <div className="my-auto w-full sm:w-full md:w-4/5">
@@ -116,6 +116,13 @@ const Homepage = (props)=> {
           
         
         <div className="flex-grow bg-gray-300"><h1><FeaturesBlocks/></h1></div>
+        <div className="flex px-11 py-6 w-full justify-between">
+          <h3 className="text-3xl text-gray-700 font-bold">Buckets Investing</h3>
+          <h3 className="text-2xl text-gray-700 font-bold mx-4  "> Contact: info@bucketsinvesting.com</h3>
+          
+       
+        </div>
+       
         {/* <div className="flex-grow bg-gray-300"><Demo/></div> */}
         {/* <div className="flex-grow justify-center items-center bg-bred-500 "><h1><Newsletter/></h1></div> */}
       </div>
