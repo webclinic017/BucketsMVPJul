@@ -12,6 +12,7 @@ import MenuIcon from "../../Assets/Icons/menu.png";
 import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import RevenueBro1 from "../../Assets/backgrounds/Revenue-bro_1.png";
 import ProgressGif from "../../Assets/gifs/Progress.gif";
+import gif1 from "../../Assets/gifs/gif1.gif";
 // import YellowCliffLeft from "../../Assets/backgrounds/yellow_cliff_left.png";
 import theme from '../../Theme';
 import FeaturesBlocks from "../../Components/Molecular/FeatureBlocks"; 
@@ -79,7 +80,7 @@ const Homepage = (props)=> {
           <title>Buckets Investing</title>
           <meta name="description" content= "Build a smart portfolio in minutes with no management fees. Customers can create smart investment baskets on Buckets in minutes to automate investing (the wrapper function for your brokerage). A bucket is a basket of exchange traded securities, similar to ETFs and mutual funds, that can be bought or sold directly from your brokerage and can be created by you, your friends or “expert” investors.Investing is all about risk. There is no way around this fact. The more risk you take, the higher the returns. A bucket is a basket of exchange traded securities similar to ETFs and mutual funds, that can be bought or sold directly from your brokerage and can be created by you, your friends or “expert” investors. Bucket is a casual term that portfolio managers and investors frequently use to allude to a cluster of assets. Customers can browse and buy pre-made portfolios created by other users or “experts”. Our purpose is to provide a more effective alternative to traditional investment funds such as ETFs and mutual funds and become the creator economy for stock and cryptocurrency portfolios. Using a bucket strategy can help you control your emotions and prevent you from selling investments out of fear. "/>
         </Helmet>
-        <div className="flex px-11 py-6 w-full justify-between fixed">
+        <div className="flex px-11 py-6 w-full justify-between fixed bg-white">
           <h3 className="text-5xl text-gray-700 font-bold">Buckets</h3>
           <div className="flex items-center justify-between">
             <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
@@ -109,7 +110,7 @@ const Homepage = (props)=> {
             </div>
           </div>
           
-          <div style={{backgroundImage: `url(${ProgressGif})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full mt-3 mb-3 md:w-full lg:w-3/6 flex items-end">
+          <div style={{backgroundImage: `url(${gif1})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full mt-3 mb-3 md:w-full lg:w-3/6 flex items-end">
           </div>
         </div>
           
