@@ -10,6 +10,7 @@ const theme = {
     lightPurple: "#8676FF",
     lightGray: "#828282",
     lighterGray: "#EDEFF2",
+    tuscany: "#c36839"
   },
   shadows: {
     red: "3px 10px 18px 0 rgba(255, 112, 139, 0.35), 0 10px 15px 0 rgba(255, 112, 139, 0.33)",

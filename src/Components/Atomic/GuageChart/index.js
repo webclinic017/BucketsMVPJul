@@ -9,7 +9,7 @@ export default function index({beta, ...props}) {
       <p className="text-l mt-15 text-gray-500">{beta.toFixed(2)}</p>
 
       <GaugeChart id="gauge-chart1"
-        nrOfLevels={20}
+        nrOfLevels={10}
         colors={[theme.colors.green, theme.colors.lightPurple, theme.colors.red]}
         percent={beta/4}
         hideText={true}

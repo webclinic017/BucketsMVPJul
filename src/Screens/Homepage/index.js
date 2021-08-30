@@ -53,9 +53,9 @@ const Homepage = (props)=> {
                   <Button
                     title="Browse"
                     styles={{
-                      backgroundColor: theme.colors.red,
-                      borderColor: theme.colors.red,
-                      boxShadow: theme.shadows.red
+                      backgroundColor: theme.colors.tuscany,
+                      borderColor: theme.colors.tuscany,
+                      boxShadow: theme.shadows.tuscany
                     }}
                     className="ml-6 "
                   />
@@ -77,9 +77,9 @@ const Homepage = (props)=> {
                   <Button
                     title="Browse"
                     styles={{
-                      backgroundColor: theme.colors.red,
-                      borderColor: theme.colors.red,
-                      boxShadow: theme.shadows.red
+                      backgroundColor: theme.colors.tuscany,
+                      borderColor: theme.colors.tuscany,
+                      boxShadow: theme.shadows.tuscany
                     }}
                     className="ml-6"
                   />
@@ -111,9 +111,9 @@ const Homepage = (props)=> {
                   <Button
                     title="Browse"
                     styles={{
-                      backgroundColor: theme.colors.red,
-                      borderColor: theme.colors.red,
-                      boxShadow: theme.shadows.red
+                      backgroundColor: theme.colors.tuscany,
+                      borderColor: theme.colors.tuscany,
+                      boxShadow: theme.shadows.tuscany
                     }}
                     className="ml-6"
                   />
@@ -135,9 +135,9 @@ const Homepage = (props)=> {
                   <Button
                     title="Browse"
                     styles={{
-                      backgroundColor: theme.colors.red,
-                      borderColor: theme.colors.red,
-                      boxShadow: theme.shadows.red
+                      backgroundColor: theme.colors.tuscany,
+                      borderColor: theme.colors.tuscany,
+                      boxShadow: theme.shadows.tuscany
                     }}
                     className="ml-6"
                   />
@@ -165,13 +165,13 @@ const Homepage = (props)=> {
               <div className="my-auto w-full sm:w-full md:w-4/5">
                 <h1 className="text-5xl text-gray-700 font-bold">Create Your Own</h1>
                 <p className="text-3xl text-gray-500 my-4">Create your own investment bucket and share it!</p>
-                <Link to="/browse">
+                <Link to="/create-bucket">
                   <Button
                     title="Create"
                     styles={{
-                      backgroundColor: theme.colors.red,
-                      borderColor: theme.colors.red,
-                      boxShadow: theme.shadows.red
+                      backgroundColor: theme.colors.tuscany,
+                      borderColor: theme.colors.tuscany,
+                      boxShadow: theme.shadows.tuscany
                     }}
                     className="ml-6"
                   />

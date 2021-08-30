@@ -15,7 +15,11 @@ import PyramidChart from "../../Components/Atomic/PyramidChart";
 import PieChart from "../../Components/Atomic/PieChart";
 import GuageChart from "../../Components/Atomic/GuageChart";
 import StaticStockRow from "../../Components/Molecular/StaticStockRow";
-import ShareIcon from "../../Assets/entypo_share.png";
+// import ShareIcon from "../../Assets/entypo_share.png";
+import ShareIcon from "../../Assets/brownshare.png";
+
+
+
 import {
   getBucketData,
   setBucketValueToNull,
@@ -294,7 +298,7 @@ const Portfolio = (props)=> {
           isFetchingBucket
             ?
               <div className="flex my-auto max-w-screen justify-center items-center">
-                <MoonLoader size={40} color={theme.colors.green} loading={true} />
+                <MoonLoader size={40} color={theme.colors.tuscany} loading={true} />
               </div>
             :
               <>
