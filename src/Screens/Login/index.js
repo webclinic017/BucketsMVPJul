@@ -45,7 +45,7 @@ const Login = (props)=> {
     <>
       <div className="flex ">
         <div className="p-11 w-2/3" style={{ backgroundImage: `url(${LoginPic})`, height: '100vh', backgroundSize: 'cover'}}>
-          <h3 className="font-bold text-white-400 text-4xl">Buckets</h3>
+          <h3 className="text-5xl text-gray-700 font-bold">Buckets</h3>
         </div>
         <div className="p-11 w-1/3 " >
           <div className="flex items-center justify-end">
