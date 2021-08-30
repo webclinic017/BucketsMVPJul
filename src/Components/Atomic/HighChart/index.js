@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactHighcharts from 'react-highcharts/ReactHighstock.src'
 import moment from 'moment'
+import theme from '../../../Theme'
 
 export default class StockChartNew extends Component {
   render() {
@@ -36,6 +37,7 @@ export default class StockChartNew extends Component {
         series: {
           showInNavigator: true,
           gapSize: 6,
+          color: theme.colors.tuscany
 
         }
       },
@@ -90,11 +92,6 @@ export default class StockChartNew extends Component {
           type: 'year',
           count: 2,
           text: '2y'
-        },
-        {
-          type: 'year',
-          count: 5,
-          text: '5y'
         }],
         selected: 4
       },
