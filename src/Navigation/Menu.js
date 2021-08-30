@@ -72,6 +72,16 @@ const SlideMenu = (props) => {
         user && isAuthenticated
           &&
             <Link
+              id="expert" to="/home"
+              onClick={handleOnMenuItemClick}
+              className={`menu-item pt-4 text-xl pl-4 ${location.pathname === '/home' && 'font-bold'} ${location.pathname === '/home' ? 'text-green-600' : 'text-white'}`}
+            >Expert Buckets</Link>
+      }
+   
+      {
+        user && isAuthenticated
+          &&
+            <Link
               id="settings" to="/settings"
               onClick={handleOnMenuItemClick}
               className={`menu-item pt-4 text-xl pl-4 ${location.pathname === '/settings' && 'font-bold'} ${location.pathname === '/settings' ? 'text-green-600' : 'text-white'}`}

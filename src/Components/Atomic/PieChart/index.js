@@ -4,7 +4,7 @@ import { PieChart } from 'react-minimal-pie-chart';
 export default function index({data, total, ...props}) {
   return (
     <div className="flex flex-col items-center" style={{width: "50%", height: 400}}>
-    <p className="text-l mt-8 font-bold text-gray-600">Sector Breakdown</p>
+    <p className="text-l mt-8 font-bold text-gray-600">{props.text}</p>
       <div className="mt-4">
         <PieChart
           animate={true}

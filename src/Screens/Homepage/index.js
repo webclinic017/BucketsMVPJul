@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Link as RSLink, Element } from 'react-scroll';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from "../../Components/Atomic/Button";
 import ArrowDownCircle from "../../Assets/Icons/arrow_down_circle.png";
@@ -17,6 +18,9 @@ import {Helmet} from "react-helmet";
 
 const Homepage = (props)=> {
   const dispatch = useDispatch();
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleOnNavMenuClick = () => {
     dispatch(setNavMenuVisibility(true));

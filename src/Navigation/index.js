@@ -21,6 +21,7 @@ import {
 import { insertTokenInHeaders } from "../Services";
 import { decryptDataString } from '../Utils';
 import {Helmet} from "react-helmet";
+import { scrollToTop } from 'react-scroll/modules/mixins/animate-scroll';
 
 const CustomRoute = ({isProtected, path, exact, component}) => {
   const user = useSelector(state=>state.auth.user);
@@ -58,6 +59,7 @@ const Navigation = () => {
 
   return (
     <Router>
+      <scrollToTop/>
       <Helmet>
         <title>Buckets Investing</title>
         <meta name="description" content="Build a smart portfolio in minutes with no management fees. Customers can create smart investment baskets on Buckets in minutes to automate investing (the wrapper function for your brokerage). A bucket is a basket of exchange traded securities, similar to ETFs and mutual funds, that can be bought or sold directly from your brokerage and can be created by you, your friends or “expert” investors.Investing is all about risk. There is no way around this fact. The more risk you take, the higher the returns.
