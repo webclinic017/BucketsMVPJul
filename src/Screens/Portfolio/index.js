@@ -52,6 +52,7 @@ const Portfolio = (props)=> {
   const [bucketCostBasis, setBucketCostBasis] = useState(0);
   const [bucketBeta, setBucketBeta] = useState(null);
   const [bucketSize, setBucketSize] = useState(null);
+  const [gData, setGData] = useState(null);
   const [bucketSectorWeights, setBucketSectorWeights] = useState(null);
   const user = useSelector(state => state.auth.user);
   const isFetchingBucket = useSelector(state => state.bucket.isFetchingBucketData);
@@ -182,8 +183,40 @@ const Portfolio = (props)=> {
         console.log({sectorWeights});
         setBucketBeta(beta);
         setBucketSize(size);
+
       }
     }
+    
+    let valueArray = []
+    stocks.map(stock => {
+      const amountInvested = 10000 * (stock.targetWeight/100)
+      const ticker = stock.ticker
+      stock.numberDummyShares = bucketHistoricalPrices[ticker] ? amountInvested/(bucketHistoricalPrices[ticker][bucketHistoricalPrices[ticker].length - 1].close) : 'FAILSAFE-VAULE';
+      
+      if (typeof bucketHistoricalPrices[ticker] !== 'undefined') {
+        bucketHistoricalPrices[ticker].forEach((price) => {
+          price.value = stock.numberDummyShares * price.close
+          price.date = new Date(price.date).getTime()
+          valueArray.push(price)
+        })
+    }
+    });
+
+    const res = Array.from(valueArray.reduce(
+      (m, {date, value}) => m.set(date, (m.get(date) || 0) + value), new Map
+    ), ([date, value]) => ({date, value}));
+    // console.log(res);
+
+    var outputData = res.map( Object.values );
+    const gdata = outputData.reverse()
+    setGData(gdata)
+
+    // console.log(valueArray)
+    // for (const [key, value] of Object.entries(res)) {
+    //   const map = value.map((entry)=>([entry.date, entry.value]));
+    //   return map.reverse()
+    // }
+      
   }, [bucketData]);
 
   const handleOnClickBucketShare = () => {
@@ -249,35 +282,7 @@ const Portfolio = (props)=> {
 
   const xCallback = (value) => {console.log(value)};
 
-  const getBucketHPrices = () => {
-    let valueArray = []
-    stocks.map(stock => {
-      const amountInvested = 10000 * (stock.targetWeight/100)
-      const ticker = stock.ticker
-      stock.numberDummyShares = bucketHistoricalPrices[ticker] ? amountInvested/(bucketHistoricalPrices[ticker][bucketHistoricalPrices[ticker].length - 1].close) : 'FAILSAFE-VAULE';
-     
-      if (typeof bucketHistoricalPrices[ticker] !== 'undefined') {
-        bucketHistoricalPrices[ticker].forEach((price) => {
-          price.value = stock.numberDummyShares * price.close
-          price.date = new Date(price.date).getTime()
-          valueArray.push(price)
-        })
-    }
-    });
-
-    const res = Array.from(valueArray.reduce(
-      (m, {date, value}) => m.set(date, (m.get(date) || 0) + value), new Map
-    ), ([date, value]) => ({date, value}));
-    // console.log(res);
-
-    var outputData = res.map( Object.values );
-    return outputData.reverse()
-    // console.log(valueArray)
-    // for (const [key, value] of Object.entries(res)) {
-    //   const map = value.map((entry)=>([entry.date, entry.value]));
-    //   return map.reverse()
-    // }
-    }
+  
   
 
   // const getDataForPyramidChart = () => {
@@ -372,12 +377,11 @@ const Portfolio = (props)=> {
                           </div>
                     }
                     {
-                      !isFetchingBucketHistoricalPrices && bucketHistoricalPrices 
+                      !isFetchingBucketHistoricalPrices && bucketHistoricalPrices && gData
 
                         &&
                           <StockChartNew
-                            data={getBucketHPrices()}
-                            passToParent = {xCallback}
+                            data={gData}
                           />
                     }
                    

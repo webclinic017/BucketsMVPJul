@@ -70,7 +70,7 @@ export default class StockChartNew extends Component {
       // }
       },
       rangeSelector: {
-        buttons: [ {
+        buttons: [{
           type: 'day',
           count: 5,
           text: '5d'
@@ -92,8 +92,14 @@ export default class StockChartNew extends Component {
           type: 'year',
           count: 2,
           text: '2y'
-        }],
-        selected: 4
+        },
+        {
+          type: 'year',
+          count: 2,
+          text: ''
+        }
+       ],
+        selected: 5
       },
       series: [{
         name: 'Bucket Value',

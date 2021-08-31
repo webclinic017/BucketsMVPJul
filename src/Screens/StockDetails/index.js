@@ -126,9 +126,9 @@ const Portfolio = (props)=> {
                             </span>
                           </div>
                     }
-                    <span onClick={handleOnClickBucketShare} className="cursor-pointer">
+                    {/* <span onClick={handleOnClickBucketShare} className="cursor-pointer">
                       <img src={ShareIcon} className="mx-4"/>
-                    </span>
+                    </span> */}
                     <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
                   </div>
                 </div>
