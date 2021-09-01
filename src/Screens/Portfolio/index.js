@@ -188,7 +188,7 @@ const Portfolio = (props)=> {
   }, [bucketData]);
 
   useEffect(()=>{
-    if(stocks.length && bucketHistoricalPrices) {
+    if(stocks.length && bucketHistoricalPrices && !isFetchingBucketHistoricalPrices) {
       let valueArray = []
       console.log(bucketHistoricalPrices)
       
@@ -226,7 +226,7 @@ const Portfolio = (props)=> {
       //   return map.reverse()
       // }
     }
-  }, [stocks, bucketHistoricalPrices]);
+  }, [stocks, bucketHistoricalPrices, isFetchingBucketHistoricalPrices]);
 
   const handleOnClickBucketShare = () => {
     setShareModalVisibility(true);
