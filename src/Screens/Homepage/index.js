@@ -53,7 +53,7 @@ const Homepage = (props)=> {
               <div className="my-auto w-full sm:w-full md:w-4/5">
                 <h1 className="text-5xl text-gray-700 font-bold">By Theme</h1>
                 <p className="text-3xl text-gray-500 my-4">Blockchain, AI,  Renewable Energy and more ...</p>
-                <Link to="/browse">
+                <Link to={{pathname: "/browse", state: {type: "theme"}}}>
                   <Button
                     title="Browse"
                     styles={{
@@ -77,7 +77,7 @@ const Homepage = (props)=> {
               <div className="my-auto w-full sm:w-full md:w-4/5">
                 <h1 className="text-5xl text-gray-700 font-bold">General Investing</h1>
                 <p className="text-3xl text-gray-500 my-4">Put your money on autopilot while you focus on the rest</p>
-                <Link to="/browse">
+                <Link to={{pathname: "/browse", state: {type: "general investing"}}}>
                   <Button
                     title="Browse"
                     styles={{
@@ -111,7 +111,7 @@ const Homepage = (props)=> {
               <div className="my-auto w-full sm:w-full md:w-4/5">
                 <h1 className="text-5xl text-gray-700 font-bold">Retirement Planning</h1>
                 <p className="text-3xl text-gray-500 my-4">High dividend yielding and target retirement buckets</p>
-                <Link to="/browse">
+                <Link to={{pathname: "/browse", state: {type: "retirement planning"}}}>
                   <Button
                     title="Browse"
                     styles={{
@@ -135,7 +135,7 @@ const Homepage = (props)=> {
               <div className="my-auto w-full sm:w-full md:w-4/5">
                 <h1 className="text-5xl text-gray-700 font-bold">Advanced Strategies</h1>
                 <p className="text-3xl text-gray-500 my-4">Smart Beta/Volatility and more</p>
-                <Link to="/browse">
+                <Link to={{pathname: "/browse", state: {type: "advanced strategies"}}}>
                   <Button
                     title="Browse"
                     styles={{

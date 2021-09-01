@@ -25,7 +25,9 @@ const Portfolio = (props)=> {
   const isFetchingBuckets = useSelector(state => state.bucket.isFetching);
 
   useEffect(()=>{
-    dispatch(getUserBuckets());
+    if(!buckets.length) {
+      dispatch(getUserBuckets());
+    }
   }, []);
 
   useEffect(()=>{

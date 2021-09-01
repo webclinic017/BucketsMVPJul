@@ -25,7 +25,9 @@ const Portfolio = (props)=> {
   const isFetchingBuckets = useSelector(state => state.bucket.isFetching);
 
   useEffect(()=>{
-    dispatch(getExpertBuckets());
+    if(!buckets.length) {
+      dispatch(getExpertBuckets());
+    }
   }, []);
 
   useEffect(()=>{
@@ -84,7 +86,7 @@ const Portfolio = (props)=> {
               <div className="block sm:block md:flex justify-between mt-6">
                 <div className="w-full sm:w-full md:w-full lg:w-2/5">
                   {
-                    buckets.map((bucket, index)=>(
+                    buckets.filter((bucket)=>bucket.type.toLowerCase()===props.location.state.type.toLowerCase()).map((bucket, index)=>(
                       <div key={index} onClick={()=>handleOnClickBucket(bucket)} className="flex mt-4 min-w-full items-center cursor-pointer justify-between">
                         <div className="flex items-center">
                           <img className="mx-2 rounded-full w-12 h-12 object-contain" src={bucket.userId===user._id?user.profilePicture:BucketsLogo} />
