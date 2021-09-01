@@ -188,7 +188,12 @@ const Portfolio = (props)=> {
     }
     
     let valueArray = []
-    stocks.map(stock => {
+    console.log(bucketHistoricalPrices)
+    
+    stocks.map(stock => { 
+      console.log(stock)
+      console.log(stock.targetWeight)
+      if (stock.targetWeight>0){
       const amountInvested = 10000 * (stock.targetWeight/100)
       const ticker = stock.ticker
       stock.numberDummyShares = bucketHistoricalPrices[ticker] ? amountInvested/(bucketHistoricalPrices[ticker][bucketHistoricalPrices[ticker].length - 1].close) : 'FAILSAFE-VAULE';
@@ -200,7 +205,9 @@ const Portfolio = (props)=> {
           valueArray.push(price)
         })
     }
-    });
+    }
+    } 
+      );
 
     const res = Array.from(valueArray.reduce(
       (m, {date, value}) => m.set(date, (m.get(date) || 0) + value), new Map
@@ -208,7 +215,8 @@ const Portfolio = (props)=> {
     // console.log(res);
 
     var outputData = res.map( Object.values );
-    const gdata = outputData.reverse()
+    const gdata = outputData.reverse();
+    console.log(gdata);
     setGData(gdata)
 
     // console.log(valueArray)

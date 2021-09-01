@@ -134,12 +134,12 @@ const getHistoricalStockPrices = (data, onSuccess=()=>{}, onError=()=>{}) => (
         onSuccess();
       } else {
         dispatch(setIsFetchingHistoricalStockPrices(false));
-        showToast(response.data.message, "error");
+        // showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
       dispatch(setIsFetchingHistoricalStockPrices(false));
-      showToast(error.message, "error");
+      // showToast(error.message, "error");
       onError();
     });
   }
