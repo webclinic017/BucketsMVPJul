@@ -11,11 +11,11 @@ export default function index({beta, ...props}) {
       <GaugeChart id="gauge-chart1"
         nrOfLevels={10}
         colors={[theme.colors.green, theme.colors.lightPurple, theme.colors.red]}
-        percent={beta/4}
+        percent={beta/3}
         hideText={true}
         arcPadding={0.02}
       />
-
+      <p className="text-l mt-12 font-semibold text-gray-500 my-5 text-center">This portfolio is {Math.abs(((beta-1)*100).toFixed(0))}% {beta>1? "more" : "less"} volatile than the S&P500</p>
 
 
     </div>

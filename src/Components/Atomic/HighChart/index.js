@@ -45,7 +45,7 @@ export default class StockChartNew extends Component {
         selected: 1
       },
       title: {
-        text: `If you invested $10,000 in this bucket:`
+        text: `If you invested $10,000 in this bucket a year ago:`
       },
       chart: {
         height: 500,
@@ -88,11 +88,7 @@ export default class StockChartNew extends Component {
           count: 1,
           text: '1y'
         },
-        {
-          type: 'year',
-          count: 2,
-          text: '2y'
-        },
+       
         {
           type: 'year',
           count: 2,
