@@ -193,21 +193,20 @@ const Portfolio = (props)=> {
       console.log(bucketHistoricalPrices)
       
       bucketData.stocks.map(stock => { 
-        console.log(stock)
-        console.log(stock.targetWeight)
-        if (stock.targetWeight>0){
-          const amountInvested = 10000 * (stock.targetWeight/100)
-          const ticker = stock.ticker
-          stock.numberDummyShares = bucketHistoricalPrices[ticker] ? amountInvested/(bucketHistoricalPrices[ticker][bucketHistoricalPrices[ticker].length - 1].close) : 'FAILSAFE-VAULE';
-          
-          if (typeof bucketHistoricalPrices[ticker] !== 'undefined') {
-            bucketHistoricalPrices[ticker].forEach((price) => {
-              price.value = stock.numberDummyShares * price.close
-              price.date = new Date(price.date).getTime()
-              valueArray.push(price)
-            })
-          }
-        }
+      console.log(stock)
+      console.log(stock.targetWeight)
+      const amountInvested = 10000 * (stock.targetWeight/100)
+      const ticker = stock.ticker
+      stock.numberDummyShares = bucketHistoricalPrices[ticker] ? amountInvested/(bucketHistoricalPrices[ticker][bucketHistoricalPrices[ticker].length - 1].close) : 'FAILSAFE-VAULE';
+      
+      if (typeof bucketHistoricalPrices[ticker] !== 'undefined') {
+        bucketHistoricalPrices[ticker].forEach((price) => {
+          price.value = stock.numberDummyShares * price.close
+          price.date = new Date(price.date).getTime()
+          valueArray.push(price)
+        })
+      }
+        
       });
 
       const res = Array.from(valueArray.reduce(
