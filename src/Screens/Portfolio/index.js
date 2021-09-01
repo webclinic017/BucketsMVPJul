@@ -434,7 +434,7 @@ const Portfolio = (props)=> {
                           &&
                             <PieChart
                               text="Sector Breakdown"
-                              data={Object.entries(bucketSectorWeights).map(([key, value], i)=>({title: key, value, color: colors[i]}))}
+                              data={Object.entries(bucketSectorWeights).map(([key, value], i)=>({value, tooltip: key, color: colors[i]}))}
                               total={Object.values(bucketSectorWeights).reduce((total, value)=>(total+value), 0)}
                             />
                       }
