@@ -115,7 +115,7 @@ const Homepage = (props)=> {
         </div>
           
         
-        <div className="flex-grow bg-gray-200"><h1><FeaturesBlocks/></h1></div>
+        <div className="flex-grow bg-white"><h1><FeaturesBlocks/></h1></div>
         <div className="flex px-11 py-6 w-full justify-between">
           <h3 className="text-3xl text-gray-700 font-bold">Buckets Investing</h3>
           <h3 className="text-2xl text-gray-700 font-bold mx-4  "> Contact: info@bucketsinvesting.com</h3>
