@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import LoginPic from "../../Assets/loginpic.jpg";
 import MenuIcon from "../../Assets/Icons/menu.png";
+import gif1 from "../../Assets/gifs/finalgif.gif";
 
 import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import GoogleLogin from 'react-google-login';
@@ -43,16 +44,17 @@ const Login = (props)=> {
 
   return(
     <>
-      <div className="flex ">
-        <div className="p-11 w-2/3" style={{ backgroundImage: `url(${LoginPic})`, height: '100vh', backgroundSize: 'cover'}}>
+      <div className="bg-acapulco-500"> 
+      <div className="flex bg-acapulco-500">
+        <div className="p-11 w-2/3 bg-acapulco-500" style={{ backgroundImage: `url(${gif1})`, height: '50vh', backgroundSize: 'cover'}}>
           <h3 className="text-5xl text-gray-700 font-bold">Buckets</h3>
         </div>
-        <div className="p-11 w-1/3 " >
-          <div className="flex items-center justify-end">
+        <div className="p-11 w-1/3 bg-acapulco-500" >
+          <div className="flex items-center justify-end bg-acapulco-500">
             <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
           </div>
-          <div className="flex h-full justify-center align-center">
-            <div className="my-auto">
+          <div className="bg-acapulco-500 flex h-full justify-center align-center">
+            <div className="my-auto bg-acapulco-500">
               <GoogleLogin
                   clientId="331803921206-00bmrs4p2qrbldscela5lv18nk5n849m.apps.googleusercontent.com"
                   buttonText="Sign in with Google"
@@ -65,6 +67,10 @@ const Login = (props)=> {
           </div>
         </div>
       </div>
+      
+      
+      </div>
+      
     </>
   );
 }
