@@ -29,7 +29,7 @@ function FeaturesBlocks() {
                 </svg>
               
 
-                <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Browse Pre-Made Buckets</h4>
+                <h4 className="text-xl  font-bold leading-snug tracking-tight mb-1">Browse Pre-Made Buckets</h4>
                 <p className="text-gray-700 text-center">The one stop shop for diversification and new ideas</p>
               </div>
             </Link>
@@ -48,7 +48,7 @@ function FeaturesBlocks() {
                       </svg>
                   </g>
                 </svg> */}
-                <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Create Buckets</h4>
+                <h4 className="text-xl  font-bold leading-snug tracking-tight mb-1">Create Buckets</h4>
                 <p className="text-gray-700 text-center">Its as simple as creating a playlist of songs or a to-do list</p>
               </div>
             </Link>
@@ -68,7 +68,7 @@ function FeaturesBlocks() {
                     </g>
                   </g>
                 </svg> */}
-                <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Analyze Portfolios</h4>
+                <h4 className="text-xl  font-bold leading-snug tracking-tight mb-1">Analyze Portfolios</h4>
                 <p className="text-gray-700 text-center">Real time risk return metrics generated so you can invest with confidence</p>
               </div>
             </Link>
