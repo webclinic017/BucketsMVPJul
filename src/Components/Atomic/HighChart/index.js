@@ -4,6 +4,9 @@ import moment from 'moment'
 import theme from '../../../Theme'
 
 export default class StockChartNew extends Component {
+
+
+
   render() {
     const options = {style: 'currency', currency: 'USD'};
     const numberFormat = new Intl.NumberFormat('en-US', options);
@@ -60,18 +63,17 @@ export default class StockChartNew extends Component {
       },
       xAxis: {
         type: 'date',
-      //   events: {
+        events: {
        
-      //     afterSetExtremes: function(e) {
-      //         // console.log(e.min)
-      //         // console.logthis.props)
-      //         this.props.passToParent(e.min);
-      //     }
-      // }
+          afterSetExtremes: function(e) {
+              console.log(e.min);
+              this.props.getEMinValue(e.min);
+          }
+      }
       },
       rangeSelector: {
         buttons: [{
-          type: 'day',
+          type: 'day', 
           count: 5,
           text: '5d'
         }, {

@@ -390,6 +390,7 @@ const Portfolio = (props)=> {
 
                         &&
                           <StockChartNew
+                            getEMinValue={(eMin)=>alert(eMin)}
                             data={gData}
                           />
                     }
