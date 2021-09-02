@@ -89,13 +89,9 @@ export default class StockChartNew extends Component {
           text: '1y'
         },
        
-        {
-          type: 'year',
-          count: 2,
-          text: ''
-        }
+        
        ],
-        selected: 5
+        selected: 4
       },
       series: [{
         name: 'Bucket Value',

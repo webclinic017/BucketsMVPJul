@@ -49,7 +49,7 @@ const EditableStockRow = ({stockName, onChangeStockName, onStockPercentIncrement
       </div>
       <div className="flex items-center justify-between">
         <img onClick={onStockPercentDecrement} className="w-5 h-5 cursor-pointer object-contain" src={MinusIcon} />
-        <Input className="mx-4 w-12 text-center"
+        <Input className="mx-2 w-14 text-center"
                 value={+stockPercent ? +stockPercent : +0}
                 onChange={(e)=>setStockPercent(e.target.value)}
                 placeholder=""

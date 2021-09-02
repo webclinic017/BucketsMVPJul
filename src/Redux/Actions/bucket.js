@@ -109,12 +109,12 @@ const getBucketCurrentValue = (data, onSuccess=()=>{}, onError=()=>{}) => (
           type: SET_BUCKET_VALUE,
           payload: null
         });
-        showToast(response.data.message, "error");
+        // showToast(response.data.message, "error");
         onError();
       }
     }).catch((error)=>{
       dispatch(setIsFetchingBucketValue(false));
-      showToast(error.message, "error");
+      // showToast(error.message, "error");
       onError();
     });
   }
