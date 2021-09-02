@@ -7,13 +7,13 @@ function FeaturesBlocks() {
 
       {/* Section background (needs .relative class on parent and next sibling elements) */}
       <div className="absolute inset-0 top-1/2 md:mt-24 lg:mt-0 bg-bpurple-600 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute left-0 right-0 bottom-0 m-auto w-px p-px h-20 bg-gray-200 transform translate-y-1/2"></div>
+      <div className="absolute left-0 right-0 bottom-0 m-auto w-px p-px h-20 bg-white transform translate-y-1/2"></div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         <div className="py-12 md:py-20">
 
           {/* Section header */}
-          <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20 bg-gray-200">
+          <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20 bg-white">
             <h2 className="sm: text-3xl text-gray-700 font-bold m-5 md:text-5xl text-gray-700 font-bold m-5">How Buckets works</h2>
             <p className="text-2xl text-gray-600">Buy investment baskets created by you or experts within a few clicks at no cost, with securities bought directly in to your brokerage account</p>
           </div>

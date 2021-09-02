@@ -80,7 +80,7 @@ const Homepage = (props)=> {
           <title>Buckets Investing</title>
           <meta name="description" content= "Build a smart portfolio in minutes with no management fees. Customers can create smart investment baskets on Buckets in minutes to automate investing (the wrapper function for your brokerage). A bucket is a basket of exchange traded securities, similar to ETFs and mutual funds, that can be bought or sold directly from your brokerage and can be created by you, your friends or “expert” investors.Investing is all about risk. There is no way around this fact. The more risk you take, the higher the returns. A bucket is a basket of exchange traded securities similar to ETFs and mutual funds, that can be bought or sold directly from your brokerage and can be created by you, your friends or “expert” investors. Bucket is a casual term that portfolio managers and investors frequently use to allude to a cluster of assets. Customers can browse and buy pre-made portfolios created by other users or “experts”. Our purpose is to provide a more effective alternative to traditional investment funds such as ETFs and mutual funds and become the creator economy for stock and cryptocurrency portfolios. Using a bucket strategy can help you control your emotions and prevent you from selling investments out of fear. "/>
         </Helmet>
-        <div className="flex px-11 py-6 w-full justify-between fixed bg-gray-200">
+        <div className="z-40 flex px-11 py-6 w-full justify-between fixed bg-white">
           <h3 className="text-5xl text-gray-700 font-bold">Buckets</h3>
           <div className="flex items-center justify-between">
             <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
@@ -93,7 +93,7 @@ const Homepage = (props)=> {
           <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
             <div className="my-auto w-full sm:w-full md:w-4/5">
               <h1 className="sm: text-3xl text-gray-700 font-bold m-5 md:text-5xl text-gray-700 font-bold m-5  ">The Best Alternative to ETFs and Mutual Funds</h1>
-              <p className="sm: text-xl text-gray-600 m-5 md: text-3xl text-gray-600 m-5">Completely customizable with no management fees. Invest like the pros today! </p>
+              <p className="sm: text-xl text-gray-600 m-5 md: text-2xl text-gray-600 m-5">Completely customizable with no management fees. Invest like the pros today! </p>
               <Link to="/home" >
                 <Button
                   title="Explore"
