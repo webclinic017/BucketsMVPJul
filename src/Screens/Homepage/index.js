@@ -90,7 +90,7 @@ const Homepage = (props)=> {
                 </Link>
               </div>
             </div>
-            <div style={{backgroundImage: `url(${Yoga})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex items-end">
+            <div style={{backgroundImage: `url(${Yoga})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 mx-4 flex items-end">
               <RSLink activeClass="active" to="section3" spy={true} smooth={true} offset={0} duration={500} delay={300}>
                 {/* <img src={ArrowDownCircle} className="w-8 h-8 mb-8 cursor-pointer" /> */}
               </RSLink>
@@ -102,13 +102,13 @@ const Homepage = (props)=> {
             style={{ backgroundRepeat: "no-repeat", backgroundPosition: "right bottom", backgroundSize: '30% 30%'}}
             className="flex flex-col sm:flex-col md:flex-row justify-between h-screen"
           >
-            <div style={{backgroundImage: `url(${Victory})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex flex-col items-end justify-end">
+            <div style={{backgroundImage: `url(${Victory})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex mx-4 flex-col items-end justify-end">
               <RSLink activeClass="active" to="section4" spy={true} smooth={true} offset={0} duration={500} delay={300}>
                 {/* <img src={ArrowDownCircle} className="w-8 h-8 mb-8 cursor-pointer" /> */}
               </RSLink>
             </div>
             <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
-              <div className="my-auto w-full sm:w-full md:w-4/5">
+              <div className="my-auto mx-4 w-full sm:w-full md:w-4/5">
                 <h1 className="text-5xl text-gray-700 font-bold">Retirement Planning</h1>
                 <p className="text-3xl text-gray-500 my-4">High dividend yielding and target retirement buckets</p>
                 <Link to={{pathname: "/browse", state: {type: "retirement planning"}}}>
@@ -132,7 +132,7 @@ const Homepage = (props)=> {
             className="flex flex-col-reverse sm:flex-col-reverse md:flex-row justify-between h-screen"
           >
             <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
-              <div className="my-auto w-full sm:w-full md:w-4/5">
+              <div className="my-auto mx-4 w-full sm:w-full md:w-4/5">
                 <h1 className="text-5xl text-gray-700 font-bold">Advanced Strategies</h1>
                 <p className="text-3xl text-gray-500 my-4">Smart Beta/Volatility and more</p>
                 <Link to={{pathname: "/browse", state: {type: "advanced strategies"}}}>
@@ -148,7 +148,7 @@ const Homepage = (props)=> {
                 </Link>
               </div>
             </div>
-            <div style={{backgroundImage: `url(${Science})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 flex items-end">
+            <div style={{backgroundImage: `url(${Science})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full md:w-full lg:w-3/6 mx-4 flex items-end">
               <RSLink activeClass="active" to="section5" spy={true} smooth={true} offset={0} duration={500} delay={300}>
                 {/* <img src={ArrowDownCircle} className="w-8 h-8 mb-8 cursor-pointer" /> */}
               </RSLink>
@@ -166,7 +166,7 @@ const Homepage = (props)=> {
               </RSLink>
             </div>
             <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
-              <div className="my-auto w-full sm:w-full md:w-4/5">
+              <div className="my-auto mx-4 w-full sm:w-full md:w-4/5">
                 <h1 className="text-5xl text-gray-700 font-bold">Create Your Own</h1>
                 <p className="text-3xl text-gray-500 my-4">Create your own investment bucket and share it!</p>
                 <Link to="/create-bucket">
