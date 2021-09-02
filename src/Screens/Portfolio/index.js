@@ -50,6 +50,7 @@ const Portfolio = (props)=> {
   const [isAlpacaModalVisible, setAlpacaModalVisibility] = useState(false);
   const [isBuySellModalVisible, setBuySellModalVisibility] = useState(false);
   const [bucketCostBasis, setBucketCostBasis] = useState(0);
+  const [percentReturn, setPercentReturn] = useState(null);
   const [bucketBeta, setBucketBeta] = useState(null);
   const [bucketSize, setBucketSize] = useState(null);
   const [gData, setGData] = useState(null);
@@ -216,7 +217,7 @@ const Portfolio = (props)=> {
 
       var outputData = res.map( Object.values );
       const gdata = outputData.reverse();
-      console.log(gdata);
+      console.log({gdata});
       setGData(gdata)
 
       // console.log(valueArray)
@@ -304,6 +305,13 @@ const Portfolio = (props)=> {
   //   return response;
   // }
 
+  const calculatePercentReturn = (eMin, eMax) => {
+    eMax = gData.filter((entry)=>entry[0]===eMax)[0][1];
+    eMin = gData.filter((entry)=>entry[0]===eMin)[0][1];
+    const percentRet = (((eMax-eMin)/eMin)*100).toFixed(0);
+    setPercentReturn(percentRet);
+  }
+
   return(
     <>
       <div className="p-11 flex flex-col min-h-screen">
@@ -387,10 +395,10 @@ const Portfolio = (props)=> {
                     }
                     {
                       !isFetchingBucketHistoricalPrices && bucketHistoricalPrices && gData
-
                         &&
                           <StockChartNew
-                            getEMinValue={(eMin)=>alert(eMin)}
+                            percentReturn={percentReturn}
+                            calculatePercentReturn={calculatePercentReturn}
                             data={gData}
                           />
                     }
