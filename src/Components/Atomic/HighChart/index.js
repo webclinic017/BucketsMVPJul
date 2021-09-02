@@ -4,13 +4,13 @@ import moment from 'moment';
 import theme from '../../../Theme';
 
 export default class StockChartNew extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
-  state = {
-    percentReturn: null
-  };
+  // state = {
+  //   percentReturn: null
+  // };
 
   render() {
     const options = {style: 'currency', currency: 'USD'};
@@ -53,7 +53,7 @@ export default class StockChartNew extends Component {
         selected: 1
       },
       title: {
-        text: `If you invested $10,000 in this bucket a year ago:`
+        text: `If you invested $10,000 in this bucket:`
       },
       chart: {
         height: 500,
@@ -69,17 +69,17 @@ export default class StockChartNew extends Component {
       xAxis: {
         type: 'date',
         events: {
-          afterSetExtremes: (e) => {
-            const eMax = this.props.data.filter((entry)=>entry[0]===e.max)[0];
-            const eMin = this.props.data.filter((entry)=>entry[0]===e.min)[0];
-            console.log({data: this.props.data});
-            console.log({eMax: e.max, eMin: e.min});
-            console.log({filteredEMax: eMax, filteredEMin: eMin});
-            if(eMax && eMin) {
-              const percentReturn = (((eMax[1]-eMin[1])/eMin[1])*100).toFixed(0);
-              this.setState({percentReturn});
-            }
-          }
+          // afterSetExtremes: (e) => {
+          //   const eMax = this.props.data.filter((entry)=>entry[0]===e.max)[0];
+          //   const eMin = this.props.data.filter((entry)=>entry[0]===e.min)[0];
+          //   console.log({data: this.props.data});
+          //   console.log({eMax: e.max, eMin: e.min});
+          //   console.log({filteredEMax: eMax, filteredEMin: eMin});
+          //   if(eMax && eMin) {
+          //     const percentReturn = (((eMax[1]-eMin[1])/eMin[1])*100).toFixed(0);
+          //     this.setState({percentReturn});
+          //   }
+          // }
         }
       },
       rangeSelector: {
@@ -121,13 +121,13 @@ export default class StockChartNew extends Component {
     // const xAxis = StockChartNew.xAxis[0]
     return (
       <div>
-        {
+        {/* {
           this.state.percentReturn
             &&
               <center>
                 <b>Percent Return: </b>{this.state.percentReturn}%
               </center>
-        }
+        } */}
         <ReactHighcharts config = {configPrice}/>
       </div>
     )
