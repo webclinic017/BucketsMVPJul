@@ -6,7 +6,7 @@
 //make ui -
 
 import React, {useState} from 'react';
-import BucketsLogo from "../../../Assets/bucketslogo.png";
+import BucketsLogo from "../../../Assets/buckets_logo.png";
 import PlusIcon from "../../../Assets/plus.png";
 import MinusIcon from "../../../Assets/minus.png";
 import DropdownInput from "../DropdownInput";
