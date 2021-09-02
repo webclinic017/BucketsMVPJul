@@ -69,7 +69,7 @@ const BuySell = forwardRef(({open, onClose, bucketId, stocks, ...props}, ref) =>
                 <div
                   className="flex items-center justify-center mt-8 mb-4"
                 >
-                  <span className="font-bold text-lg">Cash available to trade: $2000</span>
+                  <span className="font-bold text-lg">Coming soon ...</span>
                 </div>
                 <Input
                   className="w-32 text-center font-bold text-xl shadow-lg"
@@ -79,13 +79,13 @@ const BuySell = forwardRef(({open, onClose, bucketId, stocks, ...props}, ref) =>
                 <Button
                   title="Buy"
                   className="mt-6 mb-4 w-1/2"
-                  onClick={handleOnClickBuy}
+                  // onClick={handleOnClickBuy}
                 />
                 <Button
                   secondary
                   title="Sell"
                   className="w-1/2"
-                  onClick={handleOnClickSell}
+                  // onClick={handleOnClickSell}
                 />
               </>
             :
