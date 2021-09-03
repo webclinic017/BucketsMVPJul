@@ -83,11 +83,7 @@ export default class StockChartNew extends Component {
         }
       },
       rangeSelector: {
-        buttons: [{
-          type: 'day', 
-          count: 5,
-          text: '5d'
-        }, {
+        buttons: [ {
           type: 'month',
           count: 1,
           text: '1m'
@@ -101,6 +97,16 @@ export default class StockChartNew extends Component {
           count: 1,
           text: '1y'
         },
+        {
+          type: 'year',
+          count: 2,
+          text: '2y'
+        },
+        {
+          type: 'year',
+          count: 5,
+          text: '5y'
+        }
        
         
        ],

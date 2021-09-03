@@ -205,6 +205,7 @@ const Portfolio = (props)=> {
       stock.numberDummyShares = bucketHistoricalPrices[ticker] ? amountInvested/(bucketHistoricalPrices[ticker][bucketHistoricalPrices[ticker].length - 1].close) : 'FAILSAFE-VAULE';
       
       if (typeof bucketHistoricalPrices[ticker] !== 'undefined') {
+        console.log(bucketHistoricalPrices[ticker])
         bucketHistoricalPrices[ticker].forEach((price) => {
           price.value = stock.numberDummyShares * price.close
           price.date = new Date(price.date).getTime()
