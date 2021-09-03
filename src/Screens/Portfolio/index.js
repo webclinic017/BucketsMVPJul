@@ -36,6 +36,8 @@ import theme from "../../Theme";
 import stocksData from "../../Data/assets.json";
 import {Helmet} from "react-helmet";
 import Footer from "../../Components/Molecular/Footer"; 
+import {ChatWidget} from "@papercups-io/chat-widget";
+
 
 
 
@@ -491,6 +493,30 @@ const Portfolio = (props)=> {
               onConfettiComplete={()=>setShowConfetti(false)}
             />
       }
+      <ChatWidget
+          accountId="00add59e-ee51-4788-b40a-371df7820b23"
+          title="Welcome to Buckets Investing"
+          subtitle="What's the #1 thing we could do to improve Buckets for you? 😊"
+          primaryColor="#7eb5a6"
+          greeting=""
+          awayMessage=""
+          newMessagePlaceholder="Start typing..."
+          showAgentAvailability={false}
+          agentAvailableText="We're online right now!"
+          agentUnavailableText="We're away at the moment."
+          requireEmailUpfront={false}
+          iconVariant="outlined"
+          baseUrl="https://app.papercups.io"
+          // Optionally include data about your customer here to identify them
+          customer={{
+            name: user?.firstName,
+            email: user?.email,
+            external_id: user?._id,
+            metadata: {
+              plan: "premium"
+            }
+          }}
+        />
     </>
   );
 }

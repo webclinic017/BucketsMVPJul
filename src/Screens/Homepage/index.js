@@ -17,6 +17,7 @@ import theme from '../../Theme';
 import {Helmet} from "react-helmet";
 import Footer from "../../Components/Molecular/Footer"; 
 import SmoothList from 'react-smooth-list'
+import {ChatWidget} from "@papercups-io/chat-widget";
 
 
 
@@ -194,6 +195,30 @@ const Homepage = (props)=> {
         </Element>
         <div className="flex-grow bg-white mt-12"><h1><Footer/></h1></div>
       </div>
+      <ChatWidget
+          accountId="00add59e-ee51-4788-b40a-371df7820b23"
+          title="Welcome to Buckets Investing"
+          subtitle="What's the #1 thing we could do to improve Buckets for you? 😊"
+          primaryColor="#7eb5a6"
+          greeting=""
+          awayMessage=""
+          newMessagePlaceholder="Start typing..."
+          showAgentAvailability={false}
+          agentAvailableText="We're online right now!"
+          agentUnavailableText="We're away at the moment."
+          requireEmailUpfront={false}
+          iconVariant="outlined"
+          baseUrl="https://app.papercups.io"
+          // Optionally include data about your customer here to identify them
+          // customer={{
+          //   name: __CUSTOMER__.name,
+          //   email: __CUSTOMER__.email,
+          //   external_id: __CUSTOMER__.id,
+          //   metadata: {
+          //     plan: "premium"
+          //   }
+          // }}
+        />
     </>
   );
 }
