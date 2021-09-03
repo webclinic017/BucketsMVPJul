@@ -17,6 +17,7 @@ import ForwardArrow from "../../Assets/Icons/forward.png";
 import { showToast } from "../../Utils";
 import { Link } from 'react-router-dom';
 import Footer from "../../Components/Molecular/Footer"; 
+import SmoothList from 'react-smooth-list'
 
 
 
@@ -164,6 +165,7 @@ const Portfolio = (props)=> {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 ">
         <div className="py-12 md:py-20 flex"> 
           <div className="max-w-sm mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start md:max-w-2xl lg:max-w-none"></div>
+            <SmoothList>
             <Link to="/home">
               <div className="m-4 relative flex flex-col items-center p-6 bg-tuscany-400 rounded shadow-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -173,8 +175,10 @@ const Portfolio = (props)=> {
                 <p className="text-gray-700 text-center">The one stop shop for diversification and new ideas</p>
               </div>
             </Link>
+            </SmoothList>
 
             {/* 2nd item */}
+            <SmoothList>
             <Link to="/create-bucket">
               <div className="m-4 relative flex flex-col items-center p-6 bg-tuscany-400 rounded shadow-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -184,6 +188,7 @@ const Portfolio = (props)=> {
                 <p className="text-gray-700 text-center">Its as simple as creating a playlist of songs or a to-do list</p>
               </div>
             </Link>
+            </SmoothList>
           </div>
           </div>
           <div className="flex-grow bg-white mt-12"><h1><Footer/></h1></div>

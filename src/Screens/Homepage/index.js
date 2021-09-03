@@ -16,6 +16,8 @@ import Finances from "../../Assets/backgrounds/Finances.png";
 import theme from '../../Theme';
 import {Helmet} from "react-helmet";
 import Footer from "../../Components/Molecular/Footer"; 
+import SmoothList from 'react-smooth-list'
+
 
 
 const Homepage = (props)=> {
@@ -41,6 +43,7 @@ const Homepage = (props)=> {
             <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
           </div>
         </div>
+        <SmoothList>
         <Element name="section1" className="element">
           <div
             style={{ backgroundRepeat: "no-repeat", backgroundPosition: "right bottom", backgroundSize: '30% 30%'}}
@@ -70,6 +73,8 @@ const Homepage = (props)=> {
             </div>
           </div>
         </Element>
+        </SmoothList>
+        <SmoothList>
         <Element name="section2" className="element">
           <div
             style={{ backgroundRepeat: "no-repeat", backgroundPosition: "left bottom", backgroundSize: '30% 30%'}}
@@ -99,6 +104,7 @@ const Homepage = (props)=> {
             </div>
           </div>
         </Element>
+        </SmoothList>
         <Element name="section3" className="element">
           <div
             style={{ backgroundRepeat: "no-repeat", backgroundPosition: "right bottom", backgroundSize: '30% 30%'}}
