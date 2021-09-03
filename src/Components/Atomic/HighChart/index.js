@@ -63,9 +63,9 @@ export default class StockChartNew extends Component {
         enabled: false
       },
 
-      legend: {
-        enabled: true
-      },
+      // legend: {
+      //   enabled: true
+      // },
       xAxis: {
         type: 'date',
         events: {
@@ -83,6 +83,7 @@ export default class StockChartNew extends Component {
         }
       },
       rangeSelector: {
+        inputEnabled : false,
         buttons: [ {
           type: 'month',
           count: 1,
