@@ -15,6 +15,8 @@ import MenuIcon from "../../Assets/Icons/menu.png";
 import BucketsLogo from "../../Assets/buckets_logo.png";
 import ForwardArrow from "../../Assets/Icons/forward.png";
 import { showToast } from "../../Utils";
+import Footer from "../../Components/Molecular/Footer"; 
+
 
 const Portfolio = (props)=> {
   const dispatch = useDispatch();
@@ -126,8 +128,11 @@ const Portfolio = (props)=> {
                   <ProgressBar color={theme.colors.red} month="February" value={613} progress={0.8} />
                   <ProgressBar color={theme.colors.orange} month="March" value={613} progress={0.7} /> */}
                 </div>
+                
+
               </div>
         }
+        <div className="flex-grow bg-white mt-24"><h1><Footer/></h1></div>
       </div>
       <ShareBucketPopup
         open={isShareModalVisible}

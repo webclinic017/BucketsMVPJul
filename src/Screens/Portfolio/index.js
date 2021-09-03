@@ -35,6 +35,8 @@ import BuySellPopup from "../../Components/Molecular/Popups/BuySell";
 import theme from "../../Theme";
 import stocksData from "../../Data/assets.json";
 import {Helmet} from "react-helmet";
+import Footer from "../../Components/Molecular/Footer"; 
+
 
 
 const colors = ["#5AE579", "#FFBA69", "#FF708B", "#8676FF", "#F0008B", "#424242", "#90E500", "#993874", "#383874", "#FFD700", "#a0a0a0"]
@@ -463,6 +465,8 @@ const Portfolio = (props)=> {
                 </div>
               </>
         }
+        <div className="flex-grow bg-white mt-12"><h1><Footer/></h1></div>
+
       </div>
       <BuySellPopup
         ref={buySellPopupRef}

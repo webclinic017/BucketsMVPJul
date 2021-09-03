@@ -15,6 +15,8 @@ import Science from "../../Assets/backgrounds/Science.png";
 import Finances from "../../Assets/backgrounds/Finances.png";
 import theme from '../../Theme';
 import {Helmet} from "react-helmet";
+import Footer from "../../Components/Molecular/Footer"; 
+
 
 const Homepage = (props)=> {
   const dispatch = useDispatch();
@@ -184,6 +186,7 @@ const Homepage = (props)=> {
             </div>
           </div>
         </Element>
+        <div className="flex-grow bg-white mt-12"><h1><Footer/></h1></div>
       </div>
     </>
   );

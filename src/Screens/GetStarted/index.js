@@ -16,9 +16,12 @@ import gif1 from "../../Assets/gifs/finalgif.gif";
 // import YellowCliffLeft from "../../Assets/backgrounds/yellow_cliff_left.png";
 import theme from '../../Theme';
 import FeaturesBlocks from "../../Components/Molecular/FeatureBlocks"; 
+import Footer from "../../Components/Molecular/Footer"; 
+
 // import Demo from "../../Components/Molecular/AutomateImages"
 import Newsletter from "../../Components/Molecular/Newsletter"; 
 import { Helmet } from 'react-helmet';
+import SmoothList from 'react-smooth-list';
 // import Frame1 from "../../Assets/backgrounds/Frame1.png";
 // import Frame2 from "../../Assets/backgrounds/Frame2.png";
 // import Frame3 from "../../Assets/backgrounds/Frame3.png";
@@ -86,6 +89,7 @@ const Homepage = (props)=> {
             <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
           </div>
         </div>
+        <SmoothList>
         <div
           // style={{backgroundImage: `url(${YellowCliffLeft})`, backgroundRepeat: "no-repeat", backgroundPosition: "left bottom", backgroundSize: '30% 30%'}}
           className="flex flex-col-reverse sm:flex-col-reverse md:flex-row justify-between h-screen bg-acapulco-500 "
@@ -113,15 +117,17 @@ const Homepage = (props)=> {
           <div style={{backgroundImage: `url(${gif1})`, backgroundPosition: "center", height: '100%', backgroundRepeat: "no-repeat", backgroundSize: 'contain'}} className="w-full sm:w-full mt-3 mb-3 md:w-full lg:w-3/6 flex items-end">
           </div>
         </div>
+        </SmoothList>
           
         
         <div className="flex-grow bg-white"><h1><FeaturesBlocks/></h1></div>
-        <div className="flex px-11 py-6 w-full justify-between">
+        {/* <div className="flex px-11 py-6 w-full justify-between">
           <h3 className="text-3xl text-gray-700 font-bold">Buckets Investing</h3>
           <h3 className="text-2xl text-gray-700 font-bold mx-4  "> Contact: info@bucketsinvesting.com</h3>
           
        
-        </div>
+        </div> */}
+        <div className="flex-grow bg-white mt-12"><h1><Footer/></h1></div>
        
         {/* <div className="flex-grow bg-gray-300"><Demo/></div> */}
         {/* <div className="flex-grow justify-center items-center bg-bred-500 "><h1><Newsletter/></h1></div> bg-acapulco-500 */}

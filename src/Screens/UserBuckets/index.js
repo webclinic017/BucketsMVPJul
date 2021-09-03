@@ -16,6 +16,8 @@ import BucketsLogo from "../../Assets/buckets_logo.png";
 import ForwardArrow from "../../Assets/Icons/forward.png";
 import { showToast } from "../../Utils";
 import { Link } from 'react-router-dom';
+import Footer from "../../Components/Molecular/Footer"; 
+
 
 
 const Portfolio = (props)=> {
@@ -184,6 +186,8 @@ const Portfolio = (props)=> {
             </Link>
           </div>
           </div>
+          <div className="flex-grow bg-white mt-12"><h1><Footer/></h1></div>
+
         </div>
 
       <ShareBucketPopup

@@ -44,7 +44,6 @@ const Login = (props)=> {
 
   return(
     <>
-      <div className="bg-acapulco-500"> 
       <div className="flex bg-acapulco-500">
         <div className="p-11 w-2/3 bg-acapulco-500" style={{ backgroundImage: `url(${gif1})`, height: '50vh', backgroundSize: 'cover'}}>
           <h3 className="text-5xl text-gray-700 font-bold">Buckets</h3>
@@ -69,7 +68,6 @@ const Login = (props)=> {
       </div>
       
       
-      </div>
       
     </>
   );

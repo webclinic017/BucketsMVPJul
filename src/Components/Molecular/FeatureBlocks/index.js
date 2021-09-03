@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SmoothList from 'react-smooth-list'
+
 
 function FeaturesBlocks() {
   return (
@@ -18,9 +20,11 @@ function FeaturesBlocks() {
             <p className="text-2xl text-gray-600">Buy investment baskets created by you or experts within a few clicks at no cost, with securities bought directly in to your brokerage account</p>
           </div>
 
+          <SmoothList>
           {/* Items */}
           <div className="max-w-sm mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start md:max-w-2xl lg:max-w-none">
 
+          
             {/* 1st item */}
             <Link to="/home">
               <div className="relative flex flex-col items-center p-6 bg-tuscany-400 rounded shadow-xl">
@@ -33,6 +37,7 @@ function FeaturesBlocks() {
                 <p className="text-gray-700 text-center">The one stop shop for diversification and new ideas</p>
               </div>
             </Link>
+            
 
             {/* 2nd item */}
             <Link to="/create-bucket">
@@ -132,8 +137,10 @@ function FeaturesBlocks() {
                 <p className="text-gray-700 text-center">Buy once a month or once a quarter into your system</p>
               </div>
             </Link>
+            
 
           </div>
+          </SmoothList>
 
         </div>
       </div>
