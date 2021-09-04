@@ -45,11 +45,14 @@ export default class StockChartNew extends Component {
         series: {
           showInNavigator: true,
           gapSize: 6,
-          color: theme.colors.tuscany
+          color: theme.colors.tuscany,
+          panning: false,
+          dragHandle: false
 
         }
       },
       rangeSelector: {
+        allButtonsEnabled: true,
         selected: 1
       },
       title: {
@@ -57,6 +60,7 @@ export default class StockChartNew extends Component {
       },
       chart: {
         height: 500,
+        panning: false
       },
 
       credits: {
@@ -71,12 +75,16 @@ export default class StockChartNew extends Component {
         events: {
           // afterSetExtremes: (e) => {
           //   const eMax = this.props.data.filter((entry)=>entry[0]===e.max)[0];
-          //   const eMin = this.props.data.filter((entry)=>entry[0]===e.min)[0];
+          //   const mMin = this.props.data.filter((entry)=>entry[0]===e.min)[0];
+          //   const dates = this.props.data.map(x => x[0])
+          //   const eMin = dates.reduce((prev, curr) => Math.abs(curr - mMin) < Math.abs(prev - mMin) ? curr : prev);
+
           //   console.log({data: this.props.data});
           //   console.log({eMax: e.max, eMin: e.min});
-          //   console.log({filteredEMax: eMax, filteredEMin: eMin});
+          //   console.log({filteredEMax: eMax, filteredEMin: this.props.data.filter((entry)=>entry[0]===eMin)[0]})
           //   if(eMax && eMin) {
           //     const percentReturn = (((eMax[1]-eMin[1])/eMin[1])*100).toFixed(0);
+          //     console.log(percentReturn);
           //     this.setState({percentReturn});
           //   }
           // }
@@ -127,17 +135,17 @@ export default class StockChartNew extends Component {
     };
     // const xAxis = StockChartNew.xAxis[0]
     return (
-      <div>
-        {/* {
-          this.state.percentReturn
-            &&
-              <center>
-                <b>Percent Return: </b>{this.state.percentReturn}%
-              </center>
-        } */}
+       <div>
+    {/* //     {
+    //       this.state.percentReturn
+    //         &&
+    //           <center>
+    //             <b>Percent Return: </b>{this.state.percentReturn}%
+    //           </center>
+    //     } */}
         <ReactHighcharts config = {configPrice}/>
-      </div>
-    )
+       </div>
+     )
   }
 }
 

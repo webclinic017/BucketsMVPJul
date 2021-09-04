@@ -58,6 +58,9 @@ const Portfolio = (props)=> {
   const [bucketBeta, setBucketBeta] = useState(null);
   const [bucketSize, setBucketSize] = useState(null);
   const [gData, setGData] = useState(null);
+  const [y1Return, sety1Return] = useState("");
+  const [y2Return, sety2Return] = useState("");
+  const [y5Return, sety5Return] = useState("");
   const [bucketSectorWeights, setBucketSectorWeights] = useState(null);
   const user = useSelector(state => state.auth.user);
   const isFetchingBucket = useSelector(state => state.bucket.isFetchingBucketData);
@@ -225,6 +228,11 @@ const Portfolio = (props)=> {
       console.log({gdata});
       setGData(gdata)
 
+    
+
+      
+
+
       // console.log(valueArray)
       // for (const [key, value] of Object.entries(res)) {
       //   const map = value.map((entry)=>([entry.date, entry.value]));
@@ -268,6 +276,15 @@ const Portfolio = (props)=> {
     })
     return yieldWeight.reduce(function(a,b){return a + b;}, 0).toFixed(2)+"%";
   }
+  // const gety1Return = (gData) => {
+  //   const y1Return = (((gData[gData.length - 1][1] - gData[gData.length - 52][1])/gData[gData.length - 52][1]) * 100).toFixed(0) ;
+  //   return y1Return;
+  //   const y2Return = (((gData[gData.length - 1][1] - gData[gData.length - 52][1])/gData[gData.length - 104][1]) * 100).toFixed(0) ;
+  //   sety2Return(y2Return);
+  //   const y5Return = (((gData[gData.length - 1][1] - gData[gData.length - 52][1])/gData[gData.length - 260][1]) * 100).toFixed(0) ;
+  //   sety5Return(y5Return);
+
+  // }
 
   const getPE = () => {
     const priceEarnings = []
@@ -310,12 +327,12 @@ const Portfolio = (props)=> {
   //   return response;
   // }
 
-  const calculatePercentReturn = (eMin, eMax) => {
-    eMax = gData.filter((entry)=>entry[0]===eMax)[0][1];
-    eMin = gData.filter((entry)=>entry[0]===eMin)[0][1];
-    const percentRet = (((eMax-eMin)/eMin)*100).toFixed(0);
-    setPercentReturn(percentRet);
-  }
+  // const calculatePercentReturn = (eMin, eMax) => {
+  //   eMax = gData.filter((entry)=>entry[0]===eMax)[0][1];
+  //   eMin = gData.filter((entry)=>entry[0]===eMin)[0][1];
+  //   const percentRet = (((eMax-eMin)/eMin)*100).toFixed(0);
+  //   setPercentReturn(percentRet);
+  // }
 
   return(
     <>
@@ -340,7 +357,7 @@ const Portfolio = (props)=> {
                               onClick={handleOnClickBuySell}
                             />
                             <span onClick={handleOnClickBucketShare} className="cursor-pointer">
-                              <img src={ShareIcon} className="mx-4"/>
+                              <img src={ShareIcon} className="sm: mx-6 md: mx-4"/>
                             </span>
                             {
                       user && user._id===bucketData.userId
@@ -403,7 +420,7 @@ const Portfolio = (props)=> {
                         &&
                           <StockChartNew
                             percentReturn={percentReturn}
-                            calculatePercentReturn={calculatePercentReturn}
+                            // calculatePercentReturn={calculatePercentReturn}
                             data={gData}
                           />
                     }
@@ -413,9 +430,25 @@ const Portfolio = (props)=> {
                     <div> <h4 className="text-2xl mt-12 font-bold text-gray-600 my-5">Price to Earnings: {getPE()}</h4></div>
                     <div> <h4 className="text-2xl mt-12 font-bold text-gray-600 my-5">Management Expense: {getME()}</h4></div> */}
                     <div className = "flex-auto justify-items-center m-auto">
-                      <div className = "m-auto" >
+                      <div className = "m-auto flex" >
                         <table className="table-auto ">
+                        <div className="flex">
+                        {/* <tbody className="mx-5">
+                            <tr>
+                              <td><span className="font-semibold text-l text-gray-600">1Y Return</span></td>
+                              <td><span className="font-semibold text-l text-gray-500">{gety1Return()}</span></td>
+                            </tr>
+                            <tr className="bg-emerald-200">
+                              <td><span className="font-semibold text-l text-gray-600">2Y Return</span></td>
+                              <td><span className="font-semibold text-l text-gray-500">{y2Return + "%"}</span></td>
 
+                            </tr>
+                            <tr>
+                              <td><span className="font-semibold text-l text-gray-600 mr-4">5Y Return</span></td>
+                              <td><span className="font-semibold text-l text-gray-500">{y5Return + "%"}</span></td>
+
+                            </tr>
+                          </tbody> */}
                           <tbody>
                             <tr>
                               <td><span className="font-semibold text-l text-gray-600">Yield</span></td>
@@ -432,6 +465,7 @@ const Portfolio = (props)=> {
 
                             </tr>
                           </tbody>
+                          </div>
                         </table>
                       </div>
 
@@ -439,7 +473,7 @@ const Portfolio = (props)=> {
 
 
                     </div>
-                    <div className="block sm:block md:flex flex-auto">
+                    <div className="block sm:block md:flex flex-auto mb-20 ">
 
 
                       {
