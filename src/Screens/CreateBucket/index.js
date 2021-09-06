@@ -112,7 +112,7 @@ const CreateBucket = (props)=> {
       </Helmet>
         <div className="flex justify-between">
           <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between m-4">
             <Button
               title="Save"
               isProcessing={isSavingBucket}

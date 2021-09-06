@@ -226,7 +226,7 @@ const Portfolio = (props)=> {
       var outputData = res.map( Object.values );
       const gdata = outputData.reverse();
       console.log({gdata});
-      setGData(gdata)
+      setGData(gdata.slice(0,-1))
 
     
 
@@ -500,6 +500,7 @@ const Portfolio = (props)=> {
                     </div>
                   </div>
                 </div>
+                
               </>
         }
         <div className="flex-grow bg-white mt-12"><h1><Footer/></h1></div>
