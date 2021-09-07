@@ -127,6 +127,14 @@ const Homepage = (props)=> {
           
         
         <div className="flex-grow bg-white"><h1><FeaturesBlocks/></h1></div>
+        <div className="flex-grow bg-white aspect-w-16 aspect-h-9">
+          <iframe src='https://www.youtube.com/embed/0s_AqIrQ51M'
+                  frameborder='0'
+                  allow='autoplay; encrypted-media'
+                  allowfullscreen
+                  title='video'
+          />
+        </div>
         {/* <div className="flex px-11 py-6 w-full justify-between">
           <h3 className="text-3xl text-gray-700 font-bold">Buckets Investing</h3>
           <h3 className="text-2xl text-gray-700 font-bold mx-4  "> Contact: info@bucketsinvesting.com</h3>
