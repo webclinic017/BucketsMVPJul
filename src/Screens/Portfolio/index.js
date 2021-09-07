@@ -226,7 +226,7 @@ const Portfolio = (props)=> {
       var outputData = res.map( Object.values );
       const gdata = outputData.reverse();
       console.log({gdata});
-      setGData(gdata.slice(0,-1))
+      setGData(gdata.slice(0,-2))
 
     
 
