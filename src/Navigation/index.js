@@ -76,7 +76,7 @@ const Navigation = () => {
         <CustomRoute path='/create-bucket' exact component={CreateBucket} />
         <CustomRoute isProtected path='/edit-bucket/:id' exact component={EditBucket} />
         <CustomRoute isProtected path='/stock/:id' exact component={StockDetails} />
-        <CustomRoute isProtected path='/bucket/:id' exact component={Portfolio} />
+        <CustomRoute path='/bucket/:id' exact component={Portfolio} />
         <CustomRoute isProtected path='/my-buckets' exact component={UserBuckets} />
         <CustomRoute isProtected path='/settings' exact component={Settings} />
         <CustomRoute path='/login' exact component={Login} />
