@@ -6,7 +6,7 @@ import FeaturesSplit from "../Components/sections/FeaturesSplit";
 import Testimonial from "../Components/sections/Testimonial";
 import Cta from "../Components/sections/Cta";
 import Footer from "../Components/layout/Footer";
-
+import Deck from "../Deck";
 const Home = () => {
   return (
     <>

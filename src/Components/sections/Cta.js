@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { SectionProps } from "../../Utils/SectionProps";
 import Input from "../elements/Input";
-
+import Button from "../elements/Button";
 const propTypes = {
   ...SectionProps.types,
   split: PropTypes.bool,
@@ -41,12 +41,17 @@ const Cta = ({
     split && "cta-split"
   );
 
+  const addToWaitingList = () => {
+    console.log("click svg");
+    console.log(document.getElementById("newsletter").value);
+  };
+
   return (
     <section {...props} className={outerClasses}>
       <div className="container">
         <div className={innerClasses}>
           <div className="cta-slogan">
-            <h3 className="m-0">For previewing layouts and visual?</h3>
+            <h3 className="m-0">Add to our waiting list?</h3>
           </div>
           <div className="cta-action">
             <Input
@@ -57,7 +62,13 @@ const Cta = ({
               hasIcon="right"
               placeholder="Your best email"
             >
-              <svg width="16" height="12" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                className="addWaitingList"
+                width="16"
+                height="12"
+                xmlns="http://www.w3.org/2000/svg"
+                onClick={addToWaitingList}
+              >
                 <path
                   d="M9 5H1c-.6 0-1 .4-1 1s.4 1 1 1h8v5l7-6-7-6v5z"
                   fill="#376DF9"

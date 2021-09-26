@@ -78,6 +78,7 @@ const Navigation = () => {
       <Menu />
       <Switch>
         <CustomRoute path="/" exact component={Home} />
+        <CustomRoute path="/demo" exact component={GetStarted} />
         <CustomRoute path="/home" exact component={Homepage} />
         <CustomRoute
           path="/browse"

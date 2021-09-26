@@ -5,6 +5,8 @@ import ButtonGroup from "../elements/ButtonGroup";
 import Button from "../elements/Button";
 import Image from "../elements/Image";
 import Modal from "../elements/Modal";
+import Deck from "../../Deck";
+import { Link } from "react-router-dom";
 
 const propTypes = {
   ...SectionProps.types,
@@ -81,14 +83,11 @@ const Hero = ({
                   >
                     Get started
                   </Button>
-                  <Button
-                    tag="a"
-                    color="dark"
-                    wideMobile
-                    href="https://github.com/cruip/open-react-template/"
-                  >
-                    View on Github
-                  </Button>
+                  <Link to="/demo">
+                    <Button tag="a" color="dark" wideMobile>
+                      View demo
+                    </Button>
+                  </Link>
                 </ButtonGroup>
               </div>
             </div>
@@ -98,7 +97,10 @@ const Hero = ({
             data-reveal-value="20px"
             data-reveal-delay="800"
           >
-            <a
+            <div className="container-sm deckWrapper">
+              <Deck />
+            </div>
+            {/* <a
               data-video="https://player.vimeo.com/video/174002812"
               href="#0"
               aria-controls="video-modal"
@@ -113,7 +115,7 @@ const Hero = ({
                 width={896}
                 height={504}
               />
-            </a>
+            </a> */}
           </div>
           <Modal
             id="video-modal"

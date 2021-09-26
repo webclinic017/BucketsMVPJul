@@ -6,7 +6,7 @@ import Navigation from "./Navigation";
 import React from "react";
 import { Helmet } from "react-helmet";
 // import { Helmet } from "react-helmet";
-
+import Deck from "./Deck";
 const App = () => {
   return (
     <Provider store={store}>
