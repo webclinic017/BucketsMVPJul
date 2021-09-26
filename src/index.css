@@ -4,18 +4,63 @@
 @tailwind utilities;
 
 .bm-burger-button {
-    position: fixed;
-    width: 36px;
-    height: 30px;
-    right: 100px;
-    top: 100px;
-    display: none;
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  right: 100px;
+  top: 100px;
+  display: none;
 }
 
 .rotateImg180 {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.deckWrapper {
+  overscroll-behavior-y: contain;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 50%;
+  width: 100%;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  position: fixed;
+  overflow: hidden;
+  cursor: url("https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png")
+      39 39,
+    auto;
+}
+.cardWrapper {
+  position: absolute;
+  width: 100vw;
+  height: 50vh;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aqua;
+  box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.card {
+  background-color: white;
+  background-size: auto 85%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 22.5vh;
+  max-width: 300px;
+  height: 42.5vh;
+  max-height: 570px;
+  will-change: transform;
+  border-radius: 10px;
+  box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4),
+    0 10px 10px -10px rgba(50, 50, 73, 0.3);
+  box-sizing: border-box;
 }
