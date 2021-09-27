@@ -25,7 +25,7 @@ import { decryptDataString } from "../Utils";
 import { Helmet } from "react-helmet";
 import { scrollToTop } from "react-scroll/modules/mixins/animate-scroll";
 import Home from "../Views/Home";
-import "../Assets/scss/style.scss";
+// import "../Assets/scss/style.scss";
 const CustomRoute = ({ isProtected, path, exact, component }) => {
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);

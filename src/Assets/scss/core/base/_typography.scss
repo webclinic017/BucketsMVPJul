@@ -1,314 +1,353 @@
-html {
-	@include font-size(base);
+.landing {
+  @include font-size(base);
 }
 
-body {
-	color: color(base);
-	font-size: 1rem;
+.landing {
+  color: color(base);
+  font-size: 1rem;
 }
+.landing {
+  @include font-family(base);
+  @include font-weight(base);
+  body,
+  button,
+  input,
+  select,
+  textarea {
+    @include font-family(base);
+    @include font-weight(base);
+  }
 
-body,
-button,
-input,
-select,
-textarea {
-	@include font-family(base);
-	@include font-weight(base);
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    @include font-family(heading);
+    @include font-weight(heading);
+    clear: both;
+    color: color(heading);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-	@include font-family(heading);
-	@include font-weight(heading);
-	clear: both;
-	color: color(heading);
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-}
+  h1,
+  .h1 {
+    @include font-size(h1);
+  }
 
-h1,
-.h1 {
-	@include font-size(h1);
-}
+  h2,
+  .h2 {
+    @include font-size(h2);
+  }
 
-h2,
-.h2 {
-	@include font-size(h2);
-}
+  h3,
+  .h3 {
+    @include font-size(h3);
+  }
 
-h3,
-.h3 {
-	@include font-size(h3);
-}
+  h4,
+  .h4 {
+    @include font-size(h4);
+  }
 
-h4,
-.h4 {
-	@include font-size(h4);
-}
+  h5,
+  .h5 {
+    @include font-size(base);
+  }
 
-h5,
-.h5 {
-	@include font-size(base);
-}
+  h6,
+  .h6,
+  small,
+  .text-sm {
+    @include font-size(sm);
+  }
 
-h6,
-.h6,
-small,
-.text-sm {
-	@include font-size(sm);
-}
+  .text-xs {
+    @include font-size(xs);
+  }
 
-.text-xs {
-	@include font-size(xs);
-}
+  .text-xxs {
+    @include font-size(xxs);
+  }
 
-.text-xxs {
-	@include font-size(xxs);
-}
+  figcaption {
+    @include font-size(figcap);
+    @include font-weight(figcap);
+  }
 
-figcaption {
-	@include font-size(figcap);
-	@include font-weight(figcap);
-}
+  a {
+    &:not(.button) {
+      @include anchor-aspect(main);
+      @include font-weight(link);
+    }
 
-a {
+    &.button-link {
+      @include anchor-aspect(button-link);
+      @include font-weight(button-link);
+      text-transform: $link-button--transform;
+    }
 
-	&:not(.button) {
-		@include anchor-aspect(main);
-		@include font-weight(link);
-	}
+    &.func-link {
+      @include anchor-aspect(func-link);
+      @include font-weight(func-link);
+      text-transform: $link-func--transform;
+    }
+  }
 
-	&.button-link {
-		@include anchor-aspect(button-link);
-		@include font-weight(button-link);
-		text-transform: $link-button--transform;
-	}
+  h1,
+  .h1 {
+    margin-top: $spacing--h1-t;
+    margin-bottom: $spacing--h1-b;
+  }
 
-	&.func-link {
-		@include anchor-aspect(func-link);
-		@include font-weight(func-link);
-		text-transform: $link-func--transform;		
-	}
-}
+  h2,
+  .h2 {
+    margin-top: $spacing--h2-t;
+    margin-bottom: $spacing--h2-b;
+  }
 
-h1,
-.h1 {
-	margin-top: $spacing--h1-t;
-	margin-bottom: $spacing--h1-b;
-}
+  h3,
+  .h3 {
+    margin-top: $spacing--h3-t;
+    margin-bottom: $spacing--h3-b;
+  }
 
-h2,
-.h2 {
-	margin-top: $spacing--h2-t;
-	margin-bottom: $spacing--h2-b;
-}
+  h4,
+  h5,
+  h6,
+  .h4,
+  .h5,
+  .h6 {
+    margin-top: $spacing--hx-t;
+    margin-bottom: $spacing--hx-b;
+  }
 
-h3,
-.h3 {
-	margin-top: $spacing--h3-t;
-	margin-bottom: $spacing--h3-b;
-}
+  p {
+    margin-top: 0;
+    margin-bottom: $spacing--shared-v;
+  }
 
-h4, h5, h6,
-.h4, .h5, .h6 {
-	margin-top: $spacing--hx-t;
-	margin-bottom: $spacing--hx-b;
-}
+  dfn,
+  cite,
+  em,
+  i {
+    font-style: italic;
+  }
 
-p {
-	margin-top: 0;
-	margin-bottom: $spacing--shared-v;
-}
+  blockquote {
+    @include font-size(bquote);
+    margin-top: $spacing--shared-v;
+    margin-bottom: $spacing--shared-v;
+    margin-left: $spacing--shared-h;
 
-dfn, cite, em, i {
-	font-style: italic;
-}
+    &::before {
+      content: "\201C";
+    }
 
-blockquote {
-	@include font-size(bquote);
-	margin-top: $spacing--shared-v;
-	margin-bottom: $spacing--shared-v;
-	margin-left: $spacing--shared-h;
+    &::after {
+      content: "\201D";
+    }
 
-	&::before {
-		content: "\201C";
-	}
+    p {
+      display: inline;
+    }
+  }
 
-	&::after {
-		content: "\201D";
-	}
+  address {
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: color-border(divider);
+    padding: $spacing--shared-v 0;
+    margin: 0 0 $spacing--shared-v;
+  }
 
-	p {
-		display: inline;
-	}
-}
+  pre,
+  pre h1,
+  pre h2,
+  pre h3,
+  pre h4,
+  pre h5,
+  pre h6,
+  pre .h1,
+  pre .h2,
+  pre .h3,
+  pre .h4,
+  pre .h5,
+  pre .h6 {
+    @include font-family(pre);
+  }
 
-address {
-	border-width: 1px 0;
-	border-style: solid;
-	border-color: color-border(divider);
-	padding: $spacing--shared-v 0;
-	margin: 0 0 $spacing--shared-v;
-}
+  pre,
+  code,
+  kbd,
+  tt,
+  var {
+    background: color-bg(code);
+  }
 
-pre,
-pre h1,
-pre h2,
-pre h3,
-pre h4,
-pre h5,
-pre h6,
-pre .h1,
-pre .h2,
-pre .h3,
-pre .h4,
-pre .h5,
-pre .h6  {
-	@include font-family(pre);
-}
+  pre {
+    @include font-size(pre);
+    max-width: 100%;
+    overflow: auto;
+    padding: $spacing--shared-v $spacing--shared-h;
+    margin-top: $spacing--shared-v;
+    margin-bottom: $spacing--shared-v;
+  }
 
-pre, code, kbd, tt, var {
-	background: color-bg(code);
-}
+  code,
+  kbd,
+  tt,
+  var {
+    @include font-family(code);
+    @include font-size(code);
+    padding: $spacing--code-v $spacing--code-h;
+  }
 
-pre {
-	@include font-size(pre);
-	max-width: 100%;
-	overflow: auto;
-	padding: $spacing--shared-v $spacing--shared-h;
-	margin-top: $spacing--shared-v;
-	margin-bottom: $spacing--shared-v;
-}
+  abbr,
+  acronym {
+    cursor: help;
+  }
 
-code, kbd, tt, var {
-	@include font-family(code);
-	@include font-size(code);
-	padding: $spacing--code-v $spacing--code-h;
-}
+  mark,
+  ins {
+    text-decoration: none;
+  }
 
-abbr, acronym {
-	cursor: help;
-}
+  b,
+  strong {
+    @include font-weight(strong);
+  }
 
-mark, ins {
-	text-decoration: none;
-}
+  .invert-color {
+    color: color(base-inverse);
 
-b,
-strong {
-	@include font-weight(strong);
-}
+    a {
+      &:not(.button) {
+        @include anchor-aspect(main, inverse);
+      }
 
-.invert-color {
-	color: color(base-inverse);
+      &.button-link {
+        @include anchor-aspect(button-link, inverse);
+      }
 
-	a {
+      &.func-link {
+        @include anchor-aspect(func-link, inverse);
+      }
+    }
 
-		&:not(.button) {
-			@include anchor-aspect(main, inverse);
-		}
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+      color: color(heading-inverse);
+    }
 
-		&.button-link {
-			@include anchor-aspect(button-link, inverse);
-		}
+    address {
+      border-color: color-border(divider-inverse);
+    }
 
-		&.func-link {
-			@include anchor-aspect(func-link, inverse);
-		}		
-	}
+    pre,
+    code,
+    kbd,
+    tt,
+    var {
+      background: color-bg(code-inverse);
+    }
+  }
 
-	h1, h2, h3, h4, h5, h6,
-	.h1, .h2, .h3, .h4, .h5, .h6 {
-		color: color(heading-inverse);
-	}
+  @include media("<=medium") {
+    .h1-mobile {
+      @include font-size(h1);
+    }
 
-	address {
-		border-color: color-border(divider-inverse);
-	}
+    .h2-mobile {
+      @include font-size(h2);
+    }
 
-	pre, code, kbd, tt, var {
-		background: color-bg(code-inverse);
-	}
-}
+    .h3-mobile {
+      @include font-size(h3);
+    }
 
-@include media( '<=medium' ) {
+    .h4-mobile {
+      @include font-size(h4);
+    }
 
-	.h1-mobile {
-		@include font-size(h1);
-	}
+    .h5-mobile {
+      @include font-size(base);
+    }
 
-	.h2-mobile {
-		@include font-size(h2);
-	}
+    .h6-mobile {
+      @include font-size(sm);
+    }
+  }
 
-	.h3-mobile {
-		@include font-size(h3);
-	}
+  @include media(">medium") {
+    html {
+      @include font-size(base-desktop);
+    }
 
-	.h4-mobile {
-		@include font-size(h4);
-	}
-	
-	.h5-mobile {
-		@include font-size(base);
-	}
-	
-	.h6-mobile {
-		@include font-size(sm);
-	}
-}
+    h1,
+    .h1 {
+      @include font-size(h1-desktop);
+    }
 
-@include media( '>medium' ) {
+    h2,
+    .h2 {
+      @include font-size(h2-desktop);
+    }
 
-	html {
-		@include font-size(base-desktop);
-	}
+    h3,
+    .h3 {
+      @include font-size(h3-desktop);
+    }
 
-	h1,
-	.h1 {
-		@include font-size(h1-desktop);
-	}
+    h4,
+    .h4 {
+      @include font-size(h4-desktop);
+    }
 
-	h2,
-	.h2 {
-		@include font-size(h2-desktop);
-	}
+    h5,
+    .h5 {
+      @include font-size(base-desktop);
+    }
 
-	h3,
-	.h3 {
-		@include font-size(h3-desktop);
-	}
+    h6,
+    .h6,
+    small,
+    .text-sm {
+      @include font-size(sm-desktop);
+    }
 
-	h4,
-	.h4 {
-		@include font-size(h4-desktop);
-	}	
+    .text-xs {
+      @include font-size(xs-desktop);
+    }
 
-	h5,
-	.h5 {
-		@include font-size(base-desktop);
-	}
-	
-	h6,
-	.h6,
-	small,
-	.text-sm {
-		@include font-size(sm-desktop);
-	}
+    .text-xxs {
+      @include font-size(xxs-desktop);
+    }
 
-	.text-xs {
-		@include font-size(xs-desktop);
-	}
+    figcaption {
+      @include font-size(figcap-desktop);
+    }
 
-	.text-xxs {
-		@include font-size(xxs-desktop);
-	}
-
-	figcaption {
-		@include font-size(figcap-desktop);
-	}
-
-	blockquote {
-		@include font-size(bquote-desktop);
-	}
+    blockquote {
+      @include font-size(bquote-desktop);
+    }
+  }
 }
