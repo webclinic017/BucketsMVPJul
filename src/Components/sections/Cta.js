@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { SectionProps } from "../../Utils/SectionProps";
 import Input from "../elements/Input";
 import Button from "../elements/Button";
+import axios from "axios";
 const propTypes = {
   ...SectionProps.types,
   split: PropTypes.bool,
@@ -59,6 +60,8 @@ const Cta = ({
               label="Subscribe"
               labelHidden
               hasIcon="right"
+              pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+              required
               placeholder="Your best email"
             >
               <svg

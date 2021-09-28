@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-const WaitingList = ({ showList, closeModal }) => {
+const WaitingList = ({ showList, closeModal, refferal }) => {
   const modalRef = useRef();
   const [WaitinglistArray, setWaitinglistArray] = useState([]);
   useEffect(() => {
@@ -16,7 +16,7 @@ const WaitingList = ({ showList, closeModal }) => {
       }
       console.log(WaitinglistArray);
     };
-    getWaitingList();
+    // getWaitingList();
   }, [showList]);
 
   const fetchWaitingList = async () => {
@@ -33,6 +33,14 @@ const WaitingList = ({ showList, closeModal }) => {
   };
   const closeButtonClick = () => {
     closeModal();
+  };
+  const copyLink = () => {
+    const copyText = document.getElementById("waitinglist-sharing-plain-link");
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+    /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyText.value);
   };
   return (
     <>
@@ -93,8 +101,17 @@ const WaitingList = ({ showList, closeModal }) => {
                         id="waitinglist-sharing-plain-link"
                         readonly=""
                         type="text"
+                        value={
+                          "https://www.bucketsinvesting.com/?code=" +
+                          refferal.code
+                        }
                       />
-                      <button id="waitinglist-sharing-link-button">Copy</button>
+                      <button
+                        id="waitinglist-sharing-link-button"
+                        onClick={copyLink}
+                      >
+                        Copy
+                      </button>
                     </a>
                     <a
                       id="waitinglist-sharing-social-facebook"

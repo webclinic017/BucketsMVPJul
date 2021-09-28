@@ -4,6 +4,7 @@ import { useGesture } from "react-use-gesture";
 import AI from "./Assets/images/AI.png";
 import BC from "./Assets/images/bitcoin.png";
 import CT from "./Assets/images/chip_tech.png";
+import WS from "./Assets/images/wall_street.png";
 import Dividend from "./Assets/images/Dividend.png";
 import Dividend1 from "./Assets/images/Dividend-1.png";
 import Dividend2 from "./Assets/images/Dividend-2.png";
@@ -11,15 +12,16 @@ import Dividend3 from "./Assets/images/Dividend-3.png";
 import Dividend4 from "./Assets/images/Dividend-4.png";
 import Dividend5 from "./Assets/images/Dividend-5.png";
 const cards = [
-  AI,
-  BC,
-  CT,
   Dividend,
+  CT,
+  AI,
+  WS,
   Dividend1,
   Dividend2,
   Dividend3,
   Dividend4,
   Dividend5,
+  BC,
 ];
 
 // These two are just helpers, they curate spring data, values that are later being interpolated into css
