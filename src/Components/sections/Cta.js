@@ -23,8 +23,12 @@ const Cta = ({
   hasBgColor,
   invertColor,
   split,
+  addToList,
   ...props
 }) => {
+  const onAdd = () => {
+    addToList();
+  };
   const outerClasses = classNames(
     "cta section center-content-mobile reveal-from-bottom",
     topOuterDivider && "has-top-divider",
@@ -40,11 +44,6 @@ const Cta = ({
     bottomDivider && "has-bottom-divider",
     split && "cta-split"
   );
-
-  const addToWaitingList = () => {
-    console.log("click svg");
-    console.log(document.getElementById("newsletter").value);
-  };
 
   return (
     <section {...props} className={outerClasses}>
@@ -67,7 +66,7 @@ const Cta = ({
                 width="16"
                 height="12"
                 xmlns="http://www.w3.org/2000/svg"
-                onClick={addToWaitingList}
+                onClick={onAdd}
               >
                 <path
                   d="M9 5H1c-.6 0-1 .4-1 1s.4 1 1 1h8v5l7-6-7-6v5z"

@@ -49,12 +49,12 @@
 
 .card {
   background-color: white;
-  background-size: auto 85%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  width: 22.5vh;
+  width: 33.75vh;
   max-width: 300px;
-  height: 42.5vh;
+  height: 63.75vh;
   max-height: 570px;
   will-change: transform;
   border-radius: 10px;
@@ -66,4 +66,28 @@
 .addWaitingList {
   cursor: pointer;
   pointer-events: all !important;
+}
+
+.waitingListBackground {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  max-width: 100%;
+  z-index: 999999999;
+  position: fixed;
+  top: 0;
+  overflow-y: auto;
+  height: 100vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 65px 5px;
+  -webkit-animation: fadein 0.7s;
+  -moz-animation: fadein 0.7s;
+  -ms-animation: fadein 0.7s;
+  -o-animation: fadein 0.7s;
+  animation: fadein 0.7s;
+  background: rgba(77, 86, 108, 0.5);
+  justify-content: center;
+  align-items: center;
 }

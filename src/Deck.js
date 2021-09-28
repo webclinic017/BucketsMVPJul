@@ -1,14 +1,25 @@
 import React, { useState } from "react";
 import { useSprings, animated, interpolate } from "react-spring";
 import { useGesture } from "react-use-gesture";
-
+import AI from "./Assets/images/AI.png";
+import BC from "./Assets/images/bitcoin.png";
+import CT from "./Assets/images/chip_tech.png";
+import Dividend from "./Assets/images/Dividend.png";
+import Dividend1 from "./Assets/images/Dividend-1.png";
+import Dividend2 from "./Assets/images/Dividend-2.png";
+import Dividend3 from "./Assets/images/Dividend-3.png";
+import Dividend4 from "./Assets/images/Dividend-4.png";
+import Dividend5 from "./Assets/images/Dividend-5.png";
 const cards = [
-  "https://upload.wikimedia.org/wikipedia/en/f/f5/RWS_Tarot_08_Strength.jpg",
-  "https://upload.wikimedia.org/wikipedia/en/5/53/RWS_Tarot_16_Tower.jpg",
-  "https://upload.wikimedia.org/wikipedia/en/9/9b/RWS_Tarot_07_Chariot.jpg",
-  "https://upload.wikimedia.org/wikipedia/en/d/db/RWS_Tarot_06_Lovers.jpg",
-  "https://upload.wikimedia.org/wikipedia/en/thumb/8/88/RWS_Tarot_02_High_Priestess.jpg/690px-RWS_Tarot_02_High_Priestess.jpg",
-  "https://upload.wikimedia.org/wikipedia/en/d/de/RWS_Tarot_01_Magician.jpg",
+  AI,
+  BC,
+  CT,
+  Dividend,
+  Dividend1,
+  Dividend2,
+  Dividend3,
+  Dividend4,
+  Dividend5,
 ];
 
 // These two are just helpers, they curate spring data, values that are later being interpolated into css
