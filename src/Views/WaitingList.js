@@ -118,49 +118,76 @@ const WaitingList = ({ showList, closeModal, refferal }) => {
                       class="waitinglist-sharing-social"
                       target="_blank"
                       title="Share on Facebook"
-                      href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.investblossom.ca%2F%3Fmwr%3Dasd-1d31%26mws%3Dfacebook"
+                      href={
+                        "https://www.facebook.com/sharer.php?u=https://www.bucketsinvesting.com/?code=" +
+                        refferal.code
+                      }
                     ></a>
                     <a
                       id="waitinglist-sharing-social-twitter"
                       class="waitinglist-sharing-social"
                       title="Share on Twitter"
                       target="_blank"
-                      href="https://twitter.com/intent/tweet?text=I%20just%20signed%20up%20on%20this%20awesome%20website!%20https%3A%2F%2Fwww.investblossom.ca%2F%3Fmwr%3Dasd-1d31%26mws%3Dtwitter"
+                      href={
+                        "https://twitter.com/intent/tweet?text=I%20just%20signed%20up%20on%20this%20awesome%20website!%20https://www.bucketsinvesting.com/?code=" +
+                        refferal.code +
+                        "twitter"
+                      }
                     ></a>
                     <a
                       id="waitinglist-sharing-social-whatsapp"
                       target="_blank"
                       class="waitinglist-sharing-social"
                       title="Share on Whatsapp"
-                      href="https://api.whatsapp.com/send?text=You%20should%20really%20check%20this%20out%20https%3A%2F%2Fwww.investblossom.ca%2F%3Fmwr%3Dasd-1d31%26mws%3Dwhatsapp"
+                      href={
+                        "https://api.whatsapp.com/send?text=You%20should%20really%20check%20this%20out%20https://www.bucketsinvesting.com/?code=" +
+                        refferal.code +
+                        "whatsapp"
+                      }
                     ></a>
                     <a
                       id="waitinglist-sharing-social-facebook-messenger"
                       target="_blank"
                       class="waitinglist-sharing-social"
                       title="Share on Facebook Messenger"
-                      href="https://www.facebook.com/v2.8/dialog/send?app_id=885310524899839&amp;link=https%3A%2F%2Fwww.investblossom.ca%2F%3Fmwr%3Dasd-1d31%26mws%3Dfacebook_messenger&amp;redirect_uri=https%3A%2F%2Fwww.investblossom.ca%2F&amp;relation=opener&amp;display=popup&amp;mobile_iframe=true&amp;sdk=joey"
+                      href={
+                        "https://www.facebook.com/v2.8/dialog/send?app_id=885310524899839&amp;link=https://www.bucketsinvesting.com/?code=" +
+                        refferal.code +
+                        "facebook_messenger&amp;redirect_uri=https%3A%2F%2Fwww.investblossom.ca%2F&amp;relation=opener&amp;display=popup&amp;mobile_iframe=true&amp;sdk=joey"
+                      }
                     ></a>
                     <a
                       id="waitinglist-sharing-social-email"
                       target="_blank"
                       class="waitinglist-sharing-social"
                       title="Share on Email"
-                      href="mailto:?subject=Check%20this%20out&amp;body=https%3A%2F%2Fwww.investblossom.ca%2F%3Fmwr%3Dasd-1d31%26mws%3Demail"
+                      href={
+                        "mailto:?subject=Check%20this%20out&amp;body=https://www.bucketsinvesting.com/?code=" +
+                        refferal.code +
+                        "email"
+                      }
                     ></a>
                     <a
                       id="waitinglist-sharing-social-linkedin"
                       target="_blank"
                       class="waitinglist-sharing-social"
                       title="Share on Linkedin"
-                      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.investblossom.ca%2F%3Fmwr%3Dasd-1d31%26mws%3Dlinkedin&amp;title=undefined"
+                      href={
+                        "https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.bucketsinvesting.com/?code=" +
+                        refferal.code +
+                        "linkedin&amp;title=undefined"
+                      }
                     ></a>
                     <a
                       id="waitinglist-sharing-social-reddit"
                       target="_blank"
                       class="waitinglist-sharing-social"
                       title="Share on Reddit"
-                      href="https://www.reddit.com/submit?url=https%3A%2F%2Fwww.investblossom.ca%2F%3Fmwr%3Dasd-1d31%26mws%3Dreddit&amp;title="
+                      href={
+                        "https://www.reddit.com/submit?url=https://www.bucketsinvesting.com/?code=" +
+                        refferal.code +
+                        "reddit&amp;title="
+                      }
                     ></a>
                   </div>
                 </div>
