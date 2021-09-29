@@ -102,7 +102,7 @@ const FeaturesSplit = ({
                 <p className="m-0">
                   Follow other influential investors and your friends to get
                   notified when they make trades. Collaborate on investments
-                  effortlessly using the in-built rebelancing features.
+                  effortlessly using the in-built rebalancing features.
                 </p>
               </div>
               <div
@@ -131,8 +131,8 @@ const FeaturesSplit = ({
                 </div>
                 <h3 className="mt-0 mb-12">Minimize management fees</h3>
                 <p className="m-0">
-                  Management fees compound. If you inested in the S&500 with a
-                  management fees of 1% 20 years ago, it would have costed you
+                  Management fees compound. If you invested in the S&P500 with a
+                  management fee of 1% 20 years ago, it would have costed you
                   more than 23% of your money by today.
                 </p>
               </div>
