@@ -32,13 +32,13 @@ const Footer = ({ className, topOuterDivider, topDivider, ...props }) => {
           )}
         >
           <div className="footer-top space-between text-xxs">
-            <Logo />
-            <FooterSocial />
+            {/* <Logo /> */}
+            {/* <FooterSocial /> */}
           </div>
           <div className="footer-bottom space-between text-xxs invert-order-desktop">
             <FooterNav />
             <div className="footer-copyright">
-              Made by <a href="https://cruip.com">Cruip</a>. All right reserved
+              Made by <a href="https://bucketsinvesting.com">Buckets Investing</a>. All right reserved
             </div>
           </div>
         </div>
