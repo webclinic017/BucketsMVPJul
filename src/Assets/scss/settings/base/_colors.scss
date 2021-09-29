@@ -18,12 +18,14 @@ $palette: (
     3: #3dd598,
     4: #e9e9ff,
   ),
-  secondary: (
-    1: #24e5af,
-    2: #73efcc,
-    3: #1cb68b,
-    4: #d2f9ee,
-  ),
+  // 475E69
+  secondary:
+    (
+      1: #24e5af,
+      2: #73efcc,
+      3: #1cb68b,
+      4: #d2f9ee,
+    ),
   alert: (
     error: #ff6171,
     warning: #ffa173,
@@ -80,7 +82,7 @@ $icon--color: (
   // accordion icon
   social-inverse: null,
   // social icons
-  social-hover-inverse: null // social icons (:hover),,,
+  social-hover-inverse: null // social icons (:hover),,,,
 );
 
 // Misc elements: background color

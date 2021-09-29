@@ -70,7 +70,8 @@ const FeaturesSplit = ({
                 </div>
                 <h3 className="mt-0 mb-12">Complete control</h3>
                 <p className="m-0">
-                  Create your own buckets and share with friends. Invest via an existing brokerage account or create a new one.
+                  Create your own buckets and share with friends. Invest via an
+                  existing brokerage account or create a new one.
                 </p>
               </div>
               <div
@@ -81,10 +82,7 @@ const FeaturesSplit = ({
                 data-reveal-container=".split-item"
               >
                 <Image
-                  src={
-                    require("../../Assets/images/iphone1.png")
-                      .default
-                  }
+                  src={require("../../Assets/images/iphone1.png").default}
                   alt="Features split 01"
                   width={50}
                   height={101}
@@ -102,7 +100,9 @@ const FeaturesSplit = ({
                 </div>
                 <h3 className="mt-0 mb-12">See your friend's trades</h3>
                 <p className="m-0">
-                  Follow other influential investors and your friends to get notified when they make trades. Collaborate on investments effortlessly using the in-built rebelancing features.
+                  Follow other influential investors and your friends to get
+                  notified when they make trades. Collaborate on investments
+                  effortlessly using the in-built rebelancing features.
                 </p>
               </div>
               <div
@@ -113,10 +113,7 @@ const FeaturesSplit = ({
                 data-reveal-container=".split-item"
               >
                 <Image
-                  src={
-                    require("../../Assets/images/features-split-image-02.png")
-                      .default
-                  }
+                  src={require("../../Assets/images/iphone1.png").default}
                   alt="Features split 02"
                   width={528}
                   height={396}
@@ -134,7 +131,9 @@ const FeaturesSplit = ({
                 </div>
                 <h3 className="mt-0 mb-12">Minimize management fees</h3>
                 <p className="m-0">
-                  Management fees compound. If you inested in the S&500 with a management fees of 1% 20 years ago, it would have costed you more than 23% of your money by today.
+                  Management fees compound. If you inested in the S&500 with a
+                  management fees of 1% 20 years ago, it would have costed you
+                  more than 23% of your money by today.
                 </p>
               </div>
               <div
@@ -145,10 +144,7 @@ const FeaturesSplit = ({
                 data-reveal-container=".split-item"
               >
                 <Image
-                  src={
-                    require("../../Assets/images/features-split-image-03.png")
-                      .default
-                  }
+                  src={require("../../Assets/images/iphone1.png").default}
                   alt="Features split 03"
                   width={528}
                   height={396}
