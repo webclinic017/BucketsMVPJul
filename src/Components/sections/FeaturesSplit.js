@@ -113,7 +113,7 @@ const FeaturesSplit = ({
                 data-reveal-container=".split-item"
               >
                 <Image
-                  src={require("../../Assets/images/iphone1.png").default}
+                  src={require("../../Assets/images/iphone2.png").default}
                   alt="Features split 02"
                   width={528}
                   height={396}
@@ -144,7 +144,7 @@ const FeaturesSplit = ({
                 data-reveal-container=".split-item"
               >
                 <Image
-                  src={require("../../Assets/images/iphone1.png").default}
+                  src={require("../../Assets/images/iphone3.png").default}
                   alt="Features split 03"
                   width={528}
                   height={396}
