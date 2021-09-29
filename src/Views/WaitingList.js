@@ -60,8 +60,7 @@ const WaitingList = ({ showList, closeModal, refferal }) => {
                   <div id="waitinglist-sharing-head">
                     <h2 id="waitinglist-sharing-header">You're in!</h2>
                     <h3 id="waitinglist-sharing-subheader">
-                      Share with your friends to move up the waitlist and win
-                      prizes
+                      Share with your friends to move up the waitlist
                     </h3>
                   </div>
                   {/* <div id="waitinglist-sharing-leaderboard">
