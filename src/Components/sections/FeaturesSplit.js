@@ -83,7 +83,7 @@ const FeaturesSplit = ({
               >
                 <Image
                   src={require("../../Assets/images/iphone1.png").default}
-                  alt="Features split 01"
+                  alt="Buckets Investing IOS"
                   width={50}
                   height={101}
                 />
@@ -114,7 +114,7 @@ const FeaturesSplit = ({
               >
                 <Image
                   src={require("../../Assets/images/iphone2.png").default}
-                  alt="Features split 02"
+                  alt="Buckets Investing IOS"
                   width={528}
                   height={396}
                 />
@@ -145,7 +145,7 @@ const FeaturesSplit = ({
               >
                 <Image
                   src={require("../../Assets/images/iphone3.png").default}
-                  alt="Features split 03"
+                  alt="Buckets Investing IOS"
                   width={528}
                   height={396}
                 />

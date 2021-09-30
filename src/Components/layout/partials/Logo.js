@@ -12,7 +12,7 @@ const Logo = ({ className, ...props }) => {
         <Link to="/">
           <Image
             src={require("../../../Assets/images/logo.svg").default}
-            alt="Open"
+            alt="Buckets Investing Logo"
             width={32}
             height={32}
           />
