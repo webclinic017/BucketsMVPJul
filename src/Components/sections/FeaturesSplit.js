@@ -98,7 +98,7 @@ const FeaturesSplit = ({
                 <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
                   Invest smarter together
                 </div>
-                <h3 className="mt-0 mb-12">See your friend's trades</h3>
+                <h3 className="mt-0 mb-12">Rebalance with a couple clicks</h3>
                 <p className="m-0">
                   Follow other influential investors and your friends to get
                   notified when they make trades. Collaborate on investments
