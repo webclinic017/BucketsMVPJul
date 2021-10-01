@@ -24,6 +24,7 @@ import { insertTokenInHeaders } from "../Services";
 import { decryptDataString } from "../Utils";
 import { Helmet } from "react-helmet";
 import { scrollToTop } from "react-scroll/modules/mixins/animate-scroll";
+import NotFoundPage from "../Screens/NotFoundPage";
 import Home from "../Views/Home";
 // import "../Assets/scss/style.scss";
 const CustomRoute = ({ isProtected, path, exact, component }) => {
@@ -113,6 +114,9 @@ const Navigation = () => {
         />
         <CustomRoute isProtected path="/settings" exact component={Settings} />
         <CustomRoute path="/login" exact component={Login} />
+
+        <CustomRoute path="/404" exact component={NotFoundPage} />
+        <Redirect to="/404" />
       </Switch>
     </Router>
   );
