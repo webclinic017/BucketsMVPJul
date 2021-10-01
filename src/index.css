@@ -161,3 +161,10 @@
   font-weight: 600;
   letter-spacing: -0.02em;
 }
+
+.updateDisclosure {
+  position: relative;
+  font-size: 10px;
+  line-height: 10px;
+  color: white;
+}

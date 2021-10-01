@@ -77,6 +77,13 @@ const Cta = ({
                 />
               </svg>
             </Input>
+            <label className="updateDisclosure">
+              <u>
+                {" "}
+                By signing up you agree to receive email updates from
+                bucketsinvesting.com
+              </u>
+            </label>
           </div>
         </div>
       </div>
