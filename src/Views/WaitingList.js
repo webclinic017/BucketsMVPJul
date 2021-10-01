@@ -172,9 +172,9 @@ const WaitingList = ({ showList, closeModal, refferal }) => {
                       class="waitinglist-sharing-social"
                       title="Share on Linkedin"
                       href={
-                        "https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.bucketsinvesting.com/?code=" +
+                        "https://www.linkedin.com/shareArticle?mini=true&url=https://www.bucketsinvesting.com/?code=" +
                         refferal.code +
-                        "linkedin&amp;title=undefined"
+                        "%26mws%3Dlinkedin&title=undefined "
                       }
                     ></a>
                     <a
