@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useSprings, animated, interpolate } from "react-spring";
 import { useGesture } from "react-use-gesture";
-import AI from "./Assets/images/AI.png";
-import BC from "./Assets/images/bitcoin.png";
-import CT from "./Assets/images/chip_tech.png";
-import WS from "./Assets/images/wall_street.png";
-import Dividend from "./Assets/images/Dividend.png";
-import Dividend1 from "./Assets/images/Dividend-1.png";
-import Dividend2 from "./Assets/images/Dividend-2.png";
-import Dividend3 from "./Assets/images/Dividend-3.png";
-import Dividend4 from "./Assets/images/Dividend-4.png";
-import Dividend5 from "./Assets/images/Dividend-5.png";
+import AI from "./Assets/images/AI.webp";
+import BC from "./Assets/images/bitcoin.webp";
+import CT from "./Assets/images/chip_tech.webp";
+import WS from "./Assets/images/wall_street.webp";
+import Dividend from "./Assets/images/Dividend.webp";
+import Dividend1 from "./Assets/images/Dividend-1.webp";
+import Dividend2 from "./Assets/images/Dividend-2.webp";
+import Dividend3 from "./Assets/images/Dividend-3.webp";
+import Dividend4 from "./Assets/images/Dividend-4.webp";
+import Dividend5 from "./Assets/images/Dividend-5.webp";
 const cards = [
   Dividend,
   CT,

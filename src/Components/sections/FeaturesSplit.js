@@ -82,7 +82,7 @@ const FeaturesSplit = ({
                 data-reveal-container=".split-item"
               >
                 <Image
-                  src={require("../../Assets/images/iphone1.png").default}
+                  src={require("../../Assets/images/iphone1.webp").default}
                   alt="Buckets Investing IOS"
                   width={50}
                   height={101}
@@ -113,7 +113,7 @@ const FeaturesSplit = ({
                 data-reveal-container=".split-item"
               >
                 <Image
-                  src={require("../../Assets/images/iphone2.png").default}
+                  src={require("../../Assets/images/iphone2.webp").default}
                   alt="Buckets Investing IOS"
                   width={528}
                   height={396}
@@ -144,7 +144,7 @@ const FeaturesSplit = ({
                 data-reveal-container=".split-item"
               >
                 <Image
-                  src={require("../../Assets/images/iphone3.png").default}
+                  src={require("../../Assets/images/iphone3.webp").default}
                   alt="Buckets Investing IOS"
                   width={528}
                   height={396}
