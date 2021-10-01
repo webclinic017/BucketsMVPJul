@@ -41,8 +41,7 @@ const Testimonial = ({
 
   const sectionHeader = {
     title: "Customer testimonials",
-    paragraph:
-      "Here is what some users had to say about our demo product:",
+    paragraph: "Here is what some users had to say about our demo product:",
   };
 
   return (
@@ -58,7 +57,9 @@ const Testimonial = ({
               <div className="tiles-item-inner">
                 <div className="testimonial-item-content">
                   <p className="text-sm mb-0">
-                    — Love how clearly the stock names and logos appear. I find the data super clear and appealing.
+                    — Love how clearly the stock names and logos appear in
+                    Buckets Investing. I find the data super clear and
+                    appealing.
                   </p>
                 </div>
                 <div className="testimonial-item-footer text-xs mt-32 mb-0 has-top-divider">
@@ -77,7 +78,9 @@ const Testimonial = ({
               <div className="tiles-item-inner">
                 <div className="testimonial-item-content">
                   <p className="text-sm mb-0">
-                    — This platform is super streamlined and makes it a lot more fun and less stressful for new investors. Best looking and designed ETF application I’ve seen for the younger Gen.
+                    — Buckets Investing is super streamlined and makes it a lot
+                    more fun and less stressful for new investors. Best looking
+                    and designed ETF application I’ve seen for the younger Gen.
                   </p>
                 </div>
                 <div className="testimonial-item-footer text-xs mt-32 mb-0 has-top-divider">
@@ -99,7 +102,9 @@ const Testimonial = ({
               <div className="tiles-item-inner">
                 <div className="testimonial-item-content">
                   <p className="text-sm mb-0">
-                    — Very nice and simple user interface with good graphics. The financial breakdown you have for the buckets is great! Very neat.
+                    — Very nice and simple user interface with good graphics.
+                    The financial breakdown you have for the buckets is great!
+                    Very neat.
                   </p>
                 </div>
                 <div className="testimonial-item-footer text-xs mt-32 mb-0 has-top-divider">
