@@ -68,43 +68,43 @@ const Home = () => {
             id="brokerage-fidelity"
             target="_blank"
             class="brokerageImage"
-            href="_blank"
+            href="https://www.fidelity.ca/"
           ></a>
           <a
             id="brokerage-coinbase"
             target="_blank"
             class="brokerageImage"
-            href="_blank"
+            href="https://www.coinbase.com/"
           ></a>
           <a
             id="brokerage-robinhood"
             target="_blank"
             class="brokerageImage"
-            href="_blank"
+            href="https://robinhood.com"
           ></a>
           <a
             id="brokerage-alpaca"
             target="_blank"
             class="brokerageImage"
-            href="_blank"
+            href="https://alpaca.markets/"
           ></a>
           <a
             id="brokerage-cs"
             target="_blank"
             class="brokerageImage"
-            href="_blank"
+            href="https://www.schwab.com/"
           ></a>
           <a
             id="brokerage-wealthsimple"
             target="_blank"
             class="brokerageImage"
-            href="_blank"
+            href="https://www.wealthsimple.com"
           ></a>
           <a
             id="brokerage-td"
             target="_blank"
             class="brokerageImage"
-            href="_blank"
+            href="https://www.tdameritrade.com/"
           ></a>
         </div>
       </div>
