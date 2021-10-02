@@ -128,3 +128,23 @@
 .landingButton {
   border-radius: 12px;
 }
+
+.about {
+  margin-top: 80px;
+}
+.aboutBanner {
+  width: auto !important;
+  height: 300px !important;
+}
+.bannerWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.aboutTitle {
+  padding: 0 !important;
+}
+.aboutImage {
+  width: auto !important;
+  height: 60vh !important;
+}

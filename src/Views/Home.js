@@ -7,6 +7,7 @@ import FeaturesSplit from "../Components/sections/FeaturesSplit";
 import Testimonial from "../Components/sections/Testimonial";
 import Cta from "../Components/sections/Cta";
 import Footer from "../Components/layout/Footer";
+import Header from "../Components/layout/Header";
 import Deck from "../Deck";
 import { Helmet } from "react-helmet";
 import "../Assets/scss/style.scss";
@@ -41,6 +42,7 @@ const Home = () => {
 
   return (
     <div className="landing">
+      <Header />
       <WaitingList
         showList={showAdd}
         setShowWaitingList={setShowAdd}
@@ -60,7 +62,7 @@ const Home = () => {
       <Testimonial topDivider />
 
       <div className="brokerageHeader">
-        <h2 class="mt-0 mb-0">Coming soon to these brokerages</h2>
+        <h2 class="mt-0 mb-0">Coming soon to these platform</h2>
       </div>
       <div className="brokerageContainer">
         <div className="brokerage">
