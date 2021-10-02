@@ -102,8 +102,8 @@ const Homepage = (props)=> {
         >
           <div className="w-full sm:w-full md:w-full lg:w-2/5 h-full flex items-center justify-center">
             <div className="my-auto w-full sm:w-full md:w-4/5">
-              <h1 className="sm: text-3xl text-gray-700 font-bold m-5 md:text-5xl text-gray-200 font-bold m-5  ">The Best Alternative to ETFs and Mutual Funds</h1>
-              <p className="sm: text-xl text-gray-600 m-5 md: text-2xl text-gray-600 m-5">Completely customizable and no management fees. Invest like the pros today! </p>
+              <h1 className="sm: text-3xl text-gray-700 font-bold m-5 md:text-5xl text-gray-200 font-bold m-5  ">Invest in ideas</h1>
+              <p className="sm: text-xl text-gray-600 m-5 md: text-2xl text-gray-600 m-5">Completely customizable baskets  no management fees. Invest like the pros today! </p>
               <Link to="/home" >
                 <Button
                   title="Explore"

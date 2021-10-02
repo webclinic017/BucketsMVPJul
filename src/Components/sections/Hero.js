@@ -70,7 +70,7 @@ const Hero = ({
                 className="m-0 mb-32 reveal-from-bottom"
                 data-reveal-delay="400"
               >
-                The simplest way to build smart portfolios in minutes.
+                The simplest way to build smart portfolios and invest in ideas.
               </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup>
