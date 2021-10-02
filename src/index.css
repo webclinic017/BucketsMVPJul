@@ -168,3 +168,84 @@
   line-height: 10px;
   color: white;
 }
+html {
+  scroll-behavior: smooth;
+}
+.brokerageContainer {
+  display: flex;
+  justify-content: center;
+}
+.brokerageHeader {
+  text-align: center;
+  padding-bottom: 80px;
+}
+@media (min-width: 648px) {
+  .brokerage {
+    display: flex;
+    flex-direction: "row";
+    justify-content: space-between;
+    margin-bottom: 80px;
+    max-width: 1120px;
+    flex: 1;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .brokerageImage {
+    overflow: hidden;
+    width: 70px !important;
+    height: 70px !important;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    background-color: transparent;
+  }
+}
+@media (max-width: 649px) {
+  .brokerage {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
+    width: 100%;
+    justify-content: center;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .brokerageImage {
+    overflow: hidden;
+    width: 70px !important;
+    height: 70px !important;
+    margin: 10px;
+    cursor: pointer;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    background-color: transparent;
+  }
+}
+
+#brokerage-fidelity {
+  background-image: url("./Assets/fidelity-seeklogo.png");
+}
+#brokerage-robinhood {
+  background-image: url("./Assets/robinhood.png");
+}
+#brokerage-alpaca {
+  background-image: url("./Assets/alpaca.png");
+}
+#brokerage-cs {
+  background-image: url("./Assets/Charles_Schwab_Corporation_logo.png");
+}
+#brokerage-td {
+  background-image: url("./Assets/td_ameritradelogo.png");
+}
+#brokerage-wealthsimple {
+  background-image: url("./Assets/wealthSimple.png");
+}
+#brokerage-coinbase {
+  background-image: url("./Assets/coinbaselogo.png");
+}

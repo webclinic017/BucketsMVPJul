@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet";
 import "../Assets/scss/style.scss";
 import "../Assets/styles/popupStyles.css";
 import WaitingList from "./WaitingList";
+import SectionHeader from "../Components/sections/partials/SectionHeader";
 const Home = () => {
   const [showAdd, setShowAdd] = useState(false);
   const [refferal, setRefferal] = useState("");
@@ -55,7 +56,58 @@ const Home = () => {
         imageFill
         className="illustration-section-02"
       />
+
       <Testimonial topDivider />
+
+      <div className="brokerageHeader">
+        <h2 class="mt-0 mb-0">Coming soon to these brokerages</h2>
+      </div>
+      <div className="brokerageContainer">
+        <div className="brokerage">
+          <a
+            id="brokerage-fidelity"
+            target="_blank"
+            class="brokerageImage"
+            href="_blank"
+          ></a>
+          <a
+            id="brokerage-coinbase"
+            target="_blank"
+            class="brokerageImage"
+            href="_blank"
+          ></a>
+          <a
+            id="brokerage-robinhood"
+            target="_blank"
+            class="brokerageImage"
+            href="_blank"
+          ></a>
+          <a
+            id="brokerage-alpaca"
+            target="_blank"
+            class="brokerageImage"
+            href="_blank"
+          ></a>
+          <a
+            id="brokerage-cs"
+            target="_blank"
+            class="brokerageImage"
+            href="_blank"
+          ></a>
+          <a
+            id="brokerage-wealthsimple"
+            target="_blank"
+            class="brokerageImage"
+            href="_blank"
+          ></a>
+          <a
+            id="brokerage-td"
+            target="_blank"
+            class="brokerageImage"
+            href="_blank"
+          ></a>
+        </div>
+      </div>
       <Cta split addToList={openWaitingList} />
       <Footer />
     </div>

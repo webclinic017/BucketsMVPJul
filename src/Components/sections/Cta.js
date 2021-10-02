@@ -51,7 +51,7 @@ const Cta = ({
       <div className="container">
         <div className={innerClasses}>
           <div className="cta-slogan">
-            <h3 className="m-0">Add to our waiting list?</h3>
+            <h3 className="m-0">Get Early Access</h3>
             <h4 className="m-0">We won't spam you, we promise </h4>
           </div>
           <div className="cta-action">
