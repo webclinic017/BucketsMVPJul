@@ -252,3 +252,23 @@ html {
 #brokerage-coinbase {
   background-image: url("./Assets/coinbaselogo.png");
 }
+
+.createBucketWrapper {
+  justify-content: center;
+  min-height: 500px;
+}
+
+.saveBucketBtn {
+  justify-content: center;
+  display: flex;
+}
+.stockLogo {
+  background: #fff;
+  border-radius: 4px;
+}
+.stockRowText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}

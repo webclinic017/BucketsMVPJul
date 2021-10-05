@@ -42,7 +42,7 @@ const Home = () => {
 
   return (
     <div className="landing">
-      <Header />
+      <Header isDemo={false} />
       <WaitingList
         showList={showAdd}
         setShowWaitingList={setShowAdd}
@@ -62,7 +62,7 @@ const Home = () => {
       <Testimonial topDivider />
 
       <div className="brokerageHeader">
-        <h2 class="mt-0 mb-0">Coming soon to these platform</h2>
+        <h2 class="mt-0 mb-0">Coming soon to these platforms</h2>
       </div>
       <div className="brokerageContainer">
         <div className="brokerage">

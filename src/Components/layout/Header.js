@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { Link } from "react-router-dom";
 import Logo from "./partials/Logo";
 import Button from "../elements/Button";
-
+import { useSelector } from "react-redux";
 const propTypes = {
   navPosition: PropTypes.string,
   hideNav: PropTypes.bool,
@@ -22,6 +22,7 @@ const defaultProps = {
 };
 
 const Header = ({
+  isDemo,
   className,
   navPosition,
   hideNav,
@@ -34,6 +35,8 @@ const Header = ({
 
   const nav = useRef(null);
   const hamburger = useRef(null);
+  const user = useSelector((state) => state.auth.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
     isActive && openMenu();
@@ -118,10 +121,10 @@ const Header = ({
                       </Link>
                     </li>
                   </ul> */}
-                  {!hideSignin && (
+                  {!isDemo && (
                     <ul className="list-reset text-xs header-nav-right">
                       <li>
-                        <Link to="/home" onClick={closeMenu}>
+                        <Link to="/demo" onClick={closeMenu}>
                           Demo
                         </Link>
                       </li>
@@ -142,6 +145,54 @@ const Header = ({
                           Sign up
                         </Button>
                       </li>
+                    </ul>
+                  )}
+                  {isDemo && (
+                    <ul className="list-reset text-xs header-nav-right">
+                      <li>
+                        <Link to="/demo" onClick={closeMenu}>
+                          Home
+                        </Link>
+                      </li>
+                      {user && isAuthenticated && (
+                        <li>
+                          <Link to="/my-buckets" onClick={closeMenu}>
+                            My Buckets
+                          </Link>
+                        </li>
+                      )}
+                      <li>
+                        <Link to="/create-bucket" onClick={closeMenu}>
+                          Create Buckets
+                        </Link>
+                      </li>
+                      {user && isAuthenticated && (
+                        <li>
+                          <Link to="/home" onClick={closeMenu}>
+                            Expert Buckets
+                          </Link>
+                        </li>
+                      )}
+                      {user && isAuthenticated && (
+                        <li>
+                          <Link to="/settings" onClick={closeMenu}>
+                            Settings
+                          </Link>
+                        </li>
+                      )}
+                      {!user && !isAuthenticated && (
+                        <li>
+                          <Button
+                            tag="a"
+                            color="primary"
+                            wideMobile
+                            href="/login"
+                            className="button button-primary button-wide-mobile button-sm landingButton"
+                          >
+                            Login
+                          </Button>
+                        </li>
+                      )}
                     </ul>
                   )}
                 </div>

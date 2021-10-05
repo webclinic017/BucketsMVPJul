@@ -1,49 +1,54 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import MenuIcon from "../../Assets/Icons/menu.png";
 import { setNavMenuVisibility } from "../../Redux/Actions/app";
 import Button from "../../Components/Atomic/Button";
 import { insertTokenInHeaders } from "../../Services";
-import {
-  logoutUser
-} from "../../Redux/Actions/auth";
+import { logoutUser } from "../../Redux/Actions/auth";
+import Header from "../../Components/layout/Header";
+import Footer from "../../Components/layout/Footer";
 
-
-const Settings = (props)=> {
+const Settings = (props) => {
   const dispatch = useDispatch();
 
   const handleOnNavMenuClick = () => {
     dispatch(setNavMenuVisibility(true));
-  }
+  };
 
   const handleLogout = () => {
     dispatch(logoutUser());
     insertTokenInHeaders(null);
     localStorage.removeItem("bucket_session");
-  }
+  };
 
-  return(
+  return (
     <>
-      <div className="p-11">
-        <div className="flex justify-between">
+      <div className="commonBackGround">
+        {/* <div className="flex justify-between">
           <h3 className="font-bold text-gray-400 text-4xl">Buckets</h3>
           <div className="flex items-center justify-between">
             <img onClick={handleOnNavMenuClick} className="w-6 h-6 mx-4 cursor-pointer object-contain" src={MenuIcon} />
           </div>
+        </div> */}
+        <div className="landing">
+          <Header isDemo={true} />
         </div>
-        <div className="block sm:block md:flex justify-between mt-6">
+        {/* <div className="block sm:block md:flex justify-between mt-6">
           <div className="w-full sm:w-full md:w-full lg:w-2/5 ">
-            <Button
-              title="Logout"
-              onClick={handleLogout}
-            />
+            <Button title="Logout" onClick={handleLogout} />
           </div>
-          <div className="w-full sm:w-full md:w-full lg:w-2/5">
-
+          <div className="w-full sm:w-full md:w-full lg:w-2/5"></div>
+        </div> */}
+        <div className="createBucketWrapper">
+          <div className="saveBucketBtn underHeader ">
+            <Button title="Logout" onClick={handleLogout} />
           </div>
+        </div>
+        <div className="landing">
+          <Footer />
         </div>
       </div>
     </>
   );
-}
+};
 
 export default Settings;
