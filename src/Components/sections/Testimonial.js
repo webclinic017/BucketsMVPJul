@@ -52,6 +52,7 @@ const Testimonial = ({
           <div className={tilesClasses}>
             <div
               className="tiles-item reveal-from-right"
+              data-aos="fade-right"
               data-reveal-delay="200"
             >
               <div className="tiles-item-inner">
@@ -74,7 +75,7 @@ const Testimonial = ({
               </div>
             </div>
 
-            <div className="tiles-item reveal-from-bottom">
+            <div className="tiles-item reveal-from-bottom" data-aos="fade-up">
               <div className="tiles-item-inner">
                 <div className="testimonial-item-content">
                   <p className="text-sm mb-0">
@@ -98,6 +99,7 @@ const Testimonial = ({
             <div
               className="tiles-item reveal-from-left"
               data-reveal-delay="200"
+              data-aos="fade-left"
             >
               <div className="tiles-item-inner">
                 <div className="testimonial-item-content">

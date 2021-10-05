@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import sections
 import axios from "axios";
 import Hero from "../Components/sections/Hero";
@@ -8,13 +8,15 @@ import Testimonial from "../Components/sections/Testimonial";
 import Cta from "../Components/sections/Cta";
 import Footer from "../Components/layout/Footer";
 import Header from "../Components/layout/Header";
-import Deck from "../Deck";
-import { Helmet } from "react-helmet";
 import "../Assets/scss/style.scss";
 import "../Assets/styles/popupStyles.css";
 import WaitingList from "./WaitingList";
-import SectionHeader from "../Components/sections/partials/SectionHeader";
+import Aos from "aos";
+import "aos/dist/aos.css";
 const Home = () => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  });
   const [showAdd, setShowAdd] = useState(false);
   const [refferal, setRefferal] = useState("");
   const toggleWaitingList = () => {
@@ -61,10 +63,10 @@ const Home = () => {
 
       <Testimonial topDivider />
 
-      <div className="brokerageHeader">
+      <div className="brokerageHeader" data-aos="fade-up">
         <h2 class="mt-0 mb-0">Coming soon to these platform</h2>
       </div>
-      <div className="brokerageContainer">
+      <div className="brokerageContainer" data-aos="fade-up">
         <div className="brokerage">
           <a
             id="brokerage-fidelity"

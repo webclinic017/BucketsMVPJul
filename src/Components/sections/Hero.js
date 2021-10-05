@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import { SectionProps } from "../../Utils/SectionProps";
 import ButtonGroup from "../elements/ButtonGroup";
@@ -7,7 +7,6 @@ import Image from "../elements/Image";
 import Modal from "../elements/Modal";
 import Deck from "../../Deck";
 import { Link } from "react-router-dom";
-
 const propTypes = {
   ...SectionProps.types,
 };
@@ -61,6 +60,7 @@ const Hero = ({
             <h1
               className="mt-0 mb-16 reveal-from-bottom"
               data-reveal-delay="200"
+              data-aos="fade-up"
             >
               Structured investment baskets at your{" "}
               <span className="text-color-primary">fingertips</span>
@@ -69,11 +69,12 @@ const Hero = ({
               <p
                 className="m-0 mb-32 reveal-from-bottom"
                 data-reveal-delay="400"
+                data-aos="fade-up"
               >
                 The simplest way to build smart portfolios and invest in ideas.
               </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
-                <ButtonGroup>
+                <ButtonGroup data-aos="fade-up">
                   <Button
                     tag="a"
                     color="primary"
