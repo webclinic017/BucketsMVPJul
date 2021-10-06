@@ -49,7 +49,7 @@ const FeaturesSplit = ({
   const sectionHeader = {
     title: "Sophisticated investing simplified",
     paragraph:
-      "Custom stuctured investment products were traditionally reserved only for billionaire investors and funds. We are here to bring them to you. ",
+      "Custom investment products were traditionally reserved only for billionaire investors and funds. We are here to bring them to you. ",
   };
 
   return (
@@ -73,9 +73,9 @@ const FeaturesSplit = ({
                 >
                   Lightning fast workflow
                 </div>
-                <h3 data-aos="fade-up" className="mt-0 mb-12">
+                <h2 data-aos="fade-up" className="mt-0 mb-12">
                   Complete control
-                </h3>
+                </h2>
                 <p data-aos="fade-up" className="m-0">
                   Create your own buckets and share with friends. Invest via an
                   existing brokerage account or create a new one.
@@ -109,9 +109,9 @@ const FeaturesSplit = ({
                 >
                   Invest smarter together
                 </div>
-                <h3 data-aos="fade-up" className="mt-0 mb-12">
-                  Rebalance with a couple clicks
-                </h3>
+                <h2 data-aos="fade-up" className="mt-0 mb-12">
+                  Rebalance with a couple of clicks
+                </h2>
                 <p data-aos="fade-up" className="m-0">
                   Follow other influential investors and your friends to get
                   notified when they make trades. Collaborate on investments
@@ -146,9 +146,9 @@ const FeaturesSplit = ({
                 >
                   More money in your pockets
                 </div>
-                <h3 data-aos="fade-up" className="mt-0 mb-12">
+                <h2 data-aos="fade-up" className="mt-0 mb-12">
                   Minimize management fees
-                </h3>
+                </h2>
                 <p data-aos="fade-up" className="m-0">
                   Management fees compound. If you invested in the S&P500 with a
                   management fee of 1% 20 years ago, it would have costed you

@@ -57,14 +57,15 @@ const Hero = ({
       <div className="container-sm">
         <div className={innerClasses}>
           <div className="hero-content">
-            <h1
+            <h2
               className="mt-0 mb-16 reveal-from-bottom"
               data-reveal-delay="200"
               data-aos="fade-up"
             >
-              Structured investment baskets at your{" "}
-              <span className="text-color-primary">fingertips</span>
-            </h1>
+              Structured investment baskets made by{" "}
+              <span className="text-color-primary">experts</span>
+              {" "} at your fingertips
+            </h2>
             <div className="container-xs">
               <p
                 className="m-0 mb-32 reveal-from-bottom"
