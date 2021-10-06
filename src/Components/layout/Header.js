@@ -121,13 +121,13 @@ const Header = ({
                       </Link>
                     </li>
                   </ul> */}
-                  {!isDemo && (
+                  {/* {!isDemo && ( */}
                     <ul className="list-reset text-xs header-nav-right">
-                      <li>
+                      {/* <li>
                         <Link to="/demo" onClick={closeMenu}>
                           Demo
                         </Link>
-                      </li>
+                      </li> */}
                       <li>
                         <Link to="/about" onClick={closeMenu}>
                           About Us
@@ -146,7 +146,7 @@ const Header = ({
                         </Button>
                       </li>
                     </ul>
-                  )}
+                  
                   {isDemo && (
                     <ul className="list-reset text-xs header-nav-right">
                       <li>
