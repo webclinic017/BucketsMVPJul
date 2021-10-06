@@ -85,7 +85,7 @@ const Hero = ({
                   >
                     Get Access
                   </Button>
-                  <Link to="/demo">
+                  {/* <Link to="/demo">
                     <Button
                       tag="a"
                       color="dark"
@@ -94,7 +94,7 @@ const Hero = ({
                     >
                       View demo
                     </Button>
-                  </Link>
+                  </Link> */}
                 </ButtonGroup>
               </div>
             </div>
