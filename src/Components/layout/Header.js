@@ -22,6 +22,7 @@ const defaultProps = {
 };
 
 const Header = ({
+  isHome,
   isDemo,
   className,
   navPosition,
@@ -134,17 +135,32 @@ const Header = ({
                       </Link>
                     </li>
 
-                    <li>
-                      <Button
-                        tag="a"
-                        color="primary"
-                        wideMobile
-                        href="#newsletter"
-                        className="button button-primary button-wide-mobile button-sm landingButton"
-                      >
-                        Sign up
-                      </Button>
-                    </li>
+                    {isHome && (
+                      <li>
+                        <Button
+                          tag="a"
+                          color="primary"
+                          wideMobile
+                          href="#newsletter"
+                          className="button button-primary button-wide-mobile button-sm landingButton"
+                        >
+                          Sign up
+                        </Button>
+                      </li>
+                    )}
+                    {!isHome && (
+                      <li>
+                        <Button
+                          tag="a"
+                          color="primary"
+                          wideMobile
+                          href="/#newsletter"
+                          className="button button-primary button-wide-mobile button-sm landingButton"
+                        >
+                          Sign up
+                        </Button>
+                      </li>
+                    )}
                   </ul>
 
                   {isDemo && (
