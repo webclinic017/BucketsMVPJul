@@ -25,16 +25,17 @@ const Home = () => {
   const openWaitingList = () => {
     var url = new URL(window.location.href);
     var code = url.searchParams.get("code");
-    console.log(code);
+    var waitingListInput = document.getElementById("newsletter");
     var requesturl = code
       ? "https://buckets-rahul-server.herokuapp.com/referral/add-user/" + code
       : "https://buckets-rahul-server.herokuapp.com/referral/add-user";
     const body = {
       name: "",
-      email: document.getElementById("newsletter").value,
+      email: waitingListInput.value,
     };
     if (body.email != "") {
-      console.log(body);
+      waitingListInput.classList.remove("invalidmail");
+      waitingListInput.placeholder = "Your best email";
       axios
         .post(requesturl, body)
         .then((response) => {
@@ -45,7 +46,9 @@ const Home = () => {
           console.log(error);
         });
     } else {
-      console.log("email is empty!");
+      console.log("empty email");
+      waitingListInput.classList.add("invalidmail");
+      waitingListInput.placeholder = "Enter a valid email.";
     }
   };
 
