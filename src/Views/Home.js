@@ -36,10 +36,7 @@ const Home = () => {
     if (body.email != "") {
       console.log(body);
       axios
-        .post(
-          "https://buckets-rahul-server.herokuapp.com/referral/add-user",
-          body
-        )
+        .post(requesturl, body)
         .then((response) => {
           setRefferal(response.data);
           setShowAdd((prev) => !prev);

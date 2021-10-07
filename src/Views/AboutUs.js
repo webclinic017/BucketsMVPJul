@@ -149,6 +149,39 @@ const About = ({
                 />
               </div>
             </div>
+            <div className="split-item">
+              <div
+                className="split-item-content center-content-mobile reveal-from-right"
+                data-reveal-container=".split-item"
+              >
+                <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
+                  Software Engineer
+                </div>
+                <h4 className="mt-0 mb-12">Qidong Yang</h4>
+                <p className="m-0">
+                  I'm Qidong, a third year student from McMaster university
+                  Software Engineering student and currently working as intern
+                  at Buckets Investing. Prior to Buckets Investing, I spent 3
+                  years at Beon Corp. work as software developer. Buckets
+                  Investing is not only the perfect place to explore my passion
+                  for software development and investing, but also has the best
+                  team I've never met before in my life.
+                </p>
+              </div>
+              <div
+                className={classNames(
+                  "split-item-image center-content-mobile reveal-from-bottom",
+                  imageFill && "split-item-image-fill"
+                )}
+                data-reveal-container=".split-item"
+              >
+                <Image
+                  src={require("../Assets/images/20211007111332.webp").default}
+                  alt="Buckets Investing Teams"
+                  className="aboutImage"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
