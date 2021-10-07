@@ -117,6 +117,38 @@ const About = ({
                 />
               </div>
             </div>
+            <div className="split-item">
+              <div
+                className="split-item-content center-content-mobile reveal-from-right"
+                data-reveal-container=".split-item"
+              >
+                <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
+                  Software Engineer
+                </div>
+                <h4 className="mt-0 mb-12">Rahul Bajaj</h4>
+                <p className="m-0">
+                  Being an Intern at Buckets Investing not only has given me the
+                  opportunity to explore the world of Capital Markets, but also
+                  improve my skillset further has a software engineer. Solving
+                  some of the most challenging fintech problems alongside Akash
+                  has provided me with leadership opportunities I haven’t found
+                  anywhere else except Buckets.
+                </p>
+              </div>
+              <div
+                className={classNames(
+                  "split-item-image center-content-mobile reveal-from-bottom",
+                  imageFill && "split-item-image-fill"
+                )}
+                data-reveal-container=".split-item"
+              >
+                <Image
+                  src={require("../Assets/images/rahulImg.webp").default}
+                  alt="Buckets Investing Teams"
+                  className="aboutImage"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

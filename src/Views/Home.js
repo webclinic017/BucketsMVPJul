@@ -23,28 +23,33 @@ const Home = () => {
     setShowAdd((prev) => !prev);
   };
   const openWaitingList = () => {
+    var url = new URL(window.location.href);
+    var code = url.searchParams.get("code");
+    console.log(code);
+    var requesturl = code
+      ? "https://buckets-rahul-server.herokuapp.com/referral/add-user/" + code
+      : "https://buckets-rahul-server.herokuapp.com/referral/add-user";
     const body = {
       name: "",
       email: document.getElementById("newsletter").value,
     };
-    if(body.email != ""){
+    if (body.email != "") {
       console.log(body);
-        axios
-          .post(
-            "https://buckets-rahul-server.herokuapp.com/referral/add-user",
-            body
-          )
-          .then((response) => {
-            setRefferal(response.data);
-            setShowAdd((prev) => !prev);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-
-     } else{
-       console.log("email is empty!")
-     }
+      axios
+        .post(
+          "https://buckets-rahul-server.herokuapp.com/referral/add-user",
+          body
+        )
+        .then((response) => {
+          setRefferal(response.data);
+          setShowAdd((prev) => !prev);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      console.log("email is empty!");
+    }
   };
 
   return (
