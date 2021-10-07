@@ -122,31 +122,31 @@ const Header = ({
                     </li>
                   </ul> */}
                   {/* {!isDemo && ( */}
-                    <ul className="list-reset text-xs header-nav-right">
-                      {/* <li>
+                  <ul className="list-reset text-xs header-nav-right">
+                    {/* <li>
                         <Link to="/demo" onClick={closeMenu}>
                           Demo
                         </Link>
                       </li> */}
-                      <li>
-                        <Link to="/about" onClick={closeMenu}>
-                          About Us
-                        </Link>
-                      </li>
+                    <li>
+                      <Link to="/about" onClick={closeMenu}>
+                        About Us
+                      </Link>
+                    </li>
 
-                      <li>
-                        <Button
-                          tag="a"
-                          color="primary"
-                          wideMobile
-                          href="/#newsletter"
-                          className="button button-primary button-wide-mobile button-sm landingButton"
-                        >
-                          Sign up
-                        </Button>
-                      </li>
-                    </ul>
-                  
+                    <li>
+                      <Button
+                        tag="a"
+                        color="primary"
+                        wideMobile
+                        href="#newsletter"
+                        className="button button-primary button-wide-mobile button-sm landingButton"
+                      >
+                        Sign up
+                      </Button>
+                    </li>
+                  </ul>
+
                   {isDemo && (
                     <ul className="list-reset text-xs header-nav-right">
                       <li>
