@@ -27,7 +27,6 @@ import { scrollToTop } from "react-scroll/modules/mixins/animate-scroll";
 import NotFoundPage from "../Screens/NotFoundPage";
 import Home from "../Views/Home";
 import About from "../Views/AboutUs";
-import Image from "../Components/elements/Image";
 // import "../Assets/scss/style.scss";
 const CustomRoute = ({ isProtected, path, exact, component }) => {
   const user = useSelector((state) => state.auth.user);
@@ -117,23 +116,7 @@ const Navigation = () => {
         />
         <CustomRoute isProtected path="/settings" exact component={Settings} />
         <CustomRoute path="/login" exact component={Login} />
-        <CustomRoute
-          path="/assets"
-          exact
-          component={() => {
-            return (
-              <Image
-                src={
-                  require("../Assets/tickerLogo/ABM.svg")
-                    .default
-                }
-                alt="Features tile icon 02"
-                width={64}
-                height={64}
-              />
-            );
-          }}
-        />
+
         <CustomRoute path="/404" exact component={NotFoundPage} />
         <Redirect to="/404" />
       </Switch>
