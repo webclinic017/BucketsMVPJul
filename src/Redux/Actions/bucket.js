@@ -64,6 +64,8 @@ const setIsFollowing = (status) => {
 const getBucketData = (data, onSuccess=()=>{}, onError=()=>{}) => (
   (dispatch) => {
     dispatch(setIsFetchingBucketData(true));
+    console.log(data)
+
     APIClient.post('/bucket/get-bucket-data', data).then((response)=>{
       if(response.data.success === true) {
         dispatch({
@@ -273,6 +275,7 @@ const getExpertBuckets = (onSuccess=()=>{}, onError=()=>{}) => (
     dispatch(setIsFetching(true));
     APIClient.get('/bucket/get-expert-buckets').then((response)=>{
       if(response.data.success === true) {
+        console.log(response.data.buckets)
         dispatch({
           type: GET_EXPERT_BUCKETS,
           payload: response.data.buckets
