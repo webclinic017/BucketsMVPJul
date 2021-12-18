@@ -1,22 +1,11 @@
 {
   "applinks": {
-      "details": [
-           {
-             "appIDs": [ "29PQ5P4WQH.com.BucketsInvestingMobileTemp"],
-             "components": [
-               {
-                  "/": "*",
-                  "comment": "Matches any URL whose path starts with /buy/"
-               }
-             ]
-           }
-       ]
-   },
-   "webcredentials": {
-      "apps": [ "29PQ5P4WQH.com.BucketsInvestingMobileTemp" ]
-   },
-
-    "appclips": {
-        "apps": ["29PQ5P4WQH.com.BucketsInvestingMobileTemp.Clip"]
-    }
+    "apps": [],
+    "details": [
+      {
+        "appID": "29PQ5P4WQH.com.BucketsInvestingMobileTemp",
+        "paths": ["*"]
+      }
+    ]
+  }
 }
