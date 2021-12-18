@@ -5,7 +5,7 @@
              "appIDs": [ "29PQ5P4WQH.com.BucketsInvestingMobileTemp"],
              "components": [
                {
-                  "/": "/*",
+                  "/": "*",
                   "comment": "Matches any URL whose path starts with /buy/"
                }
              ]
