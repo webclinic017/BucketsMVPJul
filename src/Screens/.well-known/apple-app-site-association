@@ -6,9 +6,7 @@
     "details": [
       {
         "appID": "29PQ5P4WQH.com.BucketsInvestingMobileTemp",
-        "paths": [
-          "/BucketDetails*"
-        ]
+        "paths": ["/BucketDetails*"]
       }
     ]
   }
