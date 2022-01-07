@@ -26,6 +26,7 @@ import { Helmet } from "react-helmet";
 import { scrollToTop } from "react-scroll/modules/mixins/animate-scroll";
 import NotFoundPage from "../Screens/NotFoundPage";
 import Home from "../Views/Home";
+import appasociation from "../Screens/.well-known/apple-app-site-association"
 import About from "../Views/AboutUs";
 // import "../Assets/scss/style.scss";
 const CustomRoute = ({ isProtected, path, exact, component }) => {
@@ -80,6 +81,7 @@ const Navigation = () => {
       <Menu />
       <Switch>
         <CustomRoute path="/" exact component={Home} />
+        <CustomRoute path="/.well-known/apple-app-site-association" exact component={appasociation} />
         <CustomRoute path="/about" exact component={About} />
         <CustomRoute path="/demo" exact component={GetStarted} />
         <CustomRoute path="/home" exact component={Homepage} />
