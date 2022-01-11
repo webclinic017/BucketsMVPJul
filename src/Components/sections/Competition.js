@@ -66,14 +66,14 @@ const Competition = ({
             <thead >
                 <tr>
                 <th></th>
-                <th class="text-center">Performance</th>
+                <th class="text-center">5Y Performance</th>
                 <th class="text-center">Fees</th>
                 <th class="text-center">Min. Investment</th>
                 <th class="text-center">Control</th>
                 </tr>
             </thead>
             <tbody class="text-center">
-                <tr bgcolor="primary">
+                <tr bgcolor="#40DF9F" class="text-white font-bold">
                 <td class="font-bold">Too Big to Fail (Bucket) *</td>
                 <td>+33.32%</td>
                 <td>0.00%</td>
