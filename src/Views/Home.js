@@ -7,6 +7,7 @@ import FeaturesSplit from "../Components/sections/FeaturesSplit";
 import Testimonial from "../Components/sections/Testimonial";
 import Cta from "../Components/sections/Cta";
 import Footer from "../Components/layout/Footer";
+import Competition from "../Components/sections/Competition";
 import Header from "../Components/layout/Header";
 import "../Assets/scss/style.scss";
 import "../Assets/styles/popupStyles.css";
@@ -64,6 +65,7 @@ const Home = () => {
 
       <Hero className="illustration-section-01" />
       {/* <FeaturesTiles /> */}
+      <Competition />
       <FeaturesSplit
         invertMobile
         topDivider

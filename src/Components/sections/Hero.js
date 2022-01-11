@@ -62,9 +62,9 @@ const Hero = ({
               data-reveal-delay="200"
               data-aos="fade-up"
             >
-              Structured investment baskets made by{" "}
-              <span className="text-color-primary">experts</span>
-              {" "} at your fingertips
+              {" "}
+              <span className="text-color-primary">Supercharge</span>  your Robinhood 
+            
             </h2>
             <div className="container-xs">
               <p
@@ -72,7 +72,7 @@ const Hero = ({
                 data-reveal-delay="400"
                 data-aos="fade-up"
               >
-                The simplest way to build smart portfolios and invest in ideas.
+                The smartest way to invest in the markets. See our research here.
               </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup data-aos="fade-up">
@@ -105,7 +105,14 @@ const Hero = ({
             data-reveal-delay="800"
           >
             <div className="container-sm deckWrapper">
-              <Deck />
+              <Image 
+                  src={require("../../Assets/images/demoa.gif").default}
+                  width={260}
+                  height={250}
+              />
+
+          
+              {/* <Deck /> */}
             </div>
             {/* <a
               data-video="https://player.vimeo.com/video/174002812"
