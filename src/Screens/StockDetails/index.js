@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import MoonLoader from 'react-spinners/MoonLoader';
+import Image from '../../Components/elements/Image';
 import ShareIcon from "../../Assets/entypo_share.png";
 import MenuIcon from "../../Assets/Icons/menu.png";
 import Input from "../../Components/Atomic/Input";
@@ -96,7 +97,12 @@ const Portfolio = (props)=> {
           isFetchingBucket
             ?
               <div className="flex my-auto max-w-screen justify-center items-center">
-                <MoonLoader size={40} color={theme.colors.green} loading={true} />
+                {/* <MoonLoader size={40} color={theme.colors.green} loading={true} /> */}
+                <Image 
+                    src={require("../../Assets/images/transparentlogo.gif").default}
+                    width={64}
+                    height={64}
+                />
               </div>
             :
               <>

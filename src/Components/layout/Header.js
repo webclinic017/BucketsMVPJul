@@ -129,11 +129,11 @@ const Header = ({
                           Demo
                         </Link>
                       </li> */}
-                    <li>
+                    {/* <li>
                       <Link to="/about" onClick={closeMenu}>
                         About Us
                       </Link>
-                    </li>
+                    </li> */}
 
                     {isHome && (
                       <li>

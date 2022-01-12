@@ -5,6 +5,7 @@ import React, {
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import MoonLoader from 'react-spinners/MoonLoader';
+import Image from '../../Components/elements/Image'
 import Input from "../../Components/Atomic/Input";
 import Button from "../../Components/Atomic/Button";
 import EditableStockRow from "../../Components/Molecular/EditableStockRow";
@@ -131,7 +132,12 @@ const EditBucket = (props)=> {
           isFetchingBucket
             ?
               <div className="flex my-auto max-w-screen justify-center items-center">
-                <MoonLoader size={40} color={theme.colors.green} loading={true} />
+                {/* <MoonLoader size={40} color={theme.colors.green} loading={true} /> */}
+                <Image 
+                    src={require("../../Assets/images/transparentlogo.gif").default}
+                    width={64}
+                    height={64}
+                />
               </div>
             :
               <>
