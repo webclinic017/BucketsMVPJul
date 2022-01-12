@@ -13,8 +13,8 @@ const Logo = ({ className, ...props }) => {
           <Image
             src={require("../../../Assets/images/logo.png").default}
             alt="Buckets Investing Logo"
-            width={32}
-            height={32}
+            width={64}
+            height={64}
           />
         </Link>
       </h1>

@@ -75,7 +75,7 @@ const Competition = ({
             <tbody class="text-center">
                 <tr bgcolor="#40DF9F" class="text-white font-bold">
                 <td class="font-bold">Too Big to Fail (Bucket) *</td>
-                <td>+33.32%</td>
+                <td>+34.37%</td>
                 <td>0.00%</td>
                 <td>$10</td>
                 <td>Full</td>

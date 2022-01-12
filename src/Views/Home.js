@@ -67,8 +67,8 @@ const Home = () => {
       <Hero className="illustration-section-01" />
       {/* <FeaturesTiles /> */}
       <Image 
-                  src={require("../Assets/images/hd.png").default}
-                  width={2000}
+                  src={require("../Assets/images/green.png").default}
+                  width={'100%'}
                   height={768}
                   data-aos="fade-up"
               />

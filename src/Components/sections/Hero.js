@@ -5,7 +5,7 @@ import ButtonGroup from "../elements/ButtonGroup";
 import Button from "../elements/Button";
 import Image from "../elements/Image";
 import Modal from "../elements/Modal";
-import Deck from "../../Deck";
+// import Deck from "../../Deck";
 import { Link } from "react-router-dom";
 const propTypes = {
   ...SectionProps.types,
@@ -72,7 +72,7 @@ const Hero = ({
                 data-reveal-delay="400"
                 data-aos="fade-up"
               >
-                The smartest way to invest in the markets. See our research here.
+                The smartest way to invest in the markets
               </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup data-aos="fade-up">
