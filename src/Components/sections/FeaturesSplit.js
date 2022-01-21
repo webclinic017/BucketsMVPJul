@@ -47,9 +47,9 @@ const FeaturesSplit = ({
   );
 
   const sectionHeader = {
-    title: "Sophisticated investing simplified",
+    title: "Power like Never Before",
     paragraph:
-      "Custom investment products were traditionally reserved only for billionaire investors and funds. We are here to bring them to you. ",
+      "Custom investment products were traditionally reserved only for billionaire investors and funds. We are here to bring them to you. Outperform the market and manage risk better than ever before.",
   };
 
   return (
@@ -62,7 +62,7 @@ const FeaturesSplit = ({
             className="center-content"
           />
           <div className={splitClasses}>
-            <div className="split-item">
+          <div className="split-item">
               <div
                 className="split-item-content center-content-mobile reveal-from-left"
                 data-reveal-container=".split-item"
@@ -71,14 +71,13 @@ const FeaturesSplit = ({
                   data-aos="fade-up"
                   className="text-xxs text-color-primary fw-600 tt-u mb-8"
                 >
-                  Lightning fast workflow
+                  zero Management Fees
                 </div>
                 <h3 data-aos="fade-up" className="mt-0 mb-12">
-                  Complete control
+                  ETF? Or Better?
                 </h3>
                 <p data-aos="fade-up" className="m-0">
-                  Create your own buckets and share with friends. Invest via an
-                  existing brokerage account or create a new one.
+                  No management fees. Compare performance to the market, measure risk and review the sector breakdown before buying a bucket to better manage risk and maximize returns. 
                 </p>
               </div>
               <div
@@ -89,7 +88,41 @@ const FeaturesSplit = ({
                 data-reveal-container=".split-item"
               >
                 <Image
-                  src={require("../../Assets/images/iphone1.webp").default}
+                  src={require("../../Assets/images/analytics.gif").default}
+                  alt="Buckets Investing IOS"
+                  data-aos="fade-left"
+                  width={528}
+                  height={396}
+                />
+              </div>
+            </div>
+            <div className="split-item">
+              <div
+                className="split-item-content center-content-mobile reveal-from-left"
+                data-reveal-container=".split-item"
+              >
+                <div
+                  data-aos="fade-up"
+                  className="text-xxs text-color-primary fw-600 tt-u mb-8"
+                >
+                  Customizable unlike ETFs and Mutual Funds
+                </div>
+                <h3 data-aos="fade-up" className="mt-0 mb-12">
+                  Complete control
+                </h3>
+                <p data-aos="fade-up" className="m-0">
+                  Create your own buckets and share with friends. Invest through your SIPC insured Robinhood brokerage account.
+                </p>
+              </div>
+              <div
+                className={classNames(
+                  "split-item-image center-content-mobile reveal-from-bottom",
+                  imageFill && "split-item-image-fill"
+                )}
+                data-reveal-container=".split-item"
+              >
+                <Image
+                  src={require("../../Assets/images/control.gif").default}
                   alt="Buckets Investing IOS"
                   data-aos="fade-left"
                   width={50}
@@ -110,12 +143,12 @@ const FeaturesSplit = ({
                   Invest smarter together
                 </div>
                 <h3 data-aos="fade-up" className="mt-0 mb-12">
-                  Rebalance with a couple of clicks
+                  Copy changes with a click
                 </h3>
                 <p data-aos="fade-up" className="m-0">
                   Follow other influential investors and your friends to get
                   notified when they make trades. Collaborate on investments
-                  effortlessly using the in-built rebalancing features.
+                  effortlessly using the in-built copy trade features.
                 </p>
               </div>
               <div
@@ -126,7 +159,7 @@ const FeaturesSplit = ({
                 data-reveal-container=".split-item"
               >
                 <Image
-                  src={require("../../Assets/images/iphone2.webp").default}
+                  src={require("../../Assets/images/copy.gif").default}
                   alt="Buckets Investing IOS"
                   data-aos="fade-right"
                   width={528}
@@ -144,15 +177,13 @@ const FeaturesSplit = ({
                   data-aos="fade-up"
                   className="text-xxs text-color-primary fw-600 tt-u mb-8"
                 >
-                  More money in your pockets
+                  Portfolio management made easy
                 </div>
                 <h3 data-aos="fade-up" className="mt-0 mb-12">
-                  Minimize management fees
+                  For both pros and beginners
                 </h3>
                 <p data-aos="fade-up" className="m-0">
-                  Management fees compound. If you invested in the S&P500 with a
-                  management fee of 1% 20 years ago, it would have costed you
-                  more than 23% of your money by today.
+                  Feel like an asset manager with the power to bulk edit your ideas
                 </p>
               </div>
               <div
@@ -163,7 +194,7 @@ const FeaturesSplit = ({
                 data-reveal-container=".split-item"
               >
                 <Image
-                  src={require("../../Assets/images/iphone3.webp").default}
+                  src={require("../../Assets/images/shares.gif").default}
                   alt="Buckets Investing IOS"
                   data-aos="fade-left"
                   width={528}

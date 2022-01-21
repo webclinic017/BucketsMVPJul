@@ -7,6 +7,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 import Chart from "../../Components/Atomic/LineChart";
 import ProgressBar from "../../Components/Atomic/ProgressBar";
 import theme from "../../Theme";
+import Image from '../../Components/elements/Image';
 import ShareIcon from "../../Assets/entypo_share.png";
 import ShareBucketPopup from "../../Components/Molecular/Popups/ShareBucket";
 import { getUserBuckets } from "../../Redux/Actions/bucket";
@@ -114,7 +115,12 @@ const Portfolio = (props)=> {
           isFetchingBuckets
             ?
               <div className="flex my-auto max-w-screen justify-center items-center">
-                <MoonLoader size={40} color={theme.colors.green} loading={true} />
+                {/* <MoonLoader size={40} color={theme.colors.green} loading={true} /> */}
+                <Image 
+                    src={require("../../Assets/images/transparentlogo.gif").default}
+                    width={64}
+                    height={64}
+                />
               </div>
             :
               <div className="block sm:block md:flex justify-between mt-6">

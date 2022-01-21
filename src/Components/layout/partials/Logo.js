@@ -11,10 +11,10 @@ const Logo = ({ className, ...props }) => {
       <h1 className="m-0">
         <Link to="/">
           <Image
-            src={require("../../../Assets/images/logo.png").default}
+            src={require("../../../Assets/images/newlogo.png").default}
             alt="Buckets Investing Logo"
-            width={32}
-            height={32}
+            width={64}
+            height={64}
           />
         </Link>
       </h1>

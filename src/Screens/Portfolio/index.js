@@ -6,6 +6,7 @@ import React, {
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import MoonLoader from 'react-spinners/MoonLoader';
+import Image from '../../Components/elements/Image';
 import StockChart from "../../Components/Atomic/StockChart";
 import StockChartNew from "../../Components/Atomic/HighChart";
 import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
@@ -342,7 +343,12 @@ const Portfolio = (props)=> {
           isFetchingBucket
             ?
               <div className="flex my-auto max-w-screen justify-center items-center">
-                <MoonLoader size={40} color={theme.colors.tuscany} loading={true} />
+                {/* <MoonLoader size={40} color={theme.colors.tuscany} loading={true} /> */}
+                <Image 
+                    src={require("../../Assets/images/transparentlogo.gif").default}
+                    width={64}
+                    height={64}
+                />
               </div>
             :
               <>

@@ -6,7 +6,9 @@ import FeaturesTiles from "../Components/sections/FeaturesTiles";
 import FeaturesSplit from "../Components/sections/FeaturesSplit";
 import Testimonial from "../Components/sections/Testimonial";
 import Cta from "../Components/sections/Cta";
+import Image from '../Components/elements/Image'
 import Footer from "../Components/layout/Footer";
+import Competition from "../Components/sections/Competition";
 import Header from "../Components/layout/Header";
 import "../Assets/scss/style.scss";
 import "../Assets/styles/popupStyles.css";
@@ -64,6 +66,13 @@ const Home = () => {
 
       <Hero className="illustration-section-01" />
       {/* <FeaturesTiles /> */}
+      <Image 
+                  src={require("../Assets/images/green.png").default}
+                  width={'100%'}
+                  height={768}
+                  data-aos="fade-up"
+              />
+      <Competition />
       <FeaturesSplit
         invertMobile
         topDivider

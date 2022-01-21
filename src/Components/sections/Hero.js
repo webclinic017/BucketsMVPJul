@@ -5,7 +5,7 @@ import ButtonGroup from "../elements/ButtonGroup";
 import Button from "../elements/Button";
 import Image from "../elements/Image";
 import Modal from "../elements/Modal";
-import Deck from "../../Deck";
+// import Deck from "../../Deck";
 import { Link } from "react-router-dom";
 const propTypes = {
   ...SectionProps.types,
@@ -54,17 +54,17 @@ const Hero = ({
 
   return (
     <section {...props} className={outerClasses}>
-      <div className="container-sm">
+      <div data-aos="fade-up" className="container-sm">
         <div className={innerClasses}>
           <div className="hero-content">
             <h2
-              className="mt-0 mb-16 reveal-from-bottom"
+              className="mt-7 mb-16 reveal-from-bottom"
               data-reveal-delay="200"
               data-aos="fade-up"
             >
-              Structured investment baskets made by{" "}
-              <span className="text-color-primary">experts</span>
-              {" "} at your fingertips
+              {" "}
+              <span className="text-color-primary">Supercharge</span>  your Robinhood 
+            
             </h2>
             <div className="container-xs">
               <p
@@ -72,7 +72,7 @@ const Hero = ({
                 data-reveal-delay="400"
                 data-aos="fade-up"
               >
-                The simplest way to build smart portfolios and invest in ideas.
+                The smartest way to invest in the markets
               </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup data-aos="fade-up">
@@ -104,9 +104,16 @@ const Hero = ({
             data-reveal-value="20px"
             data-reveal-delay="800"
           >
-            <div className="container-sm deckWrapper">
-              <Deck />
-            </div>
+            
+              {/* <Image 
+                  src={require("../../Assets/images/canva.png").default}
+                  width={2000}
+                  height={768}
+              /> */}
+
+          
+              {/* <Deck /> */}
+         
             {/* <a
               data-video="https://player.vimeo.com/video/174002812"
               href="#0"
