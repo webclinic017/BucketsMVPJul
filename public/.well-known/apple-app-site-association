@@ -1,11 +1,10 @@
 {
   "applinks": {
-    "apps": [],
-    "details": [
-      {
-        "appID": "29PQ5P4WQH.com.BucketsInvestingMobileTemp",
-        "paths": ["*"]
-      }
-    ]
+      "apps": [],
+      "details": [{
+          "appID": "29PQ5P4WQH.com.BucketsInvestingMobileTemp",
+          "paths": ["/BucketDetails", "BucketDetails/*"]
+          }
+      ]
   }
 }
