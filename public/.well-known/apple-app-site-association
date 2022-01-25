@@ -5,10 +5,10 @@
       {
         "appIDs": [
           "29PQ5P4WQH.com.BucketsInvestingMobileTemp",
-          "6X3B423LNC.com.reddit.inhouse.dev",
+          "57H7R5X88A.com.BucketsInvestingMobileTemp",
           "6X3B423LNC.com.reddit.inhouse.qa"
         ],
-        "appID": "2TDUX39LX8.com.reddit.Reddit",
+        "appID": "29PQ5P4WQH.com.BucketsInvestingMobileTemp",
         "components": [
           {
             "/": "/",
@@ -137,7 +137,7 @@
         ]
       },
       {
-        "appID": "6X3B423LNC.com.reddit.inhouse.dev",
+        "appID": "57H7R5X88A.com.BucketsInvestingMobileTemp",
         "paths": [
           "/",
           "/r/*",
