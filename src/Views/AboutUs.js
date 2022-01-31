@@ -71,7 +71,7 @@ const About = ({
           className="center-content "
         />
         <div className="aboutTeamHeader">
-          <h2 class="mt-0 mb-0">Our Team</h2>
+          <h2 className="mt-0 mb-0">Our Team</h2>
         </div>
         <div className={innerClasses}>
           <div className={splitClasses}>

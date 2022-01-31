@@ -63,50 +63,67 @@ const Competition = ({
           />
           <div
             className={splitClasses}
-            class="text-center"
-            style={{ overflowX: "auto" }}
+            className="text-center"
+            style={{ overflowX: "auto", overflowY: "hidden" }}
           >
-            <table data-aos="fade-up" class="table-auto">
+            <table data-aos="fade-up" className="table-auto">
               <thead>
                 <tr>
                   <th></th>
-                  <th class="text-center">5Y Performance</th>
-                  <th class="text-center">Fees</th>
-                  <th class="text-center">Min. Investment</th>
-                  <th class="text-center">Control</th>
+                  <th className="text-center">5Y Performance</th>
+                  <th className="text-center">Fees</th>
+                  <th className="text-center">Min. Investment</th>
+                  <th className="text-center">Control</th>
                 </tr>
               </thead>
-              <tbody class="text-center">
-                <tr bgcolor="#40DF9F" class="text-white font-bold">
-                  <td class="font-bold">Too Big to Fail (Bucket) *</td>
-                  <td>+34.37%</td>
-                  <td>0.00%</td>
-                  <td>$10</td>
-                  <td>Full</td>
+              <tbody className="text-center">
+                <tr className="text-white font-bold">
+                  <td
+                    style={{
+                      borderTopLeftRadius: 8,
+                      borderBottomLeftRadius: 8,
+                    }}
+                    bgcolor="#40DF9F"
+                    className="font-bold"
+                  >
+                    Too Big to Fail (Bucket) *
+                  </td>
+                  <td bgcolor="#40DF9F">+34.37%</td>
+                  <td bgcolor="#40DF9F">0.00%</td>
+                  <td bgcolor="#40DF9F">$10</td>
+                  <td
+                    style={{
+                      borderTopRightRadius: 8,
+                      borderBottomRightRadius: 8,
+                    }}
+                    bgcolor="#40DF9F"
+                  >
+                    Full
+                  </td>
                 </tr>
                 <tr>
-                  <td class="font-bold">S{"&"}P 500</td>
+                  <td className="font-bold">S{"&"}P 500</td>
                   <td>+16.07%</td>
                   <td>0.03%</td>
                   <td>$440</td>
                   <td>None</td>
                 </tr>
                 <tr>
-                  <td class="font-bold">Wealthfront</td>
+                  <td className="font-bold">Wealthfront</td>
                   <td>+12.38%</td>
                   <td>0.25%</td>
                   <td>$500</td>
                   <td>Limited</td>
                 </tr>
                 <tr>
-                  <td class="font-bold">Acorns (Aggressive Basket)</td>
+                  <td className="font-bold">Acorns (Aggressive Basket)</td>
                   <td>+11.72%</td>
                   <td>0.08%</td>
                   <td>$5</td>
                   <td>None</td>
                 </tr>
                 <tr>
-                  <td class="font-bold">Titan Invest</td>
+                  <td className="font-bold">Titan Invest</td>
                   <td>+20.04%</td>
                   <td>1.00%</td>
                   <td>$100</td>

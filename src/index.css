@@ -252,3 +252,21 @@ html {
 #brokerage-coinbase {
   background-image: url("./Assets/coinbaselogo.png");
 }
+
+.centerImage {
+  justify-content: center;
+}
+.storyText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* number of lines to show */
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+.removeBottomPadding {
+  padding-bottom: 0 !important;
+}
+.highlightTr {
+  border-radius: 5px;
+}

@@ -98,12 +98,13 @@ const WaitingList = ({ showList, closeModal, refferal }) => {
                     <a id="waitinglist-sharing-plain-container">
                       <input
                         id="waitinglist-sharing-plain-link"
-                        readonly=""
+                        readOnly=""
                         type="text"
                         value={
                           "https://www.bucketsinvesting.com/?code=" +
                           refferal.code
                         }
+                        onChange={() => {}}
                       />
                       <button
                         id="waitinglist-sharing-link-button"
@@ -114,7 +115,7 @@ const WaitingList = ({ showList, closeModal, refferal }) => {
                     </a>
                     <a
                       id="waitinglist-sharing-social-facebook"
-                      class="waitinglist-sharing-social"
+                      className="waitinglist-sharing-social"
                       target="_blank"
                       title="Share on Facebook"
                       href={
@@ -124,7 +125,7 @@ const WaitingList = ({ showList, closeModal, refferal }) => {
                     ></a>
                     <a
                       id="waitinglist-sharing-social-twitter"
-                      class="waitinglist-sharing-social"
+                      className="waitinglist-sharing-social"
                       title="Share on Twitter"
                       target="_blank"
                       href={
@@ -136,7 +137,7 @@ const WaitingList = ({ showList, closeModal, refferal }) => {
                     <a
                       id="waitinglist-sharing-social-whatsapp"
                       target="_blank"
-                      class="waitinglist-sharing-social"
+                      className="waitinglist-sharing-social"
                       title="Share on Whatsapp"
                       href={
                         "https://api.whatsapp.com/send?text=You%20should%20really%20check%20this%20out%20https://www.bucketsinvesting.com/?code=" +
@@ -147,7 +148,7 @@ const WaitingList = ({ showList, closeModal, refferal }) => {
                     <a
                       id="waitinglist-sharing-social-facebook-messenger"
                       target="_blank"
-                      class="waitinglist-sharing-social"
+                      className="waitinglist-sharing-social"
                       title="Share on Facebook Messenger"
                       href={
                         "https://www.facebook.com/v2.8/dialog/send?app_id=885310524899839&amp;link=https://www.bucketsinvesting.com/?code=" +
@@ -158,7 +159,7 @@ const WaitingList = ({ showList, closeModal, refferal }) => {
                     <a
                       id="waitinglist-sharing-social-email"
                       target="_blank"
-                      class="waitinglist-sharing-social"
+                      className="waitinglist-sharing-social"
                       title="Share on Email"
                       href={
                         "mailto:?subject=Check%20this%20out&amp;body=https://www.bucketsinvesting.com/?code=" +
@@ -169,7 +170,7 @@ const WaitingList = ({ showList, closeModal, refferal }) => {
                     <a
                       id="waitinglist-sharing-social-linkedin"
                       target="_blank"
-                      class="waitinglist-sharing-social"
+                      className="waitinglist-sharing-social"
                       title="Share on Linkedin"
                       href={
                         "https://www.linkedin.com/shareArticle?mini=true&url=https://www.bucketsinvesting.com/?code=" +
@@ -180,7 +181,7 @@ const WaitingList = ({ showList, closeModal, refferal }) => {
                     <a
                       id="waitinglist-sharing-social-reddit"
                       target="_blank"
-                      class="waitinglist-sharing-social"
+                      className="waitinglist-sharing-social"
                       title="Share on Reddit"
                       href={
                         "https://www.reddit.com/submit?url=https://www.bucketsinvesting.com/?code=" +

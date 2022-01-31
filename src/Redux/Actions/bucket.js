@@ -64,7 +64,6 @@ const setIsFollowing = (status) => {
 const getBucketData = (data, onSuccess=()=>{}, onError=()=>{}) => (
   (dispatch) => {
     dispatch(setIsFetchingBucketData(true));
-    console.log(data)
 
     APIClient.post('/bucket/get-bucket-data', data).then((response)=>{
       if(response.data.success === true) {

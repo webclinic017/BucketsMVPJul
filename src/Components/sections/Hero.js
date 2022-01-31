@@ -38,7 +38,7 @@ const Hero = ({
   };
 
   const outerClasses = classNames(
-    "hero section center-content",
+    "hero section center-content ",
     topOuterDivider && "has-top-divider",
     bottomOuterDivider && "has-bottom-divider",
     hasBgColor && "has-bg-color",
@@ -47,7 +47,7 @@ const Hero = ({
   );
 
   const innerClasses = classNames(
-    "hero-inner section-inner",
+    "hero-inner section-inner removeBottomPadding",
     topDivider && "has-top-divider",
     bottomDivider && "has-bottom-divider"
   );
@@ -62,9 +62,8 @@ const Hero = ({
               data-reveal-delay="200"
               data-aos="fade-up"
             >
-              {" "}
-              <span className="text-color-primary">Supercharge</span>  your Robinhood 
-            
+              <span className="text-color-primary">Supercharge</span> your
+              Robinhood
             </h2>
             <div className="container-xs">
               <p
@@ -104,16 +103,14 @@ const Hero = ({
             data-reveal-value="20px"
             data-reveal-delay="800"
           >
-            
-              {/* <Image 
+            {/* <Image 
                   src={require("../../Assets/images/canva.png").default}
                   width={2000}
                   height={768}
               /> */}
 
-          
-              {/* <Deck /> */}
-         
+            {/* <Deck /> */}
+
             {/* <a
               data-video="https://player.vimeo.com/video/174002812"
               href="#0"
