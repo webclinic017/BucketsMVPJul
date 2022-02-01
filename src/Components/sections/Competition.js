@@ -49,7 +49,7 @@ const Competition = ({
   const sectionHeader = {
     title: "Best in Class",
     paragraph:
-      "Ideas structured by professionals at your fingertips ",
+      "Ideas structured by professionals at your fingertips. Buckets is the simplest way to build intelligently structured long-term portfolios for free. Unlike ETFs, Buckets are completely customizable and have no management fees.",
   };
 
   return (
