@@ -71,7 +71,7 @@ const Hero = ({
                 data-reveal-delay="400"
                 data-aos="fade-up"
               >
-                by simply linking your brokerage account
+                by simply linking your brokerage account. We do NOT store your brokerage credentials or ask for any personal information. 
               </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup data-aos="fade-up">

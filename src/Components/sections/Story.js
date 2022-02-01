@@ -43,7 +43,7 @@ const Story = ({
 
   const sectionHeader = {
     title: "Our stories",
-    paragraph: "Here is what some users had to say about our demo product:",
+    paragraph: "Some hacks you won't want to miss:",
   };
 
   return (
