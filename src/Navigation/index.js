@@ -26,7 +26,7 @@ import { Helmet } from "react-helmet";
 import { scrollToTop } from "react-scroll/modules/mixins/animate-scroll";
 import NotFoundPage from "../Screens/NotFoundPage";
 import Home from "../Views/Home";
-import appasociation from "../Screens/.well-known/apple-app-site-association"
+import appasociation from "../Screens/.well-known/apple-app-site-association";
 import About from "../Views/AboutUs";
 // import "../Assets/scss/style.scss";
 const CustomRoute = ({ isProtected, path, exact, component }) => {
@@ -40,6 +40,32 @@ const CustomRoute = ({ isProtected, path, exact, component }) => {
       return <Redirect to="/login" />;
     }
   } else if (path === "/login" && user && isAuthenticated) {
+    return <Redirect to="/" />;
+  } else if (path === "/BucketDetails") {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/android/i.test(userAgent)) {
+      return (
+        <Route
+          to="/BucketDetails"
+          component={() => {
+            window.location.href = "https://testflight.apple.com/join/qsc0mMGU";
+            return null;
+          }}
+        />
+      );
+    }
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return (
+        <Route
+          to="/BucketDetails"
+          component={() => {
+            window.location.href = "https://testflight.apple.com/join/qsc0mMGU";
+            return null;
+          }}
+        />
+      );
+    }
     return <Redirect to="/" />;
   } else {
     return <Route path={path} exact={exact} component={component} />;
@@ -81,7 +107,11 @@ const Navigation = () => {
       <Menu />
       <Switch>
         <CustomRoute path="/" exact component={Home} />
-        <CustomRoute path="/.well-known/apple-app-site-association" exact component={appasociation} />
+        <CustomRoute
+          path="/.well-known/apple-app-site-association"
+          exact
+          component={appasociation}
+        />
         <CustomRoute path="/about" exact component={About} />
         <CustomRoute path="/demo" exact component={GetStarted} />
         <CustomRoute path="/home" exact component={Homepage} />
@@ -118,7 +148,7 @@ const Navigation = () => {
         />
         <CustomRoute isProtected path="/settings" exact component={Settings} />
         <CustomRoute path="/login" exact component={Login} />
-
+        <CustomRoute path="/BucketDetails" />
         <CustomRoute path="/404" exact component={NotFoundPage} />
         <Redirect to="/404" />
       </Switch>
