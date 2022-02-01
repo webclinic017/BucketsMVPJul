@@ -11,205 +11,34 @@
         "appID": "29PQ5P4WQH.com.BucketsInvestingMobileTemp",
         "components": [
           {
+            "/": "*",
+            "comment": "Frontpage"
+          },
+          {
             "/": "/",
             "comment": "Frontpage"
           },
           {
             "/": "/*",
             "comment": "Frontpage"
-          },
-          {
-            "/": "/$(lang)/",
-            "comment": "Language feed page"
-          },
-          {
-            "/": "/$(lang)/r/*",
-            "comment": "Language subreddit page"
-          },
-          {
-            "/": "/$(lang)/r/*/comments/*",
-            "comment": "Language post detail page"
-          },
-          {
-            "/": "/r/*",
-            "comment": "Subreddit page"
-          },
-          {
-            "/": "/u/*",
-            "comment": "User profile page"
-          },
-          {
-            "/": "/user/*",
-            "comment": "User profile page"
-          },
-          {
-            "/": "/comments/*",
-            "comment": "Post detail page"
-          },
-          {
-            "/": "/live/*",
-            "comment": "Live"
-          },
-          {
-            "/": "/message/*",
-            "comment": "Inbox messages"
-          },
-          {
-            "/": "/c/*",
-            "comment": "Chat"
-          },
-          {
-            "/": "/chat/*",
-            "comment": "Chat"
-          },
-          {
-            "/": "/channel/*",
-            "comment": "Chat"
-          },
-          {
-            "/": "/prefs/update",
-            "comment": "Email/password change page"
-          },
-          {
-            "/": "/coins",
-            "comment": "Gold (coins)"
-          },
-          {
-            "/": "/premium",
-            "comment": "Premium (ad-free) buy page"
-          },
-          {
-            "/": "/verification/*",
-            "comment": "Email verification"
-          },
-          {
-            "/": "/rpan/*",
-            "comment": "RPAN"
-          },
-          {
-            "/": "/layer",
-            "comment": "Layer"
-          },
-          {
-            "/": "/search/*",
-            "comment": "Search page"
-          },
-          {
-            "/": "/vault/*",
-            "comment": "Vault"
-          },
-          {
-            "/": "/submit/*",
-            "comment": "Post creation page"
-          },
-          {
-            "/": "/account/magic_link/landing/*",
-            "comment": "Magic link authentication"
-          },
-          {
-            "/": "/talk/*",
-            "comment": "Reddit Talk"
-          },
-          {
-            "/": "/subreddits/create",
-            "comment": "Community Create"
           }
         ],
         "paths": [
+          "*",
           "/",
-          "/*",
-          "/r/*",
-          "/u/*",
-          "/user/*",
-          "/comments/*",
-          "/live/*",
-          "/message/*",
-          "/c/*",
-          "/chat/*",
-          "/channel/*",
-          "/prefs/update",
-          "/coins",
-          "/premium",
-          "/verification/*",
-          "/rpan/*",
-          "/layer",
-          "/search/*",
-          "/vault/*",
-          "/submit/*",
-          "/account/magic_link/landing/*",
-          "/talk/*",
-          "/subreddits/create"
-        ]
-      },
-      {
-        "appID": "57H7R5X88A.com.BucketsInvestingMobileTemp",
-        "paths": [
-          "/",
-          "/*",
-          "/r/*",
-          "/u/*",
-          "/user/*",
-          "/comments/*",
-          "/live/*",
-          "/message/*",
-          "/c/*",
-          "/chat/*",
-          "/channel/*",
-          "/prefs/update",
-          "/coins",
-          "/premium",
-          "/verification/*",
-          "/rpan/*",
-          "/layer",
-          "/search/*",
-          "/vault/*",
-          "/submit/*",
-          "/account/magic_link/landing/*",
-          "/talk/*",
-          "/subreddits/create"
-        ]
-      },
-      {
-        "appID": "6X3B423LNC.com.reddit.inhouse.qa",
-        "paths": [
-          "/",
-          "/r/*",
-          "/u/*",
-          "/user/*",
-          "/comments/*",
-          "/live/*",
-          "/message/*",
-          "/c/*",
-          "/chat/*",
-          "/channel/*",
-          "/prefs/update",
-          "/coins",
-          "/premium",
-          "/verification/*",
-          "/rpan/*",
-          "/layer",
-          "/search/*",
-          "/vault/*",
-          "/submit/*",
-          "/account/magic_link/landing/*",
-          "/talk/*",
-          "/subreddits/create"
+          "/*"
         ]
       }
     ]
   },
   "activitycontinuation": {
     "apps": [
-      "29PQ5P4WQH.com.BucketsInvestingMobileTemp",
-      "57H7R5X88A.com.BucketsInvestingMobileTemp",
-      "6X3B423LNC.com.reddit.inhouse.qa"
+      "29PQ5P4WQH.com.BucketsInvestingMobileTemp"
     ]
   },
   "webcredentials": {
     "apps": [
-      "29PQ5P4WQH.com.BucketsInvestingMobileTemp",
-      "57H7R5X88A.com.BucketsInvestingMobileTemp",
-      "6X3B423LNC.com.reddit.inhouse.qa"
+      "29PQ5P4WQH.com.BucketsInvestingMobileTemp"
     ]
   }
 }
