@@ -52,8 +52,8 @@ const Story = ({
         <div className={innerClasses}>
           <SectionHeader data={sectionHeader} className="center-content" />
           <div className={tilesClasses}>
-            {data.slice(0, 3).map((item) => (
-              <a href={item.link}>
+            {data.sort((a, b) => b.sort - a.sort).slice(0, 3).map((item) => (
+              <a href={item.link} target="_blank">
                 <div
                   className="tiles-item reveal-from-right"
                   data-reveal-delay="200"

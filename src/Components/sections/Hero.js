@@ -79,7 +79,7 @@ const Hero = ({
                     tag="a"
                     color="primary"
                     wideMobile
-                    href="#newsletter"
+                    href="#newsletterSection"
                     className="landingButton"
                   >
                     Get Access

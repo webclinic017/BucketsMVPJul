@@ -22,7 +22,7 @@ const Home = () => {
   useEffect(() => {
     Aos.init({ duration: 1000 });
 
-    APIClient.get("general/get-home-insights").then((response) => {
+    APIClient.get("bucket/get-home-insights").then((response) => {
       if (response.status === 200 && response.data.success) {
         setInsights(response.data.insights);
       }
@@ -111,7 +111,9 @@ const Home = () => {
       <Testimonial topDivider />
 
       <div className="brokerageHeader" data-aos="fade-up">
-        <h2 className="mt-0 mb-0">Coming soon to these platforms</h2>
+        <h2 className="mt-0 mb-0" id="newsletterSection">
+          Coming soon to these platforms
+        </h2>
       </div>
       <div className="brokerageContainer" data-aos="fade-up">
         <div className="brokerage">

@@ -141,7 +141,7 @@ const Header = ({
                           tag="a"
                           color="primary"
                           wideMobile
-                          href="#newsletter"
+                          href="#newsletterSection"
                           className="button button-primary button-wide-mobile button-sm landingButton"
                         >
                           Sign up
@@ -154,7 +154,7 @@ const Header = ({
                           tag="a"
                           color="primary"
                           wideMobile
-                          href="/#newsletter"
+                          href="/#newsletterSection"
                           className="button button-primary button-wide-mobile button-sm landingButton"
                         >
                           Sign up

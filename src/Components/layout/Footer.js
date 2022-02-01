@@ -52,8 +52,20 @@ const Footer = ({ className, topOuterDivider, topDivider, ...props }) => {
                 objectives. The rate of return on investments can vary widely
                 over time, especially for long term investments.
               </p>
-              <Link to="#">Terms</Link> · <Link to="#">Privacy Policy</Link> ·{" "}
-              <p>Contact: info@bucketsinvesting.com</p>
+              <a
+                href="https://frill-class-bd0.notion.site/Buckets-Investing-White-Paper-c6589b37631941f3b4649943a21b18dd"
+                target="_blank"
+              >
+                Terms
+              </a>{" "}
+              ·{" "}
+              <a
+                href="https://frill-class-bd0.notion.site/Buckets-Investing-White-Paper-c6589b37631941f3b4649943a21b18dd"
+                target="_blank"
+              >
+                Privacy Policy
+              </a>{" "}
+              · <p>Contact: info@bucketsinvesting.com</p>
               Made by{" "}
               <a href="https://bucketsinvesting.com">Buckets Investing</a>. All
               right reserved

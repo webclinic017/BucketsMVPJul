@@ -47,7 +47,7 @@ const Cta = ({
   );
 
   return (
-    <section {...props} className={outerClasses} data-aos="fade-up">
+    <section {...props} className={outerClasses}>
       <div className="container">
         <div className={innerClasses}>
           <div className="cta-slogan">
