@@ -43,7 +43,7 @@ const CustomRoute = ({ isProtected, path, exact, component }) => {
     return <Redirect to="/" />;
   } else if (path === "/BucketDetails") {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
+    console.log(window.location.href);
     if (/android/i.test(userAgent)) {
       return (
         <Route
@@ -60,7 +60,19 @@ const CustomRoute = ({ isProtected, path, exact, component }) => {
         <Route
           to="/BucketDetails"
           component={() => {
-            window.location.href = "https://testflight.apple.com/join/qsc0mMGU";
+            let redirect = window.location.href;
+            let regex = /[?&]([^=#]+)=([^&#]*)/g,
+              params = {},
+              match;
+            while ((match = regex.exec(redirect))) {
+              params[match[1]] = match[2];
+            }
+            const { id } = params;
+            let urlScheme = "bucketid://BucketDetails?id=" + id;
+            setTimeout(function () {
+              window.location = "https://testflight.apple.com/join/qsc0mMGU";
+            }, 25);
+            window.location = urlScheme;
             return null;
           }}
         />
