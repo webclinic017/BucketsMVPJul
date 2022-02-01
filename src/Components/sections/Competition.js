@@ -49,7 +49,7 @@ const Competition = ({
   const sectionHeader = {
     title: "Best in Class",
     paragraph:
-      "Intelligently structured baskets made by experts at your fingertips ",
+      "Ideas structured by professionals at your fingertips ",
   };
 
   return (

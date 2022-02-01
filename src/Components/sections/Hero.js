@@ -62,8 +62,8 @@ const Hero = ({
               data-reveal-delay="200"
               data-aos="fade-up"
             >
-              <span className="text-color-primary">Supercharge</span> your
-              Robinhood
+              <span className="text-color-primary">Invest </span> 
+               in Bespoke Strategies for Free
             </h2>
             <div className="container-xs">
               <p
@@ -71,7 +71,7 @@ const Hero = ({
                 data-reveal-delay="400"
                 data-aos="fade-up"
               >
-                The smartest way to invest in the markets
+                by simply linking your brokerage account
               </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup data-aos="fade-up">
