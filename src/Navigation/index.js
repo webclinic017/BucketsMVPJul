@@ -73,7 +73,7 @@ const CustomRoute = ({ isProtected, path, exact, component }) => {
               window.location = "https://testflight.apple.com/join/qsc0mMGU";
             }, 25);
             window.location = urlScheme;
-            return null;
+            return <Redirect to="/" />;
           }}
         />
       );
