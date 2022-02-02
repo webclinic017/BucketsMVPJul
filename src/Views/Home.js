@@ -101,6 +101,7 @@ const Home = () => {
         />
       </div>
       <div
+        data-aos="fade-up"
         className="container-l home-banner"
         style={{
           justifyContent: "center",
