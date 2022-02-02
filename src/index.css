@@ -283,6 +283,7 @@ html {
 .downloadText {
   display: block;
   font-size: large;
+  font-weight: 700;
   cursor: pointer;
   width: 100%;
   text-align: center;
