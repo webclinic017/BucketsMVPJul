@@ -11,7 +11,7 @@
     padding-right: $container--padding__desktop;
   }
 }
-.container-l{
+.container-l {
   width: 100%;
   margin: 0 auto;
   padding-left: $container--padding__mobile;
@@ -28,6 +28,25 @@
   width: 100%;
   @include media(">small") {
     width: 20%;
+  }
+}
+.downloadBtn {
+  height: 60px;
+  width: 180px;
+  border-radius: 8px;
+  border-width: 1.5px;
+  border-color: "#fff";
+  display: flex;
+  background-color: #1a282f;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 2px;
+  cursor: pointer;
+  @include media(">small") {
+    margin-bottom: 0px;
+    margin-left: 60px;
+    margin-right: 60px;
   }
 }
 .container {

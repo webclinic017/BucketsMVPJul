@@ -100,6 +100,32 @@ const Home = () => {
           data-aos="fade-up"
         />
       </div>
+      <div
+        className="container-l home-banner"
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          paddingTop: 80,
+        }}
+      >
+        <div className="downloadBtn">
+          <a
+            href="https://testflight.apple.com/join/qsc0mMGU"
+            className="downloadTextWrapper"
+          >
+            <label className="downloadText">Get it for iPhone</label>
+          </a>
+        </div>
+
+        <div className="downloadBtn">
+          <a
+            href="https://www.bucketsinvesting.com/files/buckets_investing.apk"
+            className="downloadTextWrapper"
+          >
+            <label className="downloadText">Get it for Android</label>
+          </a>
+        </div>
+      </div>
       <Competition />
       {/* <FeaturesSplit
         invertMobile

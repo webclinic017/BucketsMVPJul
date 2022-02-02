@@ -270,3 +270,21 @@ html {
 .highlightTr {
   border-radius: 5px;
 }
+.downloadTextWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+}
+.downloadTextSm {
+  display: block;
+  font-size: large;
+}
+.downloadText {
+  display: block;
+  font-size: large;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
