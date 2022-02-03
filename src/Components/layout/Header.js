@@ -150,7 +150,7 @@ const Header = ({
                     )}
                     {!isHome && (
                       <li>
-                        <Button
+                        {/* <Button
                           tag="a"
                           color="primary"
                           wideMobile
@@ -158,7 +158,7 @@ const Header = ({
                           className="button button-primary button-wide-mobile button-sm landingButton"
                         >
                           Sign up
-                        </Button>
+                        </Button> */}
                       </li>
                     )}
                   </ul>

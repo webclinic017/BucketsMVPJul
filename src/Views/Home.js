@@ -106,10 +106,10 @@ const Home = () => {
         style={{
           justifyContent: "center",
           alignItems: "center",
-          paddingTop: 80,
+          // paddingTop: 80,
         }}
       >
-        <div className="downloadBtn">
+        {/* <div className="downloadBtn">
           <a
             href="https://testflight.apple.com/join/qsc0mMGU"
             className="downloadTextWrapper"
@@ -125,7 +125,7 @@ const Home = () => {
           >
             <label className="downloadText">Get it for Android</label>
           </a>
-        </div>
+        </div> */}
       </div>
       <Competition />
       {/* <FeaturesSplit

@@ -75,7 +75,24 @@ const Hero = ({
               </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup data-aos="fade-up">
-                  <Button
+                <div className="downloadBtn">
+          <a
+            href="https://testflight.apple.com/join/qsc0mMGU"
+            className="downloadTextWrapper"
+          >
+            <label className="downloadText">Get it for iPhone</label>
+          </a>
+        </div>
+
+        <div className="downloadBtn">
+          <a
+            href="https://www.bucketsinvesting.com/files/buckets_investing.apk"
+            className="downloadTextWrapper"
+          >
+            <label className="downloadText">Get it for Android</label>
+          </a>
+        </div>
+                  {/* <Button
                     tag="a"
                     color="primary"
                     wideMobile
@@ -83,7 +100,7 @@ const Hero = ({
                     className="landingButton"
                   >
                     Get Access
-                  </Button>
+                  </Button> */}
                   {/* <Link to="/demo">
                     <Button
                       tag="a"
