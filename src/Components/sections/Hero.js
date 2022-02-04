@@ -63,7 +63,7 @@ const Hero = ({
               data-aos="fade-up"
             >
               <span className="text-color-primary">Invest </span> 
-               in Bespoke Strategies for Free
+               in Model Portfolios for Free
             </h2>
             <div className="container-xs">
               <p

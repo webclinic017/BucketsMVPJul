@@ -93,6 +93,14 @@ const Header = ({
           )}
         >
           <Logo />
+          <h5
+              className=" reveal-from-bottom"
+              data-reveal-delay="200"
+              data-aos="fade-up"
+            >
+              <span className="text-color-primary">Buckets </span> 
+               Investing
+            </h5>
           {!hideNav && (
             <>
               <button
@@ -118,7 +126,7 @@ const Header = ({
                   >
                     <li>
                       <Link to="#0" onClick={closeMenu}>
-                        About Us
+                        About us
                       </Link>
                     </li>
                   </ul> */}
@@ -129,11 +137,11 @@ const Header = ({
                           Demo
                         </Link>
                       </li> */}
-                    {/* <li>
+                    <li>
                       <Link to="/about" onClick={closeMenu}>
                         About Us
                       </Link>
-                    </li> */}
+                    </li>
 
                     {isHome && (
                       <li>
