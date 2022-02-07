@@ -19,6 +19,64 @@ import "aos/dist/aos.css";
 import APIClient from "../Utils/Service";
 const Home = () => {
   const [Insights, setInsights] = useState([]);
+  const [FAQs, setFAQs] = useState([
+    {
+      id: 0,
+      show: false,
+      question: "What is a Bucket?",
+      answer:
+        "A Bucket is a model portfolio that represents an idea, theme or investing strategy. ",
+    },
+    {
+      id: 1,
+      show: false,
+      question: "How will my information be secure?",
+      answer:
+        "We do not store your brokerage login credentials. We do not ask you for any personal information as you are able to invest in Buckets by simply linking your existing brokerage account (Robinhood). We do not look into your existing holdings and simply aim to be the platform where you can buy model portfolios. ",
+    },
+    {
+      id: 2,
+      show: false,
+      question:
+        "Why would I use Buckets when I can buy securities individually?",
+      answer:
+        "When building a website, you look for pre-made templates to use rather than build your own from scratch. Similarly, you are able to build and invest in long term, diversified portfolios in minutes with Buckets without having to pay any fees (for example, management fees)! ",
+    },
+    {
+      id: 3,
+      show: false,
+      question: "How can I collaborate with friends? ",
+      answer:
+        "Think of a Bucket like a Google doc or a Github repo. This means you can ask your friends to share their buckets with you. Thereafter, you get notified when trades have been made and you can copy those changes to keep your Buckets updated. ",
+    },
+    {
+      id: 4,
+      show: false,
+      question: "What if I want to change a Bucket after buying into it? ",
+      answer:
+        "Like a Google doc, you can edit your Buckets at any point. This means you can either buy/sell entire buckets or individual securities in those buckets whenever you wish. You have 100% control. ",
+    },
+    {
+      id: 5,
+      show: false,
+      question: "What is the Buckets Investing Mission?",
+      answer: "To make smart investing easy, collaborative and accessible. ",
+    },
+    {
+      id: 6,
+      show: false,
+      question: "What are fees for Buckets? ",
+      answer:
+        "There are no cost to buy buckets. We do not ask for your credit card information.",
+    },
+    {
+      id: 7,
+      show: false,
+      question: "What is the minimum investment amount?",
+      answer:
+        "The minimum investment amount varies per Bucket. It typically varies from $10 to $200 depending on the brokerage you are using and whether the securities being traded are fractional or not. ",
+    },
+  ]);
   useEffect(() => {
     Aos.init({ duration: 1000 });
 
@@ -99,6 +157,39 @@ const Home = () => {
           className="home-bannerImg"
           data-aos="fade-up"
         />
+      </div>
+
+      <div className="brokerageHeader" data-aos="fade-up">
+        <h2 className="mt-0 mb-0" style={{ marginTop: 80 }}>
+          FAQs
+        </h2>
+      </div>
+      <div className="container faq-container" data-aos="fade-up">
+        {FAQs.map((item) => (
+          <div>
+            <div
+              className="faq-question"
+              onClick={() => {
+                setFAQs((prev) =>
+                  prev.map((faq) => {
+                    return {
+                      ...faq,
+                      show: faq.id == item.id ? !faq.show : faq.show,
+                    };
+                  })
+                );
+              }}
+            >
+              <h4 className="faq-question-text">{item.question}</h4>
+              <div className={item.show ? "faq-arrow-down" : "faq-arrow"}></div>
+            </div>
+            {item.show && (
+              <div className="faq-response">
+                <h4 className="faq-answer-text">{item.answer}</h4>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
       <div
         data-aos="fade-up"

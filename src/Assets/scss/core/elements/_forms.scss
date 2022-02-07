@@ -115,7 +115,33 @@ textarea.form-input {
   background-repeat: no-repeat;
   background-size: 16px 16px;
 }
-
+.faq-arrow {
+  padding-right: ($form--padding-h - $button-form--border-width) * 2 + 16;
+  background-image: inline-svg(
+    '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 11.4L2.6 6 4 4.6l4 4 4-4L13.4 6 8 11.4z" fill="' +
+      "#fff" + '" fill-rule="evenodd"/></svg>'
+  );
+  background-position: right ($form--padding-h - $button-form--border-width)
+    center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  height: 16px;
+  width: 16px;
+  transform: rotate(-90deg);
+}
+.faq-arrow-down {
+  padding-right: ($form--padding-h - $button-form--border-width) * 2 + 16;
+  background-image: inline-svg(
+    '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 11.4L2.6 6 4 4.6l4 4 4-4L13.4 6 8 11.4z" fill="' +
+      "#fff" + '" fill-rule="evenodd"/></svg>'
+  );
+  background-position: right ($form--padding-h - $button-form--border-width)
+    center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  height: 16px;
+  width: 16px;
+}
 .form-select-sm {
   padding-right: ($form-sm--padding-h - $button-form--border-width) * 2 + 16;
   background-position: right ($form-sm--padding-h - $button-form--border-width)
