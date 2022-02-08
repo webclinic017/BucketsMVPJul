@@ -49,7 +49,7 @@ const CustomRoute = ({ isProtected, path, exact, component }) => {
         <Route
           to="/BucketDetails"
           component={() => {
-            window.location.href = "https://testflight.apple.com/join/qsc0mMGU";
+            window.location.href = "https://apps.apple.com/ca/app/buckets-investing/id1599720367";
             return null;
           }}
         />
@@ -70,7 +70,7 @@ const CustomRoute = ({ isProtected, path, exact, component }) => {
             const { id } = params;
             let urlScheme = "bucketid://BucketDetails?id=" + id;
             setTimeout(function () {
-              window.location = "https://testflight.apple.com/join/qsc0mMGU";
+              window.location = "https://apps.apple.com/ca/app/buckets-investing/id1599720367";
             }, 25);
             window.location = urlScheme;
             return <Redirect to="/" />;
