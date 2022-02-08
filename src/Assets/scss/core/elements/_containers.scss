@@ -19,9 +19,11 @@
 }
 .home-banner {
   flex-direction: column;
+  justify-content: center;
   display: flex;
   @include media(">small") {
     flex-direction: row;
+    justify-content: center;
   }
 }
 .home-bannerImg {

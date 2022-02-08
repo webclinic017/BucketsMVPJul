@@ -62,8 +62,8 @@ const Hero = ({
               data-reveal-delay="200"
               data-aos="fade-up"
             >
-              <span className="text-color-primary">Invest </span> 
-               in Model Portfolios for Free
+              <span className="text-color-primary">Invest </span>
+              in Model Portfolios for Free
             </h2>
             <div className="container-xs">
               <p
@@ -71,27 +71,55 @@ const Hero = ({
                 data-reveal-delay="400"
                 data-aos="fade-up"
               >
-                by simply linking your brokerage account. We do NOT store your brokerage credentials or ask for any personal information. 
+                by simply linking your brokerage account. We do NOT store your
+                brokerage credentials or ask for any personal information.
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="container-l home-banner" data-aos="fade-up">
+        <a
+          data-video="https://www.bucketsinvesting.com/videos/buckets.mp4"
+          href="#0"
+          aria-controls="video-modal"
+          onClick={openModal}
+          className="home-bannerImg"
+        >
+          <Image
+            src={require("./../../Assets/images/webVideoPoster.png").default}
+            alt="Hero"
+            style={{
+              height: "100%",
+              width: "100%",
+              borderRadius: 25,
+            }}
+          />
+        </a>
+      </div>
+      <div data-aos="fade-up" className="container-sm">
+        <div className={innerClasses}>
+          <div className="hero-content">
+            <div className="container-xs">
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup data-aos="fade-up">
-                <div className="downloadBtn">
-          <a
-            href="https://testflight.apple.com/join/qsc0mMGU"
-            className="downloadTextWrapper"
-          >
-            <label className="downloadText">Get it for iPhone</label>
-          </a>
-        </div>
+                  <div className="downloadBtn">
+                    <a
+                      href="https://testflight.apple.com/join/qsc0mMGU"
+                      className="downloadTextWrapper"
+                    >
+                      <label className="downloadText">Get it for iPhone</label>
+                    </a>
+                  </div>
 
-        <div className="downloadBtn">
-          <a
-            href="https://www.bucketsinvesting.com/files/buckets_investing.apk"
-            className="downloadTextWrapper"
-          >
-            <label className="downloadText">Get it for Android</label>
-          </a>
-        </div>
+                  <div className="downloadBtn">
+                    <a
+                      href="https://www.bucketsinvesting.com/files/buckets_investing.apk"
+                      className="downloadTextWrapper"
+                    >
+                      <label className="downloadText">Get it for Android</label>
+                    </a>
+                  </div>
                   {/* <Button
                     tag="a"
                     color="primary"
@@ -115,6 +143,7 @@ const Hero = ({
               </div>
             </div>
           </div>
+
           <div
             className="hero-figure reveal-from-bottom illustration-element-01"
             data-reveal-value="20px"
@@ -145,15 +174,15 @@ const Hero = ({
               />
             </a> */}
           </div>
-          <Modal
-            id="video-modal"
-            show={videoModalActive}
-            handleClose={closeModal}
-            video="https://player.vimeo.com/video/174002812"
-            videoTag="iframe"
-          />
         </div>
       </div>
+      <Modal
+        id="video-modal"
+        show={videoModalActive}
+        handleClose={closeModal}
+        video="https://www.bucketsinvesting.com/videos/buckets.mp4"
+        videoTag="iframe"
+      />
     </section>
   );
 };
