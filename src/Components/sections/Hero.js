@@ -105,7 +105,7 @@ const Hero = ({
                 <ButtonGroup data-aos="fade-up">
                   <div className="downloadBtn">
                     <a
-                      href="https://testflight.apple.com/join/qsc0mMGU"
+                      href="https://apps.apple.com/ca/app/buckets-investing/id1599720367"
                       className="downloadTextWrapper"
                     >
                       <label className="downloadText">Get it for iPhone</label>
