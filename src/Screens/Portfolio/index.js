@@ -189,7 +189,7 @@ const Portfolio = (props)=> {
           }
         });
         setBucketSectorWeights(sectorWeights);
-        console.log({sectorWeights});
+        // console.log({sectorWeights});
         setBucketBeta(beta);
         setBucketSize(size);
       }
@@ -202,7 +202,6 @@ const Portfolio = (props)=> {
   useEffect(()=>{
     if(stocks.length && bucketHistoricalPrices && !isFetchingBucketHistoricalPrices) {
       let valueArray = []
-      console.log(bucketHistoricalPrices)
       //Logic: for each security, I calculate the amount of shares I would have bought in the basket 5 years ago  
       bucketData.stocks.map(stock => { 
       const amountInvested = 10000 * (stock.targetWeight/100)
@@ -210,7 +209,6 @@ const Portfolio = (props)=> {
       stock.numberDummyShares = bucketHistoricalPrices[ticker] ? amountInvested/(bucketHistoricalPrices[ticker][bucketHistoricalPrices[ticker].length - 1].close) : 'FAILSAFE-VAULE';
       //Logic: Below, I calculate the value invested in each security throughout the 5 years   
       if (typeof bucketHistoricalPrices[ticker] !== 'undefined') {
-        console.log(bucketHistoricalPrices[ticker])
         bucketHistoricalPrices[ticker].forEach((price) => {
           price.value = stock.numberDummyShares * price.close
           price.date = new Date(price.date).getTime()
@@ -301,7 +299,7 @@ const Portfolio = (props)=> {
     return dollarsSaved.toFixed(2)
   }
 
-  const xCallback = (value) => {console.log(value)};
+  // const xCallback = (value) => {console.log(value)};
 
   
   
