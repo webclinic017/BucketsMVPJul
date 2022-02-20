@@ -196,18 +196,19 @@ const Portfolio = (props)=> {
     } 
   }, [bucketData]);
 
+//Typically, historical price charts show a single sercurity. But in a bucket, there are multiple securities with varying weights.
+//Objective: To show the growth of 10,000 USD invested in a basket of securities 5 years ago in a chart (an npm chart package)
+//Logic: I used a useEffect to first ensure the necessary inputs rendered. In this instance, we need historical prices of all securities.
   useEffect(()=>{
     if(stocks.length && bucketHistoricalPrices && !isFetchingBucketHistoricalPrices) {
       let valueArray = []
       console.log(bucketHistoricalPrices)
-      
+      //Logic: for each security, I calculate the amount of shares I would have bought in the basket 5 years ago  
       bucketData.stocks.map(stock => { 
-      console.log(stock)
-      console.log(stock.targetWeight)
       const amountInvested = 10000 * (stock.targetWeight/100)
       const ticker = stock.ticker
       stock.numberDummyShares = bucketHistoricalPrices[ticker] ? amountInvested/(bucketHistoricalPrices[ticker][bucketHistoricalPrices[ticker].length - 1].close) : 'FAILSAFE-VAULE';
-      
+      //Logic: Below, I calculate the value invested in each security throughout the 5 years   
       if (typeof bucketHistoricalPrices[ticker] !== 'undefined') {
         console.log(bucketHistoricalPrices[ticker])
         bucketHistoricalPrices[ticker].forEach((price) => {
@@ -215,30 +216,17 @@ const Portfolio = (props)=> {
           price.date = new Date(price.date).getTime()
           valueArray.push(price)
         })
-      }
-        
-      });
-
+      }});
+      //Logic: Below, I sum the value invested in all securities by date to get a single x, y series, which is date and basket value. Then I format the output
+      //to match the input format needed by the npm chart package
       const res = Array.from(valueArray.reduce(
         (m, {date, value}) => m.set(date, (m.get(date) || 0) + value), new Map
       ), ([date, value]) => ({date, value}));
-      // console.log(res);
-
+     
       var outputData = res.map( Object.values );
       const gdata = outputData.reverse();
-      console.log({gdata});
       setGData(gdata.slice(0,-2))
 
-    
-
-      
-
-
-      // console.log(valueArray)
-      // for (const [key, value] of Object.entries(res)) {
-      //   const map = value.map((entry)=>([entry.date, entry.value]));
-      //   return map.reverse()
-      // }
     }
   }, [stocks, bucketHistoricalPrices, isFetchingBucketHistoricalPrices]);
 
